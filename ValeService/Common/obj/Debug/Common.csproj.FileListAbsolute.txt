@@ -1,0 +1,6 @@
+C:\Users\Usuario\Desktop\Login\Common\bin\Debug\Common.dll
+C:\Users\Usuario\Desktop\Login\Common\bin\Debug\Common.pdb
+C:\Users\Usuario\Desktop\Login\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\Login\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\Login\Common\obj\Debug\Common.dll
+C:\Users\Usuario\Desktop\Login\Common\obj\Debug\Common.pdb
