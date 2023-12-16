@@ -1,3 +1,4 @@
+
 CREATE DATABASE IF NOT EXISTS db_valeservice;
 
 USE db_valeservice;
@@ -12,31 +13,7 @@ CREATE TABLE Vehiculo (
     Vehiculo_Placa VARCHAR(7) PRIMARY KEY NOT NULL,
     Vehiculo_Marca VARCHAR(50) NOT NULL,
     Vehiculo_Modelo VARCHAR(50) NOT NULL,
-    Vehiculo_Año DATE NOT NULL,
-    Vehiculo_Kilometraje INT NOT NULL
-);
-
-CREATE TABLE RecepcionVehiculo (
-	RecepcionVehiculo_Id INT PRIMARY KEY auto_increment NOT NULL,
-    RecepcionVehiculo_Fecha_Entrada DATE NOT NULL,
-    RecepcionVehiculo_Fecha_Salida DATE,
-    RecepcionVehiculo_Cuenta DECIMAL(10, 2) NOT NULL,
-    Vehiculo_Placa VARCHAR(7) NOT NULL,
-CREATE DATABASE IF NOT EXISTS db_valeservice;
-
-USE db_valeservice;
-
-CREATE TABLE Cliente (
-    Cliente_DNI INT PRIMARY KEY NOT NULL,
-    Cliente_Nombre_Apellido VARCHAR(100) NOT NULL,
-    Cliente_Contacto INT NOT NULL
-);
-
-CREATE TABLE Vehiculo (
-    Vehiculo_Placa VARCHAR(7) PRIMARY KEY NOT NULL,
-    Vehiculo_Marca VARCHAR(50) NOT NULL,
-    Vehiculo_Modelo VARCHAR(50) NOT NULL,
-    Vehiculo_Año DATE NOT NULL,
+    Vehiculo_Año YEAR NOT NULL,
     Vehiculo_Kilometraje INT NOT NULL
 );
 
@@ -160,5 +137,4 @@ VALUES
     ('2023-12-20', '2024-01-15', 2400.30, 'HIJ7788', 987654321),
     ('2024-01-28', '2024-02-20', 2100.60, 'KLM9900', 456789123),
     ('2024-02-10', '2024-03-05', 2200.80, 'NOP1122', 789123456);
-
 
