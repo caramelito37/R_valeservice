@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,6 +58,14 @@ namespace Login
         private void txtFechaSalida_TextChanged(object sender, EventArgs e)
         {
 
+        }
+        private void LimpiarDatosRecepcion()
+        {
+            mtxtFechaEntrada.Clear();
+            mtxtFechaSalida.Clear();
+            txtRecepcionAdelanto.Clear();
+            cbxClienteDni.SelectedIndex = -1;
+            cbxVehiculoPlaca.SelectedIndex = -1;
         }
 
         #region FORMULARIOS DE BUSCAR CLIENTE Y VEHICULO ---REDUNDANTE
@@ -139,12 +148,76 @@ namespace Login
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string fechaEntrada = txtFechaEntrada.Text;
-            string fechaSalida = txtFechaSalida.Text;
-            string recepcionAdelanto = txtRecepcionAdelanto.Text;
-            string clienteDni = cbxClienteDni.SelectedValue?.ToString();
-            string vehiculoPlaca = cbxVehiculoPlaca.SelectedValue?.ToString();
+            string fechaEntrada = mtxtFechaEntrada.Text.Trim();  // Trim para eliminar espacios en blanco al inicio y al final
+            string fechaSalida = mtxtFechaSalida.Text;
+            string cuenta = txtRecepcionAdelanto.Text;
+            string clienteDni = cbxClienteDni.SelectedItem?.ToString();
+            string vehiculoPlaca = cbxVehiculoPlaca.SelectedItem?.ToString();
 
+            List<string> camposFaltantes = new List<string>();
+
+            if (string.IsNullOrEmpty(fechaEntrada))
+            {
+                camposFaltantes.Add("Fecha de Entrada");
+            }
+
+            if (string.IsNullOrWhiteSpace(cuenta))
+            {
+                camposFaltantes.Add("Cuenta");
+            }
+
+            if (string.IsNullOrWhiteSpace(clienteDni))
+            {
+                camposFaltantes.Add("Cliente DNI");
+            }
+
+            if (string.IsNullOrWhiteSpace(vehiculoPlaca))
+            {
+                camposFaltantes.Add("Vehículo Placa");
+            }
+
+            if (camposFaltantes.Count == 0)
+            {
+                // Intenta analizar la cadena de fechaEntrada en un DateTime con el formato esperado
+                if (DateTime.TryParseExact(fechaEntrada, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaEntradaDateTime))
+                {
+                    // Parsear la cadena de fechaSalida o asignar null si está vacío
+                    DateTime? fechaSalidaDateTime = !string.IsNullOrWhiteSpace(fechaSalida) ?
+                        DateTime.TryParseExact(fechaSalida, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime salidaValue) ?
+                            salidaValue :
+                            (DateTime?)null :
+                        null;
+
+                    // Llamar al método AgregarRecepcion en la capa de dominio sin verificar existencia
+                    dRecepcionVehiculo.AgregarRecepcion(fechaEntradaDateTime, fechaSalidaDateTime, Convert.ToDecimal(cuenta), vehiculoPlaca, Convert.ToInt32(clienteDni));
+                    MostrarRecepciones();
+
+                    // Puedes implementar la actualización de tu interfaz de usuario o cualquier otro proceso necesario aquí
+                    LimpiarDatosRecepcion();
+                }
+                else
+                {
+                    MessageBox.Show("El formato de la fecha de entrada no es válido. Por favor, ingrese una fecha válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LimpiarDatosRecepcion();
+                }
+            }
+            else
+            {
+                string mensaje = $"Por favor, complete los siguientes campos antes de agregar una recepción:\n{string.Join("\n", camposFaltantes)}";
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LimpiarDatosRecepcion();
+            }
+
+
+        }
+
+        private void txtRecepcionId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mtxtFechaEntrada_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
 
         }
     }
