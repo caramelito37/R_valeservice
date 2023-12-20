@@ -55,12 +55,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvRecepcionVehicular = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Salida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vehiculo_Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cliente_DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -75,9 +75,9 @@
             this.panel2.Controls.Add(this.btnCerrar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1443, 80);
+            this.panel2.Size = new System.Drawing.Size(1924, 98);
             this.panel2.TabIndex = 25;
             // 
             // label1
@@ -85,10 +85,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(13, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(17, 25);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(328, 37);
+            this.label1.Size = new System.Drawing.Size(408, 46);
             this.label1.TabIndex = 0;
             this.label1.Text = "Recepcion Vehicular";
             // 
@@ -100,10 +100,10 @@
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCerrar.Location = new System.Drawing.Point(1356, 0);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnCerrar.Location = new System.Drawing.Point(1808, 0);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(87, 26);
+            this.btnCerrar.Size = new System.Drawing.Size(116, 32);
             this.btnCerrar.TabIndex = 4;
             this.btnCerrar.Text = "cerrar";
             this.btnCerrar.UseVisualStyleBackColor = false;
@@ -116,9 +116,11 @@
             this.groupBox2.Controls.Add(this.txtBuscarRecepcion);
             this.groupBox2.Controls.Add(this.btnBuscarRecepcion);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(20, 466);
+            this.groupBox2.Location = new System.Drawing.Point(27, 574);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(367, 158);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(489, 194);
             this.groupBox2.TabIndex = 53;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Buscar Recepcion";
@@ -130,10 +132,10 @@
             this.btnRefrescar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefrescar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefrescar.ForeColor = System.Drawing.Color.Transparent;
-            this.btnRefrescar.Location = new System.Drawing.Point(15, 78);
-            this.btnRefrescar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnRefrescar.Location = new System.Drawing.Point(20, 96);
+            this.btnRefrescar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnRefrescar.Name = "btnRefrescar";
-            this.btnRefrescar.Size = new System.Drawing.Size(139, 32);
+            this.btnRefrescar.Size = new System.Drawing.Size(185, 39);
             this.btnRefrescar.TabIndex = 47;
             this.btnRefrescar.Text = "Refrescar Tabla";
             this.btnRefrescar.UseVisualStyleBackColor = false;
@@ -148,18 +150,19 @@
             "Modelo",
             "Año",
             "Kilometraje"});
-            this.cbxBuscarRecepcion.Location = new System.Drawing.Point(15, 36);
+            this.cbxBuscarRecepcion.Location = new System.Drawing.Point(20, 44);
+            this.cbxBuscarRecepcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxBuscarRecepcion.Name = "cbxBuscarRecepcion";
-            this.cbxBuscarRecepcion.Size = new System.Drawing.Size(139, 24);
+            this.cbxBuscarRecepcion.Size = new System.Drawing.Size(184, 28);
             this.cbxBuscarRecepcion.TabIndex = 34;
             // 
             // txtBuscarRecepcion
             // 
             this.txtBuscarRecepcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarRecepcion.Location = new System.Drawing.Point(161, 36);
-            this.txtBuscarRecepcion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtBuscarRecepcion.Location = new System.Drawing.Point(215, 44);
+            this.txtBuscarRecepcion.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtBuscarRecepcion.Name = "txtBuscarRecepcion";
-            this.txtBuscarRecepcion.Size = new System.Drawing.Size(181, 22);
+            this.txtBuscarRecepcion.Size = new System.Drawing.Size(240, 26);
             this.txtBuscarRecepcion.TabIndex = 33;
             // 
             // btnBuscarRecepcion
@@ -169,10 +172,10 @@
             this.btnBuscarRecepcion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarRecepcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscarRecepcion.ForeColor = System.Drawing.Color.Transparent;
-            this.btnBuscarRecepcion.Location = new System.Drawing.Point(161, 78);
-            this.btnBuscarRecepcion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnBuscarRecepcion.Location = new System.Drawing.Point(215, 96);
+            this.btnBuscarRecepcion.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnBuscarRecepcion.Name = "btnBuscarRecepcion";
-            this.btnBuscarRecepcion.Size = new System.Drawing.Size(181, 32);
+            this.btnBuscarRecepcion.Size = new System.Drawing.Size(241, 39);
             this.btnBuscarRecepcion.TabIndex = 32;
             this.btnBuscarRecepcion.Text = "Buscar";
             this.btnBuscarRecepcion.UseVisualStyleBackColor = false;
@@ -196,9 +199,11 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(20, 99);
+            this.groupBox1.Location = new System.Drawing.Point(27, 122);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(367, 360);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(489, 443);
             this.groupBox1.TabIndex = 52;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la Recepcion";
@@ -206,19 +211,21 @@
             // 
             // mtxtFechaSalida
             // 
-            this.mtxtFechaSalida.Location = new System.Drawing.Point(157, 106);
+            this.mtxtFechaSalida.Location = new System.Drawing.Point(209, 130);
+            this.mtxtFechaSalida.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mtxtFechaSalida.Mask = "00/00/0000";
             this.mtxtFechaSalida.Name = "mtxtFechaSalida";
-            this.mtxtFechaSalida.Size = new System.Drawing.Size(101, 26);
+            this.mtxtFechaSalida.Size = new System.Drawing.Size(133, 30);
             this.mtxtFechaSalida.TabIndex = 54;
             this.mtxtFechaSalida.ValidatingType = typeof(System.DateTime);
             // 
             // mtxtFechaEntrada
             // 
-            this.mtxtFechaEntrada.Location = new System.Drawing.Point(157, 71);
+            this.mtxtFechaEntrada.Location = new System.Drawing.Point(209, 87);
+            this.mtxtFechaEntrada.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mtxtFechaEntrada.Mask = "00/00/0000";
             this.mtxtFechaEntrada.Name = "mtxtFechaEntrada";
-            this.mtxtFechaEntrada.Size = new System.Drawing.Size(101, 26);
+            this.mtxtFechaEntrada.Size = new System.Drawing.Size(133, 30);
             this.mtxtFechaEntrada.TabIndex = 53;
             this.mtxtFechaEntrada.ValidatingType = typeof(System.DateTime);
             this.mtxtFechaEntrada.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtxtFechaEntrada_MaskInputRejected);
@@ -227,28 +234,29 @@
             // 
             this.cbxClienteDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxClienteDni.FormattingEnabled = true;
-            this.cbxClienteDni.Location = new System.Drawing.Point(157, 184);
+            this.cbxClienteDni.Location = new System.Drawing.Point(209, 226);
+            this.cbxClienteDni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxClienteDni.Name = "cbxClienteDni";
-            this.cbxClienteDni.Size = new System.Drawing.Size(179, 24);
+            this.cbxClienteDni.Size = new System.Drawing.Size(237, 28);
             this.cbxClienteDni.TabIndex = 52;
             // 
             // cbxVehiculoPlaca
             // 
             this.cbxVehiculoPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxVehiculoPlaca.FormattingEnabled = true;
-            this.cbxVehiculoPlaca.Location = new System.Drawing.Point(157, 221);
+            this.cbxVehiculoPlaca.Location = new System.Drawing.Point(209, 272);
+            this.cbxVehiculoPlaca.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxVehiculoPlaca.Name = "cbxVehiculoPlaca";
-            this.cbxVehiculoPlaca.Size = new System.Drawing.Size(179, 24);
+            this.cbxVehiculoPlaca.Size = new System.Drawing.Size(237, 28);
             this.cbxVehiculoPlaca.TabIndex = 51;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(25, 225);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(33, 277);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(113, 20);
+            this.label7.Size = new System.Drawing.Size(142, 25);
             this.label7.TabIndex = 49;
             this.label7.Text = "Vehiculo Placa";
             // 
@@ -256,10 +264,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(25, 184);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(33, 226);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 20);
+            this.label4.Size = new System.Drawing.Size(107, 25);
             this.label4.TabIndex = 48;
             this.label4.Text = "Cliente Dni";
             // 
@@ -270,10 +277,10 @@
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.Color.Transparent;
-            this.btnEliminar.Location = new System.Drawing.Point(144, 310);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnEliminar.Location = new System.Drawing.Point(192, 382);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(113, 32);
+            this.btnEliminar.Size = new System.Drawing.Size(151, 39);
             this.btnEliminar.TabIndex = 47;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -282,10 +289,10 @@
             // 
             this.txtRecepcionId.Enabled = false;
             this.txtRecepcionId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecepcionId.Location = new System.Drawing.Point(157, 36);
-            this.txtRecepcionId.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtRecepcionId.Location = new System.Drawing.Point(209, 44);
+            this.txtRecepcionId.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtRecepcionId.Name = "txtRecepcionId";
-            this.txtRecepcionId.Size = new System.Drawing.Size(101, 26);
+            this.txtRecepcionId.Size = new System.Drawing.Size(133, 30);
             this.txtRecepcionId.TabIndex = 25;
             this.txtRecepcionId.TextChanged += new System.EventHandler(this.txtRecepcionId_TextChanged);
             // 
@@ -296,10 +303,10 @@
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.ForeColor = System.Drawing.Color.Transparent;
-            this.btnEditar.Location = new System.Drawing.Point(29, 310);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnEditar.Location = new System.Drawing.Point(39, 382);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(113, 32);
+            this.btnEditar.Size = new System.Drawing.Size(151, 39);
             this.btnEditar.TabIndex = 46;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = false;
@@ -308,10 +315,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(25, 34);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(33, 42);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 20);
+            this.label2.Size = new System.Drawing.Size(28, 25);
             this.label2.TabIndex = 31;
             this.label2.Text = "Id";
             // 
@@ -322,10 +328,10 @@
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.Transparent;
-            this.btnAgregar.Location = new System.Drawing.Point(29, 271);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnAgregar.Location = new System.Drawing.Point(39, 334);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(229, 32);
+            this.btnAgregar.Size = new System.Drawing.Size(305, 39);
             this.btnAgregar.TabIndex = 45;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
@@ -335,30 +341,28 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(25, 74);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(33, 91);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(119, 20);
+            this.label3.Size = new System.Drawing.Size(145, 25);
             this.label3.TabIndex = 32;
             this.label3.Text = "Fecha Entrada ";
             // 
             // txtRecepcionAdelanto
             // 
             this.txtRecepcionAdelanto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecepcionAdelanto.Location = new System.Drawing.Point(157, 144);
-            this.txtRecepcionAdelanto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtRecepcionAdelanto.Location = new System.Drawing.Point(209, 177);
+            this.txtRecepcionAdelanto.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtRecepcionAdelanto.Name = "txtRecepcionAdelanto";
-            this.txtRecepcionAdelanto.Size = new System.Drawing.Size(101, 26);
+            this.txtRecepcionAdelanto.Size = new System.Drawing.Size(133, 30);
             this.txtRecepcionAdelanto.TabIndex = 35;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(25, 147);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(33, 181);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 20);
+            this.label5.Size = new System.Drawing.Size(90, 25);
             this.label5.TabIndex = 37;
             this.label5.Text = "Adelanto";
             // 
@@ -366,10 +370,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(25, 112);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(33, 138);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 20);
+            this.label6.Size = new System.Drawing.Size(127, 25);
             this.label6.TabIndex = 36;
             this.label6.Text = "Fecha Salida";
             // 
@@ -377,9 +380,10 @@
             // 
             this.panel1.Controls.Add(this.dgvRecepcionVehicular);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(546, 80);
+            this.panel1.Location = new System.Drawing.Point(728, 98);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(897, 777);
+            this.panel1.Size = new System.Drawing.Size(1196, 957);
             this.panel1.TabIndex = 54;
             // 
             // dgvRecepcionVehicular
@@ -397,73 +401,81 @@
             this.dgvRecepcionVehicular.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRecepcionVehicular.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRecepcionVehicular.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column7,
-            this.Column4,
-            this.Column5,
-            this.Column6});
+            this.ID,
+            this.Entrada,
+            this.Salida,
+            this.Cuenta,
+            this.Vehiculo_Placa,
+            this.Cliente_DNI});
             this.dgvRecepcionVehicular.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRecepcionVehicular.Location = new System.Drawing.Point(0, 0);
+            this.dgvRecepcionVehicular.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvRecepcionVehicular.Name = "dgvRecepcionVehicular";
             this.dgvRecepcionVehicular.ReadOnly = true;
             this.dgvRecepcionVehicular.RowHeadersWidth = 51;
-            this.dgvRecepcionVehicular.Size = new System.Drawing.Size(897, 777);
+            this.dgvRecepcionVehicular.Size = new System.Drawing.Size(1196, 957);
             this.dgvRecepcionVehicular.TabIndex = 0;
             this.dgvRecepcionVehicular.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecepcionVehicular_CellClick);
             // 
-            // Column1
+            // ID
             // 
-            this.Column1.DataPropertyName = "RecepcionVehiculo_Id";
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.ID.DataPropertyName = "RecepcionVehiculo_Id";
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             // 
-            // Column2
+            // Entrada
             // 
-            this.Column2.DataPropertyName = "RecepcionVehiculo_Fecha_Entrada";
-            this.Column2.HeaderText = "Entrada";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.Entrada.DataPropertyName = "RecepcionVehiculo_Fecha_Entrada";
+            this.Entrada.HeaderText = "Entrada";
+            this.Entrada.MinimumWidth = 6;
+            this.Entrada.Name = "Entrada";
+            this.Entrada.ReadOnly = true;
             // 
-            // Column7
+            // Salida
             // 
-            this.Column7.DataPropertyName = "RecepcionVehiculo_Fecha_Salida";
-            this.Column7.HeaderText = "Salida";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
+            this.Salida.DataPropertyName = "RecepcionVehiculo_Fecha_Salida";
+            this.Salida.HeaderText = "Salida";
+            this.Salida.MinimumWidth = 6;
+            this.Salida.Name = "Salida";
+            this.Salida.ReadOnly = true;
             // 
-            // Column4
+            // Cuenta
             // 
-            this.Column4.DataPropertyName = "RecepcionVehiculo_Cuenta";
-            this.Column4.HeaderText = "Cuenta";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.Cuenta.DataPropertyName = "RecepcionVehiculo_Cuenta";
+            this.Cuenta.HeaderText = "Cuenta";
+            this.Cuenta.MinimumWidth = 6;
+            this.Cuenta.Name = "Cuenta";
+            this.Cuenta.ReadOnly = true;
             // 
-            // Column5
+            // Vehiculo_Placa
             // 
-            this.Column5.DataPropertyName = "Vehiculo_Placa";
-            this.Column5.HeaderText = "Vehiculo_Placa";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
+            this.Vehiculo_Placa.DataPropertyName = "Vehiculo_Placa";
+            this.Vehiculo_Placa.HeaderText = "Vehiculo_Placa";
+            this.Vehiculo_Placa.MinimumWidth = 6;
+            this.Vehiculo_Placa.Name = "Vehiculo_Placa";
+            this.Vehiculo_Placa.ReadOnly = true;
             // 
-            // Column6
+            // Cliente_DNI
             // 
-            this.Column6.DataPropertyName = "Cliente_DNI";
-            this.Column6.HeaderText = "Cliente_DNI";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
+            this.Cliente_DNI.DataPropertyName = "Cliente_DNI";
+            this.Cliente_DNI.HeaderText = "Cliente_DNI";
+            this.Cliente_DNI.MinimumWidth = 6;
+            this.Cliente_DNI.Name = "Cliente_DNI";
+            this.Cliente_DNI.ReadOnly = true;
             // 
             // frmRecepcionVehicular
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(128)))), ((int)(((byte)(188)))));
-            this.ClientSize = new System.Drawing.Size(1443, 857);
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmRecepcionVehicular";
             this.Text = "frmRecepcionVehicular";
             this.Load += new System.EventHandler(this.frmRecepcionVehicular_Load);
@@ -505,13 +517,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbxClienteDni;
         private System.Windows.Forms.ComboBox cbxVehiculoPlaca;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.MaskedTextBox mtxtFechaSalida;
         private System.Windows.Forms.MaskedTextBox mtxtFechaEntrada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Entrada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Salida;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cuenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Vehiculo_Placa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cliente_DNI;
     }
 }

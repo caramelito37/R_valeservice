@@ -62,6 +62,20 @@ namespace Login
         {
 
         }
+        private List<string> VerificarCamposFaltantes(params (string valor, string nombreCampo)[] campos)
+        {
+            List<string> camposFaltantes = new List<string>();
+
+            foreach (var campo in campos)
+            {
+                if (string.IsNullOrWhiteSpace(campo.valor))
+                {
+                    camposFaltantes.Add(campo.nombreCampo);
+                }
+            }
+
+            return camposFaltantes;
+        }
         private void LimpiarDatosRecepcion()
         {
             mtxtFechaEntrada.Clear();
@@ -152,52 +166,48 @@ namespace Login
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             string ID = txtRecepcionId.Text;
-            string fechaEntrada = mtxtFechaEntrada.Text.Trim(); 
+            string fechaEntrada = mtxtFechaEntrada.Text.Trim();
             string fechaSalida = mtxtFechaSalida.Text;
             string cuenta = txtRecepcionAdelanto.Text;
             string clienteDni = cbxClienteDni.SelectedItem?.ToString();
             string vehiculoPlaca = cbxVehiculoPlaca.SelectedItem?.ToString();
 
-            List<string> camposFaltantes = new List<string>();
-
-            if (string.IsNullOrEmpty(fechaEntrada))
-            {
-                camposFaltantes.Add("Fecha de Entrada");
-            }
-
-            if (string.IsNullOrWhiteSpace(cuenta))
-            {
-                camposFaltantes.Add("Cuenta");
-            }
-
-            if (string.IsNullOrWhiteSpace(clienteDni))
-            {
-                camposFaltantes.Add("Cliente DNI");
-            }
-
-            if (string.IsNullOrWhiteSpace(vehiculoPlaca))
-            {
-                camposFaltantes.Add("Vehículo Placa");
-            }
+            List<string> camposFaltantes = VerificarCamposFaltantes(
+                (fechaEntrada, "Fecha de Entrada"),
+                (cuenta, "Cuenta"),
+                (clienteDni, "Cliente DNI"),
+                (vehiculoPlaca, "Vehículo Placa")
+            );
 
             if (camposFaltantes.Count == 0)
             {
-                // Intenta analizar la cadena de fechaEntrada en un DateTime con el formato esperado
                 if (DateTime.TryParseExact(fechaEntrada, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaEntradaDateTime))
                 {
-                    // Parsear la cadena de fechaSalida o asignar null si está vacío
                     DateTime? fechaSalidaDateTime = !string.IsNullOrWhiteSpace(fechaSalida) ?
                         DateTime.TryParseExact(fechaSalida, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime salidaValue) ?
                             salidaValue :
                             (DateTime?)null :
                         null;
 
-                    // Llamar al método AgregarRecepcion en la capa de dominio sin verificar existencia
-                    dRecepcionVehiculo.AgregarRecepcion(fechaEntradaDateTime, fechaSalidaDateTime, Convert.ToDecimal(cuenta), vehiculoPlaca, Convert.ToInt32(clienteDni));
-                    MostrarRecepciones();
+                    // Mostrar confirmación antes de agregar la recepción
+                    DialogResult confirmacion = MessageBox.Show(
+                        $"¿Está seguro de que desea crear una recepción con los siguientes datos?\n\n" +
+                        $"Fecha de Entrada: {fechaEntrada}\n" +
+                        $"Fecha de Salida: {fechaSalida}\n" +
+                        $"Cuenta: {cuenta}\n" +
+                        $"Cliente DNI: {clienteDni}\n" +
+                        $"Vehículo Placa: {vehiculoPlaca}",
+                        "Confirmar",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
 
-                    // Puedes implementar la actualización de tu interfaz de usuario o cualquier otro proceso necesario aquí
-                    LimpiarDatosRecepcion();
+                    if (confirmacion == DialogResult.Yes)
+                    {
+                        dRecepcionVehiculo.AgregarRecepcion(fechaEntradaDateTime, fechaSalidaDateTime, Convert.ToDecimal(cuenta), vehiculoPlaca, Convert.ToInt32(clienteDni));
+                        MostrarRecepciones();
+                        LimpiarDatosRecepcion();
+                    }
                 }
                 else
                 {
@@ -211,8 +221,6 @@ namespace Login
                 MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 LimpiarDatosRecepcion();
             }
-
-
         }
 
         private void txtRecepcionId_TextChanged(object sender, EventArgs e)
