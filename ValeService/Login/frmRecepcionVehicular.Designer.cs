@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
@@ -38,6 +38,8 @@
             this.txtBuscarRecepcion = new System.Windows.Forms.TextBox();
             this.btnBuscarRecepcion = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.mtxtFechaSalida = new System.Windows.Forms.MaskedTextBox();
+            this.mtxtFechaEntrada = new System.Windows.Forms.MaskedTextBox();
             this.cbxClienteDni = new System.Windows.Forms.ComboBox();
             this.cbxVehiculoPlaca = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -59,8 +61,6 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtxtFechaEntrada = new System.Windows.Forms.MaskedTextBox();
-            this.mtxtFechaSalida = new System.Windows.Forms.MaskedTextBox();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -75,7 +75,7 @@
             this.panel2.Controls.Add(this.btnCerrar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1443, 80);
             this.panel2.TabIndex = 25;
@@ -203,6 +203,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la Recepcion";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // mtxtFechaSalida
+            // 
+            this.mtxtFechaSalida.Location = new System.Drawing.Point(157, 106);
+            this.mtxtFechaSalida.Mask = "00/00/0000";
+            this.mtxtFechaSalida.Name = "mtxtFechaSalida";
+            this.mtxtFechaSalida.Size = new System.Drawing.Size(101, 26);
+            this.mtxtFechaSalida.TabIndex = 54;
+            this.mtxtFechaSalida.ValidatingType = typeof(System.DateTime);
+            // 
+            // mtxtFechaEntrada
+            // 
+            this.mtxtFechaEntrada.Location = new System.Drawing.Point(157, 71);
+            this.mtxtFechaEntrada.Mask = "00/00/0000";
+            this.mtxtFechaEntrada.Name = "mtxtFechaEntrada";
+            this.mtxtFechaEntrada.Size = new System.Drawing.Size(101, 26);
+            this.mtxtFechaEntrada.TabIndex = 53;
+            this.mtxtFechaEntrada.ValidatingType = typeof(System.DateTime);
+            this.mtxtFechaEntrada.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtxtFechaEntrada_MaskInputRejected);
             // 
             // cbxClienteDni
             // 
@@ -368,14 +387,14 @@
             this.dgvRecepcionVehicular.AllowUserToAddRows = false;
             this.dgvRecepcionVehicular.AllowUserToDeleteRows = false;
             this.dgvRecepcionVehicular.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(128)))), ((int)(((byte)(188)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRecepcionVehicular.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(128)))), ((int)(((byte)(188)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRecepcionVehicular.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRecepcionVehicular.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRecepcionVehicular.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -391,6 +410,7 @@
             this.dgvRecepcionVehicular.RowHeadersWidth = 51;
             this.dgvRecepcionVehicular.Size = new System.Drawing.Size(897, 777);
             this.dgvRecepcionVehicular.TabIndex = 0;
+            this.dgvRecepcionVehicular.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecepcionVehicular_CellClick);
             // 
             // Column1
             // 
@@ -433,25 +453,6 @@
             this.Column6.HeaderText = "Cliente_DNI";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
-            // 
-            // mtxtFechaEntrada
-            // 
-            this.mtxtFechaEntrada.Location = new System.Drawing.Point(157, 71);
-            this.mtxtFechaEntrada.Mask = "00/00/0000";
-            this.mtxtFechaEntrada.Name = "mtxtFechaEntrada";
-            this.mtxtFechaEntrada.Size = new System.Drawing.Size(101, 26);
-            this.mtxtFechaEntrada.TabIndex = 53;
-            this.mtxtFechaEntrada.ValidatingType = typeof(System.DateTime);
-            this.mtxtFechaEntrada.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtxtFechaEntrada_MaskInputRejected);
-            // 
-            // mtxtFechaSalida
-            // 
-            this.mtxtFechaSalida.Location = new System.Drawing.Point(157, 106);
-            this.mtxtFechaSalida.Mask = "00/00/0000";
-            this.mtxtFechaSalida.Name = "mtxtFechaSalida";
-            this.mtxtFechaSalida.Size = new System.Drawing.Size(101, 26);
-            this.mtxtFechaSalida.TabIndex = 54;
-            this.mtxtFechaSalida.ValidatingType = typeof(System.DateTime);
             // 
             // frmRecepcionVehicular
             // 

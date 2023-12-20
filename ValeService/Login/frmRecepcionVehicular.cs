@@ -49,7 +49,10 @@ namespace Login
             DataTable DTrecepciones = dRecepcionVehiculo.MostrarRecepciones();
             dgvRecepcionVehicular.DataSource = DTrecepciones;
         }
+        private void RellenarCampos()
+        {
 
+        }
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -148,7 +151,8 @@ namespace Login
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string fechaEntrada = mtxtFechaEntrada.Text.Trim();  // Trim para eliminar espacios en blanco al inicio y al final
+            string ID = txtRecepcionId.Text;
+            string fechaEntrada = mtxtFechaEntrada.Text.Trim(); 
             string fechaSalida = mtxtFechaSalida.Text;
             string cuenta = txtRecepcionAdelanto.Text;
             string clienteDni = cbxClienteDni.SelectedItem?.ToString();
@@ -219,6 +223,25 @@ namespace Login
         private void mtxtFechaEntrada_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
+        }
+
+        private void dgvRecepcionVehicular_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dgvRecepcionVehicular.Rows.Count)
+            {
+                txtRecepcionId.Text = dgvRecepcionVehicular.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+                mtxtFechaEntrada.Text = dgvRecepcionVehicular.Rows[e.RowIndex].Cells["Entrada"].Value.ToString();
+                mtxtFechaSalida.Text = dgvRecepcionVehicular.Rows[e.RowIndex].Cells["Salida"].Value?.ToString();
+                txtRecepcionAdelanto.Text = dgvRecepcionVehicular.Rows[e.RowIndex].Cells["Cuenta"].Value.ToString();
+
+                // Si los datos provienen de ComboBox, también puedes seleccionar los elementos correspondientes
+                string clienteDni = dgvRecepcionVehicular.Rows[e.RowIndex].Cells["Cliente_DNI"].Value.ToString();
+                string vehiculoPlaca = dgvRecepcionVehicular.Rows[e.RowIndex].Cells["Vehiculo_Placa"].Value.ToString();
+
+                // Aquí asumimos que los valores en el ComboBox son cadenas, ajusta según sea necesario
+                cbxClienteDni.SelectedItem = clienteDni;
+                cbxVehiculoPlaca.SelectedItem = vehiculoPlaca;
+            }
         }
     }
 }
