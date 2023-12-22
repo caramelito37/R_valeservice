@@ -255,25 +255,29 @@ namespace DataAccess
                     string consulta = "SELECT * FROM RecepcionVehiculo WHERE ";
                     switch (opcion)
                     {
-                        case "FechaEntrada":
+                        case "Recepcion_ID":
+                            consulta += "RecepcionVehiculo_Id LIKE @valor;";
+                            break;
+                        case "Fecha_Entrada":
                             consulta += "RecepcionVehiculo_Fecha_Entrada LIKE @valor;";
                             break;
-                        case "FechaSalida":
+                        case "Fecha_Salida":
                             consulta += "RecepcionVehiculo_Fecha_Salida LIKE @valor;";
                             break;
                         case "Cuenta":
                             consulta += "RecepcionVehiculo_Cuenta LIKE @valor;";
                             break;
-                        case "PlacaVehiculo":
+                        case "Placa_Vehiculo":
                             consulta += "Vehiculo_Placa LIKE @valor;";
                             break;
-                        case "ClienteDNI":
+                        case "Cliente_DNI":
                             consulta += "Cliente_DNI LIKE @valor;";
                             break;
                         default:
                             // Opción por defecto si la selección no es válida
                             return new DataTable();
                     }
+
 
                     command.CommandText = consulta;
                     // Usar el comodín '%' para realizar búsquedas parciales con el operador LIKE
