@@ -163,8 +163,8 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "SELECT * FROM RecepcionVehiculo;";
-                    command.CommandType = CommandType.Text;
+                    command.CommandText = "MostrarRecepciones";
+                    command.CommandType = CommandType.StoredProcedure;
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
