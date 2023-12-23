@@ -54,8 +54,8 @@ CREATE TABLE ManoDeObra (
 );
 
 CREATE TABLE Repuesto (
-    Repuesto_Id INT PRIMARY KEY NOT NULL,
-    Repuesto_Descripcion VARCHAR(10) NOT NULL
+    Repuesto_Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Repuesto_Descripcion VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Hoja_Repuestos (
@@ -138,9 +138,20 @@ VALUES
     ('2024-01-28', '2024-02-20', 2100.60, 'KLM9900', 456789123),
     ('2024-02-10', '2024-03-05', 2200.80, 'NOP1122', 789123456);
 
+INSERT INTO Repuesto (Repuesto_Descripcion) VALUES
+    ('Filtro de aceite'),
+    ('Bujías'),
+    ('Pastillas de freno'),
+    ('Batería'),
+    ('Aceite de motor'),
+    ('Filtro de aire'),
+    ('Correa de distribución'),
+    ('Amortiguadores'),
+    ('Líquido de frenos'),
+    ('Bomba de agua');
+
 
 DELIMITER //
-
 CREATE PROCEDURE MostrarRecepciones()
 BEGIN
     SELECT

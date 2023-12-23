@@ -1,13 +1,9 @@
 ﻿using Domain;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Login
@@ -53,10 +49,6 @@ namespace Login
         {
             this.Close();
         }       
-        private void RellenarCampos()
-        {
-
-        }
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -166,77 +158,14 @@ namespace Login
         //}
 
         #endregion
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            string ID = txtRecepcionId.Text;
-            string fechaEntrada = mtxtFechaEntrada.Text.Trim();
-            string fechaSalida = mtxtFechaSalida.Text;
-            string cuenta = txtRecepcionAdelanto.Text;
-            string clienteDni = cbxClienteDni.SelectedItem?.ToString();
-            string vehiculoPlaca = cbxVehiculoPlaca.SelectedItem?.ToString();
-
-            List<string> camposFaltantes = VerificarCamposFaltantes(
-                (fechaEntrada, "Fecha de Entrada"),
-                (cuenta, "Cuenta"),
-                (clienteDni, "Cliente DNI"),
-                (vehiculoPlaca, "Vehículo Placa")
-            );
-
-            if (camposFaltantes.Count == 0)
-            {
-                if (DateTime.TryParseExact(fechaEntrada, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaEntradaDateTime))
-                {
-                    DateTime? fechaSalidaDateTime = !string.IsNullOrWhiteSpace(fechaSalida) ?
-                        DateTime.TryParseExact(fechaSalida, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime salidaValue) ?
-                            salidaValue :
-                            (DateTime?)null :
-                        null;
-
-                    // Mostrar confirmación antes de agregar la recepción
-                    DialogResult confirmacion = MessageBox.Show(
-                        $"¿Está seguro de que desea crear una recepción con los siguientes datos?\n\n" +
-                        $"Fecha de Entrada: {fechaEntrada}\n" +
-                        $"Fecha de Salida: {fechaSalida}\n" +
-                        $"Cuenta: {cuenta}\n" +
-                        $"Cliente DNI: {clienteDni}\n" +
-                        $"Vehículo Placa: {vehiculoPlaca}",
-                        "Confirmar",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question
-                    );
-
-                    if (confirmacion == DialogResult.Yes)
-                    {
-                        dRecepcionVehiculo.AgregarRecepcion(fechaEntradaDateTime, fechaSalidaDateTime, Convert.ToDecimal(cuenta), vehiculoPlaca, Convert.ToInt32(clienteDni));
-                        MostrarRecepciones();
-                        LimpiarDatosRecepcion();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("El formato de la fecha de entrada no es válido. Por favor, ingrese una fecha válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    LimpiarDatosRecepcion();
-                }
-            }
-            else
-            {
-                string mensaje = $"Por favor, complete los siguientes campos antes de agregar una recepción:\n{string.Join("\n", camposFaltantes)}";
-                MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                LimpiarDatosRecepcion();
-            }
-        }
-
         private void txtRecepcionId_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void mtxtFechaEntrada_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }
-
         private void dgvRecepcionVehicular_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.RowIndex < dgvRecepcionVehicular.Rows.Count)
@@ -295,6 +224,67 @@ namespace Login
                 // Asignar valores al resto de los controles
                 cbxClienteDni.SelectedItem = clienteDni;
                 cbxVehiculoPlaca.SelectedItem = vehiculoPlaca;
+            }
+        }
+
+        #region BOTONES DE AGREGAR, EDITAR, ELIMINAR, BUSCAR Y REFRESCAR TABLA
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            string ID = txtRecepcionId.Text;
+            string fechaEntrada = mtxtFechaEntrada.Text.Trim();
+            string fechaSalida = mtxtFechaSalida.Text;
+            string cuenta = txtRecepcionAdelanto.Text;
+            string clienteDni = cbxClienteDni.SelectedItem?.ToString();
+            string vehiculoPlaca = cbxVehiculoPlaca.SelectedItem?.ToString();
+
+            List<string> camposFaltantes = VerificarCamposFaltantes(
+                (fechaEntrada, "Fecha de Entrada"),
+                (cuenta, "Cuenta"),
+                (clienteDni, "Cliente DNI"),
+                (vehiculoPlaca, "Vehículo Placa")
+            );
+
+            if (camposFaltantes.Count == 0)
+            {
+                if (DateTime.TryParseExact(fechaEntrada, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaEntradaDateTime))
+                {
+                    DateTime? fechaSalidaDateTime = !string.IsNullOrWhiteSpace(fechaSalida) ?
+                        DateTime.TryParseExact(fechaSalida, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime salidaValue) ?
+                            salidaValue :
+                            (DateTime?)null :
+                        null;
+
+                    // Mostrar confirmación antes de agregar la recepción
+                    DialogResult confirmacion = MessageBox.Show(
+                        $"¿Está seguro de que desea crear una recepción con los siguientes datos?\n\n" +
+                        $"Fecha de Entrada: {fechaEntrada}\n" +
+                        $"Fecha de Salida: {fechaSalida}\n" +
+                        $"Cuenta: {cuenta}\n" +
+                        $"Cliente DNI: {clienteDni}\n" +
+                        $"Vehículo Placa: {vehiculoPlaca}",
+                        "Confirmar",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (confirmacion == DialogResult.Yes)
+                    {
+                        dRecepcionVehiculo.AgregarRecepcion(fechaEntradaDateTime, fechaSalidaDateTime, Convert.ToDecimal(cuenta), vehiculoPlaca, Convert.ToInt32(clienteDni));
+                        MostrarRecepciones();
+                        LimpiarDatosRecepcion();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("El formato de la fecha de entrada no es válido. Por favor, ingrese una fecha válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LimpiarDatosRecepcion();
+                }
+            }
+            else
+            {
+                string mensaje = $"Por favor, complete los siguientes campos antes de agregar una recepción:\n{string.Join("\n", camposFaltantes)}";
+                MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LimpiarDatosRecepcion();
             }
         }
 
@@ -420,6 +410,15 @@ namespace Login
             }
         }
 
+        private void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            MostrarRecepciones();
+        }
+        #endregion
 
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

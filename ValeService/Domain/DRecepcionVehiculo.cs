@@ -23,7 +23,7 @@ namespace Domain
         }
         #endregion
 
-        #region
+        #region MOSTRAR VEHICULOS COMBO BOX
         public List<string> MostrarVehiculosCBX()
         {
             return recepcionVehiculoDao.MostrarVehiculosCBX();

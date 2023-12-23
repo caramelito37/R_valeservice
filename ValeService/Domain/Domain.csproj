@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DCliente.cs" />
+    <Compile Include="DHojaRecepcion.cs" />
     <Compile Include="DRecepcionVehiculo.cs" />
+    <Compile Include="DRepuesto.cs" />
     <Compile Include="DVehiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserModel.cs" />
