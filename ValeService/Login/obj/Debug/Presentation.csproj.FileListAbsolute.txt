@@ -466,3 +466,4 @@ C:\Users\Usuario\Desktop\Valservice\R_valeservice\ValeService\Login\obj\Debug\Pr
 C:\Users\Usuario\Desktop\Valservice\R_valeservice\ValeService\Login\obj\Debug\Login.exe
 C:\Users\Usuario\Desktop\Valservice\R_valeservice\ValeService\Login\obj\Debug\Login.pdb
 C:\Users\David\Desktop\ValeService\R_valeservice\ValeService\Login\obj\Debug\Login.frmHoja.resources
+C:\Users\Usuario\Desktop\Valservice\R_valeservice\ValeService\Login\obj\Debug\Login.frmHoja.resources
