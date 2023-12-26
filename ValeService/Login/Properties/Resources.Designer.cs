@@ -113,6 +113,16 @@ namespace Login.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Hoja {
+            get {
+                object obj = ResourceManager.GetObject("Hoja", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap piezas_de_repuesto {
             get {
                 object obj = ResourceManager.GetObject("piezas-de-repuesto", resourceCulture);

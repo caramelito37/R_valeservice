@@ -101,6 +101,12 @@
     <Compile Include="frmClientes.Designer.cs">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmHoja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHoja.Designer.cs">
+      <DependentUpon>frmHoja.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRecepcionVehicular.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHoja.resx">
+      <DependentUpon>frmHoja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRecepcionVehicular.resx">
       <DependentUpon>frmRecepcionVehicular.cs</DependentUpon>
@@ -238,6 +247,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\garaje.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hoja.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

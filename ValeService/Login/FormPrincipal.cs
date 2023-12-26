@@ -195,6 +195,12 @@ namespace Login
             btnRecepcionVehicular.BackColor = Color.FromArgb(12, 61, 92);
         }
 
+        private void btnHoja_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario<frmHoja>();
+            btnHoja.BackColor = Color.FromArgb(12, 61, 92);
+        }
+
         private void AbrirFormulario<MiForm>() where MiForm : Form, new()
         {
             Form formulario;
