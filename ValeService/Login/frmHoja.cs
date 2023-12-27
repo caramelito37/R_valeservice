@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,15 @@ namespace Login
             InitializeComponent();
         }
 
-
+        private void frmHoja_Load(object sender, EventArgs e)
+        {
+            MostrarManoDeObraHoja();
+        }
+        private void MostrarManoDeObraHoja()
+        {
+            DManoDeObra dManoDeObra = new DManoDeObra();
+            DataTable manoDeObra = dManoDeObra.MostrarManoDeObraHoja(int.Parse(txtNHoja.Text));
+            dgvManoDeObra.DataSource = manoDeObra;
+        }
     }
 }

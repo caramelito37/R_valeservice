@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="DCliente.cs" />
     <Compile Include="DHojaRecepcion.cs" />
+    <Compile Include="DManoDeObra.cs" />
     <Compile Include="DRecepcionVehiculo.cs" />
+    <Compile Include="DReparacion.cs" />
     <Compile Include="DRepuesto.cs" />
     <Compile Include="DVehiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

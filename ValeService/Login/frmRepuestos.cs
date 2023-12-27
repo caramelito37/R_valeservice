@@ -59,11 +59,7 @@ namespace Login
             txtDescripcionRepuesto.Clear();
             txtRepuestoId.Clear();
         }
-        private void LimpiarDatosHojaRepuesto()
-        {
-            // Limpia los campos de entrada de datos para repuestos
 
-        }
         private void dgvRepuestos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.RowIndex < dgvRepuestos.Rows.Count)

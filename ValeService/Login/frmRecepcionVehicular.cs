@@ -49,10 +49,7 @@ namespace Login
         {
             this.Close();
         }       
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
 
-        }
 
         private void txtFechaSalida_TextChanged(object sender, EventArgs e)
         {

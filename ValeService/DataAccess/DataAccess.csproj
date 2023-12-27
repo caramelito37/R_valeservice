@@ -96,8 +96,10 @@
     <Compile Include="ClienteDao.cs" />
     <Compile Include="ConnectionToSql.cs" />
     <Compile Include="HojaRepuestoDao.cs" />
+    <Compile Include="ManoDeObraDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecepcionVehiculoDao.cs" />
+    <Compile Include="ReparacionDao.cs" />
     <Compile Include="RepuestoDao.cs" />
     <Compile Include="UserDao.cs" />
     <Compile Include="VehiculoDao.cs" />
