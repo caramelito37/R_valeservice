@@ -19,15 +19,18 @@ namespace Login
         {
             InitializeComponent();
         }
-
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
         private void frmRepuestos_Load(object sender, EventArgs e)
         {
             MostrarRepuestos();
         }
+
+
+        //FUNCION PARA VERIFICAR SI FALTAN LLENAR ALGUNOS CAMPOS 
         private List<string> VerificarCamposFaltantes(params (string valor, string nombreCampo)[] campos)
         {
             List<string> camposFaltantes = new List<string>();
@@ -42,33 +45,44 @@ namespace Login
 
             return camposFaltantes;
         }
+
+
+        //MOSTRAR REPUESTOS DEN EL DGV 
+        private void MostrarRepuestos()
+        {
+            DRepuesto dRepuesto = new DRepuesto();
+            DataTable repuestos = dRepuesto.MostrarRepuestos();
+            dgvRepuestos.DataSource = repuestos;
+        }        
+
+        #region ------ PROGRAMACION DE BOTONES AGREGAR,EDITAR,ELIMINAR Y ACTUALIZAR BUSCAR -- CLICK EN EL DGV   ---------------------/----------/
         private void dgvRepuestos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.RowIndex < dgvRepuestos.Rows.Count)
+            if (e.RowIndex < 0 || e.RowIndex >= dgvRepuestos.Rows.Count)
+                return;
+
+            if (!(dgvRepuestos.Columns[e.ColumnIndex] is DataGridViewImageColumn))
+                return;
+
+            string columnName = dgvRepuestos.Columns[e.ColumnIndex].Name;
+
+            switch (columnName)
             {
-                if (dgvRepuestos.Columns[e.ColumnIndex] is DataGridViewImageColumn)
-                {
-                    if (dgvRepuestos.Columns[e.ColumnIndex].Name == "btnRowEliminar")
-                    {
-                        // Obtener el ID del repuesto desde la fila del botón
-                        string id = dgvRepuestos.Rows[e.RowIndex].Cells["Numero"].Value.ToString();
+                case "btnRowEliminar":
+                    string idEliminar = dgvRepuestos.Rows[e.RowIndex].Cells["Numero"].Value?.ToString();
+                    EliminarRepuesto(idEliminar);
+                    break;
 
-                        // Realizar la acción de eliminación
-                        EliminarRepuesto(id);
-                    }
-                    else if (dgvRepuestos.Columns[e.ColumnIndex].Name == "btnRowEditar")
-                    {
-                        // Obtener el ID y la descripción del repuesto desde la fila del botón
-                        string id = dgvRepuestos.Rows[e.RowIndex].Cells["Numero"].Value.ToString();
-                        string descripcionActual = dgvRepuestos.Rows[e.RowIndex].Cells["Descripcion"].Value.ToString();
+                case "btnRowEditar":
+                    string idEditar = dgvRepuestos.Rows[e.RowIndex].Cells["Numero"].Value?.ToString();
+                    string descripcionActual = dgvRepuestos.Rows[e.RowIndex].Cells["Descripcion"].Value?.ToString();
+                    MostrarFormularioEdicion(idEditar, descripcionActual);
+                    break;
 
-                        // Mostrar el formulario de edición
-                        MostrarFormularioEdicion(id, descripcionActual);
 
-                    }
-                }
             }
         }
+
         private void MostrarFormularioEdicion(string id, string descripcionActual)
         {
             // Crear una instancia del formulario FRepuestos
@@ -146,12 +160,6 @@ namespace Login
             {
                 MessageBox.Show("Por favor, seleccione un repuesto existente para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-        private void MostrarRepuestos()
-        {
-            DRepuesto dRepuesto = new DRepuesto();
-            DataTable repuestos = dRepuesto.MostrarRepuestos();
-            dgvRepuestos.DataSource = repuestos;
         }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -241,9 +249,9 @@ namespace Login
             MostrarRepuestos();
         }
 
-        private void btnHojaAgregar_Click(object sender, EventArgs e)
-        {
 
-        }
+        #endregion
+
+
     }
 }

@@ -468,3 +468,5 @@ C:\Users\Usuario\Desktop\Valservice\R_valeservice\ValeService\Login\obj\Debug\Lo
 C:\Users\David\Desktop\ValeService\R_valeservice\ValeService\Login\obj\Debug\Login.frmHoja.resources
 C:\Users\Usuario\Desktop\Valservice\R_valeservice\ValeService\Login\obj\Debug\Login.frmHoja.resources
 C:\Users\David\Desktop\ValeService\R_valeservice\ValeService\Login\obj\Debug\Login.FormFlotantes.FRepuestos.resources
+C:\Users\Usuario\Desktop\Valservice\R_valeservice\ValeService\Login\obj\Debug\Login.FormFlotantes.FRepuestos.resources
+C:\Users\Usuario\Desktop\Valservice\R_valeservice\ValeService\Login\obj\Debug\Login.FormFlotantes.FHojaRepuestos.resources

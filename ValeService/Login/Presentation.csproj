@@ -95,6 +95,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormFlotantes\FHojaRepuestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFlotantes\FHojaRepuestos.Designer.cs">
+      <DependentUpon>FHojaRepuestos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormFlotantes\FRepuestos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormFlotantes\FHojaRepuestos.resx">
+      <DependentUpon>FHojaRepuestos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFlotantes\FRepuestos.resx">
       <DependentUpon>FRepuestos.cs</DependentUpon>
     </EmbeddedResource>

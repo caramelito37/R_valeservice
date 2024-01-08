@@ -10,15 +10,22 @@ using System.Windows.Forms;
 
 namespace Login.FormFlotantes
 {
-    public partial class FRepuestos : Form
+    public partial class FHojaRepuestos : Form
     {
-        public TextBox TxtFRId => txtFRId;
-        public TextBox TxtFRDescripcion => txtFRDescripcion;
-        public FRepuestos()
+        public TextBox TxtHojaRespuesto => txtHojaRespuesto;
+        public TextBox TxtNumRepuesto => txtNumRepuesto;
+        public TextBox TxtHojaCantidad => txtHojaCantidad;
+        public TextBox TxtHojaMarca => txtHojaMarca;
+        public TextBox TxtHojaPrecio => txtHojaPrecio;
+
+        public FHojaRepuestos()
         {
             InitializeComponent();
         }
+        private void FHojaRepuestos_Load(object sender, EventArgs e)
+        {
 
+        }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
@@ -31,9 +38,5 @@ namespace Login.FormFlotantes
             Close();
         }
 
-        private void FRepuestos_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
