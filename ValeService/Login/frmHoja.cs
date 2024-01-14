@@ -13,6 +13,7 @@ namespace Login
 {
     public partial class frmHoja : Form
     {
+        public TextBox TxtNumeroHojaFPrin => txtNumeroHojaFPrin;
         public frmHoja()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace Login
         private void MostrarManoDeObraHoja()
         {
             DManoDeObra dManoDeObra = new DManoDeObra();
-            DataTable manoDeObra = dManoDeObra.MostrarManoDeObraHoja(int.Parse(txtNHoja.Text));
+            DataTable manoDeObra = dManoDeObra.MostrarManoDeObraHoja(int.Parse(txtNumeroHojaFPrin.Text));
             dgvManoDeObra.DataSource = manoDeObra;
         }
     }

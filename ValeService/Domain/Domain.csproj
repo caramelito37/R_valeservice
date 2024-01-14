@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DCliente.cs" />
-    <Compile Include="DHojaRecepcion.cs" />
+    <Compile Include="DHojaRepuesto.cs" />
     <Compile Include="DManoDeObra.cs" />
     <Compile Include="DRecepcionVehiculo.cs" />
     <Compile Include="DReparacion.cs" />

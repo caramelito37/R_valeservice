@@ -1,0 +1,274 @@
+
+CREATE DATABASE IF NOT EXISTS db_valeservice;
+
+USE db_valeservice;
+
+CREATE TABLE Cliente (
+    Cliente_DNI INT PRIMARY KEY NOT NULL,
+    Cliente_Nombre_Apellido VARCHAR(100) NOT NULL,
+    Cliente_Contacto INT NOT NULL
+);
+
+CREATE TABLE Vehiculo (
+    Vehiculo_Placa VARCHAR(7) PRIMARY KEY NOT NULL,
+    Vehiculo_Marca VARCHAR(50) NOT NULL,
+    Vehiculo_Modelo VARCHAR(50) NOT NULL,
+    Vehiculo_Año YEAR NOT NULL,
+    Vehiculo_Kilometraje INT NOT NULL
+);
+CREATE TABLE Hoja (
+    Hoja_Numero INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Hoja_Fecha_Edicion TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+CREATE TABLE RecepcionVehiculo (
+	Hoja_Numero INT not null,
+	RecepcionVehiculo_Id INT PRIMARY KEY auto_increment NOT NULL,
+    RecepcionVehiculo_Fecha_Entrada DATE NOT NULL,
+    RecepcionVehiculo_Fecha_Salida DATE,
+    RecepcionVehiculo_Cuenta DECIMAL(10, 2) NOT NULL,
+    Vehiculo_Placa VARCHAR(7) NOT NULL,
+	Cliente_DNI INT NOT NULL,
+	FOREIGN KEY (Hoja_Numero) REFERENCES Hoja(Hoja_Numero),
+    FOREIGN KEY (Cliente_DNI) REFERENCES Cliente(Cliente_DNI),
+    FOREIGN KEY (Vehiculo_Placa)REFERENCES Vehiculo(Vehiculo_Placa)
+);
+
+CREATE TABLE ServiciosMecanicos (     
+    ServiciosMecanicos_Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    ServiciosMecanicos_Descripcion VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE ManoDeObra (
+    Hoja_Numero INT not null,
+    ManoDeObra_Cantidad INT NOT NULL,
+    ManoDeObra_Costo DECIMAL(10, 2) NOT NULL,
+    ManoDeObra_Tiempo INT,
+    ServiciosMecanicos_Id INT NOT NULL,
+	FOREIGN KEY (Hoja_Numero) REFERENCES Hoja(Hoja_Numero),
+    FOREIGN KEY (ServiciosMecanicos_Id) REFERENCES ServiciosMecanicos(ServiciosMecanicos_Id)
+);
+
+CREATE TABLE Repuesto (
+    Repuesto_Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Repuesto_Descripcion VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Hoja_Repuestos (
+    Hoja_Numero INT NOT NULL,
+    Hoja_Repuestos_Cantidad INT NOT NULL,
+    Hoja_Repuestos_Costo DECIMAL(10, 2) NOT NULL,
+    Hoja_Repuestos_Marca VARCHAR(10) NOT NULL,
+    Repuesto_Id INT NOT NULL,
+    FOREIGN KEY (Repuesto_Id) REFERENCES Repuesto(Repuesto_Id),
+    FOREIGN KEY (Hoja_Numero) REFERENCES Hoja(Hoja_Numero)
+);
+
+CREATE TABLE Usuarios (
+    NombreUsuario VARCHAR(50) PRIMARY KEY NOT NULL,
+    Contraseña VARCHAR(50) NOT NULL,
+    Rol ENUM('Administrador', 'Usuario') NOT NULL
+);
+
+INSERT INTO Usuarios (NombreUsuario, Contraseña, Rol) VALUES
+('admin', 'admin', 'Administrador'),
+('user', 'user', 'Usuario');
+
+INSERT INTO Cliente (Cliente_DNI, Cliente_Nombre_Apellido, Cliente_Contacto)
+VALUES
+    (123456789, 'Juan Pérez', 555123456),
+    (987654321, 'María García', 555987654),
+    (456789123, 'Carlos López', 555234567),
+    (789123456, 'Ana Martínez', 555876543),
+    (321654987, 'Pedro Rodríguez', 555345678);
+    
+INSERT INTO Vehiculo (Vehiculo_Placa, Vehiculo_Marca, Vehiculo_Modelo, Vehiculo_Año, Vehiculo_Kilometraje)
+VALUES 
+('ABC1234', 'Toyota', 'Corolla', 2012, 50000),
+('DEF5678', 'Honda', 'Civic', 2014, 70000),
+('GHI9101', 'Ford', 'Mustang', 2016, 30000),
+('JKL1122', 'Chevrolet', 'Camaro', 2018, 60000),
+('MNO3344', 'Nissan', 'Altima', 2013, 45000),
+('PQR5566', 'Volkswagen', 'Jetta', 2015, 55000),
+('STU7788', 'BMW', 'X5', 2017, 40000),
+('VWX9900', 'Mercedes-Benz', 'C-Class', 2019, 65000),
+('YZA1122', 'Audi', 'A4', 2020, 30000),
+('BCD3344', 'Hyundai', 'Elantra', 2011, 75000),
+('EFG5566', 'Mazda', 'CX-5', 2013, 42000),
+('HIJ7788', 'Subaru', 'Outback', 2015, 48000),
+('KLM9900', 'Kia', 'Sorento', 2017, 32000),
+('NOP1122', 'Jeep', 'Cherokee', 2019, 60000),
+('QRS3344', 'Ram', '1500', 2012, 80000),
+('TUV5566', 'GMC', 'Sierra', 2014, 55000),
+('VWX7788', 'Cadillac', 'Escalade', 2016, 30000),
+('YZA9900', 'Lexus', 'RX', 2018, 70000),
+('BCD1122', 'Infiniti', 'Q50', 2020, 40000),
+('EFG3344', 'Buick', 'Enclave', 2013, 65000),
+('HIJ5566', 'Lincoln', 'Navigator', 2015, 50000),
+('KLM7788', 'Chrysler', 'Pacifica', 2017, 35000),
+('NOP9900', 'Acura', 'MDX', 2019, 55000),
+('QRS1122', 'Jaguar', 'F-PACE', 2021, 20000),
+('TUV3344', 'Land Rover', 'Discovery', 2012, 90000),
+('VWX5566', 'Tesla', 'Model S', 2014, 48000),
+('YZA7788', 'Volvo', 'XC90', 2016, 32000),
+('BCD9900', 'Porsche', 'Cayenne', 2018, 60000),
+('EFG1122', 'Ferrari', '488 GTB', 2020, 30000);
+
+
+INSERT INTO Repuesto (Repuesto_Descripcion) VALUES
+    ('Filtro de aceite'),
+    ('Bujías'),
+    ('Pastillas de freno'),
+    ('Batería'),
+    ('Aceite de motor'),
+    ('Filtro de aire'),
+    ('Correa de distribución'),
+    ('Amortiguadores'),
+    ('Líquido de frenos'),
+    ('Bomba de agua');
+    
+INSERT INTO ServiciosMecanicos (ServiciosMecanicos_Descripcion) VALUES
+('Cambio de aceite'),
+('Cambio de filtros'),
+('Alineación y balanceo'),
+('Reparación de frenos'),
+('Cambio de neumáticos'),
+('Revisión del sistema de suspensión');
+
+INSERT INTO Hoja (Hoja_Fecha_Edicion) VALUES
+    (DEFAULT),
+    (DEFAULT),
+    (DEFAULT),
+    (DEFAULT),
+    (DEFAULT);
+
+DELIMITER //
+CREATE PROCEDURE MostrarRecepciones()
+BEGIN
+    SELECT
+        RV.RecepcionVehiculo_Id,
+        RV.RecepcionVehiculo_Fecha_Entrada,
+        RV.RecepcionVehiculo_Fecha_Salida,
+        RV.RecepcionVehiculo_Cuenta,
+        RV.Vehiculo_Placa,
+        C.Cliente_DNI,
+        C.Cliente_Nombre_Apellido
+    FROM
+        RecepcionVehiculo RV
+    INNER JOIN
+        Cliente C ON RV.Cliente_DNI = C.Cliente_DNI;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE usp_MostrarHRepuestosPorHoja(IN p_Hoja_Numero INT)
+BEGIN
+    SELECT 
+        Hoja_Repuestos.Hoja_Numero,
+        Hoja_Repuestos.Hoja_Repuestos_Cantidad,
+        Hoja_Repuestos.Hoja_Repuestos_Costo,
+        Hoja_Repuestos.Hoja_Repuestos_Marca,
+        Repuesto.Repuesto_Id,
+        Repuesto.Repuesto_Descripcion
+    FROM 
+        Hoja_Repuestos
+    INNER JOIN 
+        Repuesto ON Hoja_Repuestos.Repuesto_Id = Repuesto.Repuesto_Id
+    WHERE
+        Hoja_Repuestos.Hoja_Numero = p_Hoja_Numero;
+END //
+
+DELIMITER ;
+
+CALL usp_MostrarHRepuestosPorHoja(1);
+
+
+
+
+
+
+-- INSERTAR REGISTROS EN Hoja_Repuestos
+INSERT INTO Hoja_Repuestos (Hoja_Numero, Hoja_Repuestos_Cantidad, Hoja_Repuestos_Costo, Hoja_Repuestos_Marca, Repuesto_Id)
+VALUES
+    -- Hoja 1
+    (1, 2, 30.00, 'Marca1', 1),
+    (1, 1, 15.50, 'Marca2', 2),
+    (1, 3, 50.75, 'Marca3', 3),
+
+    -- Hoja 2
+    (2, 1, 25.00, 'Marca1', 4),
+    (2, 2, 35.75, 'Marca4', 5),
+    (2, 2, 30.50, 'Marca2', 6),
+
+    -- Hoja 3
+    (3, 3, 40.25, 'Marca5', 7),
+    (3, 1, 20.00, 'Marca3', 8),
+    (3, 2, 35.00, 'Marca4', 9),
+
+    -- Hoja 4
+    (4, 2, 30.00, 'Marca2', 5),
+    (4, 1, 15.50, 'Marca3', 9),
+    (4, 3, 50.75, 'Marca1', 6),
+
+    -- Hoja 5
+    (5, 1, 25.00, 'Marca4', 8),
+    (5, 2, 35.75, 'Marca1', 5),
+    (5, 2, 30.50, 'Marca2', 9);
+
+-- INSERTAR REGISTROS EN ManoDeObra
+INSERT INTO ManoDeObra (Hoja_Numero, ManoDeObra_Cantidad, ManoDeObra_Costo, ManoDeObra_Tiempo, ServiciosMecanicos_Id)
+VALUES
+    -- Hoja 1
+    (1, 2, 50.00, 5, 1),
+    (1, 1, 25.50, 6, 2),
+    (1, 3, 75.75, 5, 3),
+
+    -- Hoja 2
+    (2, 1, 40.00, 2, 4),
+    (2, 2, 60.75, 1, 5),
+    (2, 2, 55.50, NULL, 6),
+
+    -- Hoja 3
+    (3, 3, 70.25, 6, 1),
+    (3, 1, 35.00, 4, 2),
+    (3, 2, 50.00, 2, 3),
+
+    -- Hoja 4
+    (4, 2, 45.00, 1, 4),
+    (4, 1, 30.50, 5, 5),
+    (4, 3, 85.75, 3, 6),
+
+    -- Hoja 5
+    (5, 1, 60.00, 2, 1),
+    (5, 2, 70.75, 1, 2),
+    (5, 2, 65.50, 4, 3);
+
+-- INSERTAR REGISTROS EN RecepcionVehiculo
+INSERT INTO RecepcionVehiculo (Hoja_Numero, RecepcionVehiculo_Fecha_Entrada, RecepcionVehiculo_Fecha_Salida, RecepcionVehiculo_Cuenta, Vehiculo_Placa, Cliente_DNI)
+VALUES
+    -- Hoja 1
+    (1, '2023-12-27', '2023-12-28', 120.00, 'ABC1234', 789123456),
+    (1, '2023-12-27', '2023-12-28', 95.50, 'DEF5678', 456789123),
+    (1, '2023-12-27', '2023-12-28', 130.75, 'GHI9101', 987654321),
+
+    -- Hoja 2
+    (2, '2023-12-28', '2023-12-29', 110.00, 'JKL1122', 987654321),
+    (2, '2023-12-28', '2023-12-29', 120.75, 'MNO3344', 987654321),
+    (2, '2023-12-28', '2023-12-29', 95.50, 'PQR5566', 456789123),
+
+    -- Hoja 3
+    (3, '2023-12-29', '2023-12-30', 140.25, 'STU7788', 321654987),
+    (3, '2023-12-29', '2023-12-30', 85.00, 'VWX9900', 321654987),
+    (3, '2023-12-29', '2023-12-30', 110.00, 'YZA1122', 321654987),
+
+    -- Hoja 4
+    (4, '2023-12-30', '2023-12-31', 125.00, 'BCD3344', 789123456),
+    (4, '2023-12-30', '2023-12-31', 135.75, 'EFG5566', 789123456),
+    (4, '2023-12-30', '2023-12-31', 120.50, 'HIJ7788', 789123456),
+
+    -- Hoja 5
+    (5, '2023-12-31', '2024-01-01', 100.00, 'KLM9900', 123456789),
+    (5, '2023-12-31', '2024-01-01', 110.75, 'NOP1122', 987654321),
+    (5, '2023-12-31', '2024-01-01', 105.50, 'QRS3344', 456789123);

@@ -32,16 +32,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtNHoja = new System.Windows.Forms.TextBox();
+            this.txtNumeroHojaFPrin = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -54,6 +54,12 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgvManoDeObra = new System.Windows.Forms.DataGridView();
+            this.Hoja_Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ServiciosMecanicos_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ManoDeObra_Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ManoDeObra_Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ManoDeObra_Tiempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -78,28 +84,22 @@
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvManoDeObra = new System.Windows.Forms.DataGridView();
-            this.Hoja_Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ServiciosMecanicos_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ManoDeObra_Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ManoDeObra_Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ManoDeObra_Tiempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvManoDeObra)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvManoDeObra)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
-            this.panel2.Controls.Add(this.txtNHoja);
+            this.panel2.Controls.Add(this.txtNumeroHojaFPrin);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.btnCerrar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -109,15 +109,15 @@
             this.panel2.Size = new System.Drawing.Size(1311, 80);
             this.panel2.TabIndex = 25;
             // 
-            // txtNHoja
+            // txtNumeroHojaFPrin
             // 
-            this.txtNHoja.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNHoja.Location = new System.Drawing.Point(240, 13);
-            this.txtNHoja.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNHoja.Name = "txtNHoja";
-            this.txtNHoja.Size = new System.Drawing.Size(120, 46);
-            this.txtNHoja.TabIndex = 5;
-            this.txtNHoja.Text = "1";
+            this.txtNumeroHojaFPrin.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumeroHojaFPrin.Location = new System.Drawing.Point(240, 13);
+            this.txtNumeroHojaFPrin.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNumeroHojaFPrin.Name = "txtNumeroHojaFPrin";
+            this.txtNumeroHojaFPrin.Size = new System.Drawing.Size(120, 46);
+            this.txtNumeroHojaFPrin.TabIndex = 5;
+            this.txtNumeroHojaFPrin.Text = "1";
             // 
             // label1
             // 
@@ -319,6 +319,110 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MANO DE OBRA";
+            // 
+            // dgvManoDeObra
+            // 
+            this.dgvManoDeObra.AllowUserToAddRows = false;
+            this.dgvManoDeObra.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(245)))), ((int)(((byte)(251)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            this.dgvManoDeObra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvManoDeObra.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvManoDeObra.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvManoDeObra.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.NullValue = "-";
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvManoDeObra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvManoDeObra.ColumnHeadersHeight = 60;
+            this.dgvManoDeObra.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Hoja_Numero,
+            this.ServiciosMecanicos_Id,
+            this.ManoDeObra_Cantidad,
+            this.ManoDeObra_Costo,
+            this.ManoDeObra_Tiempo});
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(248)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvManoDeObra.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvManoDeObra.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvManoDeObra.EnableHeadersVisualStyles = false;
+            this.dgvManoDeObra.Location = new System.Drawing.Point(2, 23);
+            this.dgvManoDeObra.Name = "dgvManoDeObra";
+            this.dgvManoDeObra.ReadOnly = true;
+            this.dgvManoDeObra.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvManoDeObra.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvManoDeObra.RowHeadersVisible = false;
+            this.dgvManoDeObra.RowHeadersWidth = 51;
+            this.dgvManoDeObra.RowTemplate.Height = 25;
+            this.dgvManoDeObra.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvManoDeObra.Size = new System.Drawing.Size(608, 292);
+            this.dgvManoDeObra.TabIndex = 3;
+            // 
+            // Hoja_Numero
+            // 
+            this.Hoja_Numero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Hoja_Numero.DataPropertyName = "Hoja_Numero";
+            this.Hoja_Numero.FillWeight = 53.2995F;
+            this.Hoja_Numero.Frozen = true;
+            this.Hoja_Numero.HeaderText = "Nº HOJA";
+            this.Hoja_Numero.MinimumWidth = 6;
+            this.Hoja_Numero.Name = "Hoja_Numero";
+            this.Hoja_Numero.ReadOnly = true;
+            this.Hoja_Numero.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Hoja_Numero.Width = 95;
+            // 
+            // ServiciosMecanicos_Id
+            // 
+            this.ServiciosMecanicos_Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ServiciosMecanicos_Id.DataPropertyName = "ServiciosMecanicos_Id";
+            this.ServiciosMecanicos_Id.FillWeight = 117.761F;
+            this.ServiciosMecanicos_Id.Frozen = true;
+            this.ServiciosMecanicos_Id.HeaderText = "SERVICO MECANICO ID";
+            this.ServiciosMecanicos_Id.MinimumWidth = 6;
+            this.ServiciosMecanicos_Id.Name = "ServiciosMecanicos_Id";
+            this.ServiciosMecanicos_Id.ReadOnly = true;
+            this.ServiciosMecanicos_Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // ManoDeObra_Cantidad
+            // 
+            this.ManoDeObra_Cantidad.DataPropertyName = "ManoDeObra_Cantidad";
+            this.ManoDeObra_Cantidad.HeaderText = "CANTIDAD";
+            this.ManoDeObra_Cantidad.Name = "ManoDeObra_Cantidad";
+            this.ManoDeObra_Cantidad.ReadOnly = true;
+            this.ManoDeObra_Cantidad.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // ManoDeObra_Costo
+            // 
+            this.ManoDeObra_Costo.DataPropertyName = "ManoDeObra_Costo";
+            this.ManoDeObra_Costo.HeaderText = "COSTO";
+            this.ManoDeObra_Costo.Name = "ManoDeObra_Costo";
+            this.ManoDeObra_Costo.ReadOnly = true;
+            this.ManoDeObra_Costo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // ManoDeObra_Tiempo
+            // 
+            this.ManoDeObra_Tiempo.DataPropertyName = "ManoDeObra_Tiempo";
+            this.ManoDeObra_Tiempo.HeaderText = "TIEMPO";
+            this.ManoDeObra_Tiempo.Name = "ManoDeObra_Tiempo";
+            this.ManoDeObra_Tiempo.ReadOnly = true;
+            this.ManoDeObra_Tiempo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // panel1
             // 
@@ -643,110 +747,6 @@
             this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn6.Width = 600;
             // 
-            // dgvManoDeObra
-            // 
-            this.dgvManoDeObra.AllowUserToAddRows = false;
-            this.dgvManoDeObra.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(245)))), ((int)(((byte)(251)))));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            this.dgvManoDeObra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvManoDeObra.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvManoDeObra.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dgvManoDeObra.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.NullValue = "-";
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvManoDeObra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvManoDeObra.ColumnHeadersHeight = 60;
-            this.dgvManoDeObra.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Hoja_Numero,
-            this.ServiciosMecanicos_Id,
-            this.ManoDeObra_Cantidad,
-            this.ManoDeObra_Costo,
-            this.ManoDeObra_Tiempo});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(248)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvManoDeObra.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvManoDeObra.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvManoDeObra.EnableHeadersVisualStyles = false;
-            this.dgvManoDeObra.Location = new System.Drawing.Point(2, 23);
-            this.dgvManoDeObra.Name = "dgvManoDeObra";
-            this.dgvManoDeObra.ReadOnly = true;
-            this.dgvManoDeObra.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvManoDeObra.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvManoDeObra.RowHeadersVisible = false;
-            this.dgvManoDeObra.RowHeadersWidth = 51;
-            this.dgvManoDeObra.RowTemplate.Height = 25;
-            this.dgvManoDeObra.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvManoDeObra.Size = new System.Drawing.Size(608, 292);
-            this.dgvManoDeObra.TabIndex = 3;
-            // 
-            // Hoja_Numero
-            // 
-            this.Hoja_Numero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Hoja_Numero.DataPropertyName = "Hoja_Numero";
-            this.Hoja_Numero.FillWeight = 53.2995F;
-            this.Hoja_Numero.Frozen = true;
-            this.Hoja_Numero.HeaderText = "Nº HOJA";
-            this.Hoja_Numero.MinimumWidth = 6;
-            this.Hoja_Numero.Name = "Hoja_Numero";
-            this.Hoja_Numero.ReadOnly = true;
-            this.Hoja_Numero.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Hoja_Numero.Width = 95;
-            // 
-            // ServiciosMecanicos_Id
-            // 
-            this.ServiciosMecanicos_Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ServiciosMecanicos_Id.DataPropertyName = "ServiciosMecanicos_Id";
-            this.ServiciosMecanicos_Id.FillWeight = 117.761F;
-            this.ServiciosMecanicos_Id.Frozen = true;
-            this.ServiciosMecanicos_Id.HeaderText = "SERVICO MECANICO ID";
-            this.ServiciosMecanicos_Id.MinimumWidth = 6;
-            this.ServiciosMecanicos_Id.Name = "ServiciosMecanicos_Id";
-            this.ServiciosMecanicos_Id.ReadOnly = true;
-            this.ServiciosMecanicos_Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // ManoDeObra_Cantidad
-            // 
-            this.ManoDeObra_Cantidad.DataPropertyName = "ManoDeObra_Cantidad";
-            this.ManoDeObra_Cantidad.HeaderText = "CANTIDAD";
-            this.ManoDeObra_Cantidad.Name = "ManoDeObra_Cantidad";
-            this.ManoDeObra_Cantidad.ReadOnly = true;
-            this.ManoDeObra_Cantidad.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // ManoDeObra_Costo
-            // 
-            this.ManoDeObra_Costo.DataPropertyName = "ManoDeObra_Costo";
-            this.ManoDeObra_Costo.HeaderText = "COSTO";
-            this.ManoDeObra_Costo.Name = "ManoDeObra_Costo";
-            this.ManoDeObra_Costo.ReadOnly = true;
-            this.ManoDeObra_Costo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // ManoDeObra_Tiempo
-            // 
-            this.ManoDeObra_Tiempo.DataPropertyName = "ManoDeObra_Tiempo";
-            this.ManoDeObra_Tiempo.HeaderText = "TIEMPO";
-            this.ManoDeObra_Tiempo.Name = "ManoDeObra_Tiempo";
-            this.ManoDeObra_Tiempo.ReadOnly = true;
-            this.ManoDeObra_Tiempo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
             // frmHoja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -766,12 +766,12 @@
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvManoDeObra)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvManoDeObra)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -779,7 +779,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtNHoja;
+        private System.Windows.Forms.TextBox txtNumeroHojaFPrin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Panel panel3;

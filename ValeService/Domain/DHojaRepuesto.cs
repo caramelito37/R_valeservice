@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class DHojaRecepcion
+    public class DHojaRepuesto
     {
         private HojaRepuestoDao hojaRepuestosDao = new HojaRepuestoDao();
-        public DataTable MostrarHojaRepuestos()
+
+        public DataTable MostrarHojaRepuestos(int hojaNumero)
         {
-            return hojaRepuestosDao.MostrarHojaRepuestos();
+            return hojaRepuestosDao.MostrarHojaRepuestos(hojaNumero);
         }
 
         public void AgregarHojaRepuestos(int cantidad, string descripcion, decimal costo, string marca, int repuestoId, int hojaNumero)

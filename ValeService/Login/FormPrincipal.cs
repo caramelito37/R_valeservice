@@ -217,7 +217,6 @@ namespace Login
                 formulario.Show();
                 formulario.BringToFront();
                 formulario.FormClosed += new FormClosedEventHandler(CloseForms);
-
             }
             //si el formulario/instancia existe
             else

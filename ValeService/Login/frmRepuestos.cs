@@ -14,11 +14,14 @@ namespace Login
 {
     public partial class frmRepuestos : Form
     {
+
         DRepuesto dRepuesto = new DRepuesto();
+        DHojaRepuesto dHojaRepuesto = new DHojaRepuesto();
         public frmRepuestos()
         {
             InitializeComponent();
         }
+
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -26,6 +29,7 @@ namespace Login
 
         private void frmRepuestos_Load(object sender, EventArgs e)
         {
+            MostrarManoDeObraHoja();
             MostrarRepuestos();
         }
 
@@ -46,6 +50,11 @@ namespace Login
             return camposFaltantes;
         }
 
+        private void MostrarManoDeObraHoja()
+        {
+            DataTable dtHojaRepuesto = dHojaRepuesto.MostrarHojaRepuestos(int.Parse(txtNHojaRepuestos.Text));
+            dgvHojaRepuestos.DataSource = dtHojaRepuesto;
+        }
 
         //MOSTRAR REPUESTOS DEN EL DGV 
         private void MostrarRepuestos()
@@ -250,8 +259,34 @@ namespace Login
         }
 
 
+
         #endregion
 
+        private void dgvHojaRepuestos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.RowIndex >= dgvHojaRepuestos.Rows.Count)
+                return;
 
+            if (!(dgvHojaRepuestos.Columns[e.ColumnIndex] is DataGridViewImageColumn))
+                return;
+
+            string columnName = dgvRepuestos.Columns[e.ColumnIndex].Name;
+
+            switch (columnName)
+            {
+                case "btnRowEliminar":
+                    string idEliminar = dgvRepuestos.Rows[e.RowIndex].Cells["Numero"].Value?.ToString();
+                    FHojaRepuestos fHojaRepuestos = new FHojaRepuestos();
+                    DialogResult resultado = fHojaRepuestos.ShowDialog();
+                    break;
+
+                case "btnRowEditar":
+                    string idEditar = dgvRepuestos.Rows[e.RowIndex].Cells["Numero"].Value?.ToString();
+                    string descripcionActual = dgvRepuestos.Rows[e.RowIndex].Cells["Descripcion"].Value?.ToString();
+                    MostrarFormularioEdicion(idEditar, descripcionActual);
+                    break;
+            }
+
+        }
     }
 }

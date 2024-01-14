@@ -10,7 +10,7 @@ namespace DataAccess
 {
     public class HojaRepuestoDao : ConnectionToMySql
     {
-        public DataTable MostrarHojaRepuestos()
+        public DataTable MostrarHojaRepuestos(int hojaNumero)
         {
             using (var connection = GetConnection())
             {
@@ -18,8 +18,11 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "SELECT * FROM Hoja_Repuestos;";
-                    command.CommandType = CommandType.Text;
+                    command.CommandText = "usp_MostrarHRepuestosPorHoja";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Agregar parámetro de entrada para el procedimiento almacenado
+                    command.Parameters.AddWithValue("@p_Hoja_Numero", hojaNumero);
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
@@ -30,6 +33,7 @@ namespace DataAccess
                 }
             }
         }
+
 
         public void AgregarHojaRepuestos(int cantidad, string descripcion, decimal costo, string marca, int repuestoId, int hojaNumero)
         {
