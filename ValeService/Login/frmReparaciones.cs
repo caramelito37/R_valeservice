@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using Common.Eventos;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,12 @@ namespace Login
         public frmReparaciones()
         {
             InitializeComponent();
+            EventosGlobales.NumeroHojaCambiado += ActualizarTextBox;
+        }
+        private void ActualizarTextBox(string nuevoNumeroHoja)
+        {
+            // Actualizar el TextBox del formulario secundario con el nuevo valor
+            txtNHojaReparacion.Text = nuevoNumeroHoja;
         }
         private void MostrarReparaciones()
         {

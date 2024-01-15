@@ -65,6 +65,7 @@
             this.Vehiculo_Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cliente_DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cliente_Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtNHojaRecepcion = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -75,6 +76,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Controls.Add(this.txtNHojaRecepcion);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.btnCerrar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -122,14 +124,13 @@
             this.groupBox2.Controls.Add(this.btnBuscarRecepcion);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(27, 574);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(489, 194);
             this.groupBox2.TabIndex = 53;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Buscar Recepcion";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // btnRefrescar
             // 
@@ -159,7 +160,7 @@
             "Placa_Vehiculo",
             "Cliente_DNI"});
             this.cbxBuscarRecepcion.Location = new System.Drawing.Point(20, 44);
-            this.cbxBuscarRecepcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxBuscarRecepcion.Margin = new System.Windows.Forms.Padding(4);
             this.cbxBuscarRecepcion.Name = "cbxBuscarRecepcion";
             this.cbxBuscarRecepcion.Size = new System.Drawing.Size(184, 28);
             this.cbxBuscarRecepcion.TabIndex = 34;
@@ -209,19 +210,18 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(27, 122);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(489, 443);
             this.groupBox1.TabIndex = 52;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la Recepcion";
-
             // 
             // mtxtFechaSalida
             // 
             this.mtxtFechaSalida.Location = new System.Drawing.Point(209, 130);
-            this.mtxtFechaSalida.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mtxtFechaSalida.Margin = new System.Windows.Forms.Padding(4);
             this.mtxtFechaSalida.Mask = "00/00/0000";
             this.mtxtFechaSalida.Name = "mtxtFechaSalida";
             this.mtxtFechaSalida.Size = new System.Drawing.Size(133, 30);
@@ -231,7 +231,7 @@
             // mtxtFechaEntrada
             // 
             this.mtxtFechaEntrada.Location = new System.Drawing.Point(209, 87);
-            this.mtxtFechaEntrada.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mtxtFechaEntrada.Margin = new System.Windows.Forms.Padding(4);
             this.mtxtFechaEntrada.Mask = "00/00/0000";
             this.mtxtFechaEntrada.Name = "mtxtFechaEntrada";
             this.mtxtFechaEntrada.Size = new System.Drawing.Size(133, 30);
@@ -244,7 +244,7 @@
             this.cbxClienteDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxClienteDni.FormattingEnabled = true;
             this.cbxClienteDni.Location = new System.Drawing.Point(209, 226);
-            this.cbxClienteDni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxClienteDni.Margin = new System.Windows.Forms.Padding(4);
             this.cbxClienteDni.Name = "cbxClienteDni";
             this.cbxClienteDni.Size = new System.Drawing.Size(237, 28);
             this.cbxClienteDni.TabIndex = 52;
@@ -254,7 +254,7 @@
             this.cbxVehiculoPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxVehiculoPlaca.FormattingEnabled = true;
             this.cbxVehiculoPlaca.Location = new System.Drawing.Point(209, 279);
-            this.cbxVehiculoPlaca.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxVehiculoPlaca.Margin = new System.Windows.Forms.Padding(4);
             this.cbxVehiculoPlaca.Name = "cbxVehiculoPlaca";
             this.cbxVehiculoPlaca.Size = new System.Drawing.Size(237, 28);
             this.cbxVehiculoPlaca.TabIndex = 51;
@@ -392,7 +392,7 @@
             this.panel1.Controls.Add(this.dgvRecepcionVehicular);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(728, 98);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1196, 957);
             this.panel1.TabIndex = 54;
@@ -436,7 +436,7 @@
             this.dgvRecepcionVehicular.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRecepcionVehicular.EnableHeadersVisualStyles = false;
             this.dgvRecepcionVehicular.Location = new System.Drawing.Point(0, 0);
-            this.dgvRecepcionVehicular.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvRecepcionVehicular.Margin = new System.Windows.Forms.Padding(4);
             this.dgvRecepcionVehicular.Name = "dgvRecepcionVehicular";
             this.dgvRecepcionVehicular.ReadOnly = true;
             this.dgvRecepcionVehicular.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -546,6 +546,15 @@
             this.Cliente_Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Cliente_Nombre.Width = 250;
             // 
+            // txtNHojaRecepcion
+            // 
+            this.txtNHojaRecepcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNHojaRecepcion.Location = new System.Drawing.Point(476, 25);
+            this.txtNHojaRecepcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNHojaRecepcion.Name = "txtNHojaRecepcion";
+            this.txtNHojaRecepcion.Size = new System.Drawing.Size(159, 56);
+            this.txtNHojaRecepcion.TabIndex = 9;
+            // 
             // frmRecepcionVehicular
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -556,7 +565,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRecepcionVehicular";
             this.Text = "frmRecepcionVehicular";
             this.Load += new System.EventHandler(this.frmRecepcionVehicular_Load);
@@ -607,5 +616,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Vehiculo_Placa;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cliente_DNI;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cliente_Nombre;
+        private System.Windows.Forms.TextBox txtNHojaRecepcion;
     }
 }

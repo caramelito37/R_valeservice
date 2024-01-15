@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using Common.Eventos;
+using Domain;
 using Login.FormFlotantes;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,13 @@ namespace Login
         public frmRepuestos()
         {
             InitializeComponent();
+            EventosGlobales.NumeroHojaCambiado += ActualizarTextBox;
+
+        }
+        private void ActualizarTextBox(string nuevoNumeroHoja)
+        {
+            // Actualizar el TextBox del formulario secundario con el nuevo valor
+            txtNHojaRepuestos.Text = nuevoNumeroHoja;
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -292,6 +300,18 @@ namespace Login
         private void btnHojaEliminar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnHojaAgregar_Click(object sender, EventArgs e)
+        {
+            FHojaRepuestos fHojaRepuestos = new FHojaRepuestos();
+
+            // Asegúrate de que txtHojaRespuestoFF esté inicializado antes de asignarle un valor.
+            if (fHojaRepuestos.txtHojaRespuestoFF != null)
+            {
+                fHojaRepuestos.txtHojaRespuestoFF.Text = this.txtHojaRespuesto.Text;
+                fHojaRepuestos.Show();
+            }
         }
     }
 }

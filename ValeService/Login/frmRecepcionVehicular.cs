@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using Common.Eventos;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +15,12 @@ namespace Login
         public frmRecepcionVehicular()
         {
             InitializeComponent();
+            EventosGlobales.NumeroHojaCambiado += ActualizarTextBox;
+        }
+        private void ActualizarTextBox(string nuevoNumeroHoja)
+        {
+            // Actualizar el TextBox del formulario secundario con el nuevo valor
+            txtNHojaRecepcion.Text = nuevoNumeroHoja;
         }
         private void frmRecepcionVehicular_Load(object sender, EventArgs e)
         {
@@ -413,9 +420,6 @@ namespace Login
         }
         #endregion
 
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
 
-        }
     }
 }

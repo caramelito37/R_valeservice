@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using Common.Eventos;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ namespace Login.FormFlotantes
     public partial class FHojaRepuestos : Form
     {
         DRepuesto dRepuesto = new DRepuesto();
-        public TextBox TxtHojaRespuesto => txtHojaRespuesto;
+
         public TextBox TxtNumRepuesto => txtNumRepuesto;
         public TextBox TxtHojaCantidad => txtHojaCantidad;
         public TextBox TxtHojaMarca => txtHojaMarca;
@@ -24,6 +25,13 @@ namespace Login.FormFlotantes
         public FHojaRepuestos()
         {
             InitializeComponent();
+            EventosGlobales.NumeroHojaCambiado += ActualizarTextBox;
+
+        }
+        private void ActualizarTextBox(string nuevoNumeroHoja)
+        {
+            // Actualizar el TextBox del formulario secundario con el nuevo valor
+            txtHojaRespuestoFF.Text = nuevoNumeroHoja;
         }
         private void FHojaRepuestos_Load(object sender, EventArgs e)
         {
@@ -57,21 +65,41 @@ namespace Login.FormFlotantes
         }
         private void txtBuscarRepuesto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Verificar si la tecla presionada es una letra o una tecla de eliminación (Delete o Backspace)
-            if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Delete || e.KeyChar == (char)Keys.Back)
+            // Obtener el texto actual del TextBox
+            string textoActual = txtBuscarRepuestoFF.Text;
+
+            switch (e.KeyChar)
             {
-                // Obtener el texto actual del TextBox
-                string textoActual = txtBuscarRepuestoFF.Text;
+                case (char)Keys.Back:
+                    // Tecla de retroceso, eliminar el último carácter
+                    textoActual = textoActual.Length > 0 ? textoActual.Substring(0, textoActual.Length - 1) : "";
+                    break;
 
-                // Si la tecla presionada no es una tecla de eliminación, concatenar la letra al texto actual
-                if (e.KeyChar != (char)Keys.Delete && e.KeyChar != (char)Keys.Back)
-                {
-                    textoActual += e.KeyChar;
-                }
+                case (char)Keys.Delete:
+                    // Tecla Eliminar, verificar si hay al menos una letra antes de procesar
+                    if (textoActual.Any(char.IsLetter))
+                    {
+                        // Llamar a la función de búsqueda con el texto actual
+                        BuscarRepuestoDescripcion(textoActual);
+                    }
+                    else
+                    {
+                        // Evitar que se realice la acción de eliminar si no hay letras
+                        e.Handled = true;
+                    }
+                    break;
 
-                // Llamar a la función de búsqueda
-                BuscarRepuestoDescripcion(textoActual);
+                default:
+                    // Otras teclas (letras), concatenar al texto actual
+                    if (char.IsLetter(e.KeyChar))
+                    {
+                        textoActual += e.KeyChar;
+                    }
+                    break;
             }
+
+            // Llamar a la función de búsqueda con el texto actual
+            BuscarRepuestoDescripcion(textoActual);
         }
         private void BuscarRepuestoDescripcion(string valorBusquedaRepuesto)
         {
@@ -85,11 +113,6 @@ namespace Login.FormFlotantes
             {
                 // Mostrar los resultados en el DataGridView dgvRepuestos
                 dgvRepuestos.DataSource = resultadosRepuesto;
-            }
-            else
-            {
-                // No mostrar mensajes si no hay resultados
-                dgvRepuestos.DataSource = null; // Limpiar el DataGridView en caso de que no haya resultados
             }
         }
     }
