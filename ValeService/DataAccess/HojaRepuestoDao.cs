@@ -59,7 +59,7 @@ namespace DataAccess
             }
         }
 
-        public void EliminarHojaRepuestos(int hojaNumero, int repuestoId)
+        public void EliminarHojaRepuestos(int hojaNumero, int repuestoId, int cantidad, decimal costo, string marca)
         {
             using (var connection = GetConnection())
             {
@@ -67,17 +67,26 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "DELETE FROM Hoja_Repuestos WHERE Hoja_Numero = @HojaNumero AND Repuesto_Id = @RepuestoId;";
+                    command.CommandText = "DELETE FROM Hoja_Repuestos " +
+                                          "WHERE Hoja_Numero = @HojaNumero " +
+                                          "AND Repuesto_Id = @RepuestoId " +
+                                          "AND Hoja_Repuestos_Cantidad = @Cantidad " +
+                                          "AND Hoja_Repuestos_Costo = @Costo " +
+                                          "AND Hoja_Repuestos_Marca = @Marca;";
                     command.CommandType = CommandType.Text;
 
                     // Parámetros parametrizados
                     command.Parameters.AddWithValue("@HojaNumero", hojaNumero);
                     command.Parameters.AddWithValue("@RepuestoId", repuestoId);
+                    command.Parameters.AddWithValue("@Cantidad", cantidad);
+                    command.Parameters.AddWithValue("@Costo", costo);
+                    command.Parameters.AddWithValue("@Marca", marca);
 
                     command.ExecuteNonQuery();
                 }
             }
         }
+
         public DataTable BuscarHojaRepuestos(string opcion, string valor)
         {
             using (var connection = GetConnection())

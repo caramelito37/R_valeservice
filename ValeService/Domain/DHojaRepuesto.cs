@@ -22,10 +22,11 @@ namespace Domain
             hojaRepuestosDao.AgregarHojaRepuestos(cantidad, descripcion, costo, marca, repuestoId, hojaNumero);
         }
 
-        public void EliminarHojaRepuestos(int hojaNumero, int repuestoId)
+        public void EliminarHojaRepuestos(int hojaNumero, int repuestoId, int cantidad, decimal costo, string marca)
         {
-            hojaRepuestosDao.EliminarHojaRepuestos(hojaNumero, repuestoId);
+            hojaRepuestosDao.EliminarHojaRepuestos(hojaNumero, repuestoId, cantidad, costo, marca);
         }
+
 
         public DataTable BuscarHojaRepuestos(string opcion, string valor)
         {

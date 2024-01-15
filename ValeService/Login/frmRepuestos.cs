@@ -288,5 +288,10 @@ namespace Login
             }
 
         }
+
+        private void btnHojaEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
