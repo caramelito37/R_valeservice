@@ -39,7 +39,7 @@ namespace Login
         private void txtNumeroHoja_TextChanged_1(object sender, EventArgs e)
         {
             // Cuando el valor cambia, invocar el evento global con el nuevo valor
-            EventosGlobales.InvocarNumeroHojaCambiado(txtNumeroHoja.Text);
+            Common.NHoja.Configuracion.NumeroHoja = txtNumeroHoja.Text;
             MostrarManoDeObraHoja();
         }
     }

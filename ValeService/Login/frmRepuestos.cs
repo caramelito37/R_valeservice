@@ -21,12 +21,11 @@ namespace Login
         public frmRepuestos()
         {
             InitializeComponent();
-            EventosGlobales.NumeroHojaCambiado += ActualizarTextBox;
+            Common.NHoja.Configuracion.NumeroHojaCambiado += ActualizarTextBox;
 
         }
         private void ActualizarTextBox(string nuevoNumeroHoja)
         {
-            // Actualizar el TextBox del formulario secundario con el nuevo valor
             txtNHojaRepuestos.Text = nuevoNumeroHoja;
         }
 
@@ -37,8 +36,8 @@ namespace Login
 
         private void frmRepuestos_Load(object sender, EventArgs e)
         {
-            MostrarManoDeObraHoja();
-            MostrarRepuestos();
+            MostrarHojaRepuestos();
+            MostrarRepuestos(); 
         }
 
 
@@ -58,10 +57,18 @@ namespace Login
             return camposFaltantes;
         }
 
-        private void MostrarManoDeObraHoja()
+        private void MostrarHojaRepuestos()
         {
-            DataTable dtHojaRepuesto = dHojaRepuesto.MostrarHojaRepuestos(int.Parse(txtNHojaRepuestos.Text));
-            dgvHojaRepuestos.DataSource = dtHojaRepuesto;
+            if (!string.IsNullOrEmpty(txtNHojaRepuestos.Text))
+            {
+                DataTable dtHojaRepuesto = dHojaRepuesto.MostrarHojaRepuestos(int.Parse(txtNHojaRepuestos.Text));
+
+                // Verificar si el DataTable contiene al menos una fila antes de asignarlo al DataSource
+                if (dtHojaRepuesto.Rows.Count > 0)
+                {
+                    dgvHojaRepuestos.DataSource = dtHojaRepuesto;
+                }
+            }
         }
 
         //MOSTRAR REPUESTOS DEN EL DGV 
@@ -305,13 +312,14 @@ namespace Login
         private void btnHojaAgregar_Click(object sender, EventArgs e)
         {
             FHojaRepuestos fHojaRepuestos = new FHojaRepuestos();
+            fHojaRepuestos.txtHojaRespuestoFF.Text = txtNHojaRepuestos.Text;
+            fHojaRepuestos.Show();
+        }
 
-            // Asegúrate de que txtHojaRespuestoFF esté inicializado antes de asignarle un valor.
-            if (fHojaRepuestos.txtHojaRespuestoFF != null)
-            {
-                fHojaRepuestos.txtHojaRespuestoFF.Text = this.txtHojaRespuesto.Text;
-                fHojaRepuestos.Show();
-            }
+        private void txtNHojaRepuestos_TextChanged(object sender, EventArgs e)
+        {
+            MostrarHojaRepuestos();
+
         }
     }
 }

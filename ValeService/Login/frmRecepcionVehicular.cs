@@ -15,11 +15,11 @@ namespace Login
         public frmRecepcionVehicular()
         {
             InitializeComponent();
-            EventosGlobales.NumeroHojaCambiado += ActualizarTextBox;
+            Common.NHoja.Configuracion.NumeroHojaCambiado += ActualizarTextBox;
+
         }
         private void ActualizarTextBox(string nuevoNumeroHoja)
         {
-            // Actualizar el TextBox del formulario secundario con el nuevo valor
             txtNHojaRecepcion.Text = nuevoNumeroHoja;
         }
         private void frmRecepcionVehicular_Load(object sender, EventArgs e)

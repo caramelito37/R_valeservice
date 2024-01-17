@@ -17,6 +17,7 @@ namespace Login.FormFlotantes
     {
         DRepuesto dRepuesto = new DRepuesto();
 
+        public TextBox TxtHojaRespuestoFF => txtHojaRespuestoFF;
         public TextBox TxtNumRepuesto => txtNumRepuesto;
         public TextBox TxtHojaCantidad => txtHojaCantidad;
         public TextBox TxtHojaMarca => txtHojaMarca;

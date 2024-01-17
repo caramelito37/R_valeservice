@@ -45,12 +45,12 @@
             this.txtHojaCantidad = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dgvRepuestos = new System.Windows.Forms.DataGridView();
+            this.NumeroFF = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescripcionFF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtBuscarRepuestoFF = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtRepuestoNombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.NumeroFF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescripcionFF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRepuestos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,16 +91,17 @@
             this.txtNumRepuesto.Enabled = false;
             this.txtNumRepuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumRepuesto.Location = new System.Drawing.Point(160, 46);
-            this.txtNumRepuesto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNumRepuesto.Margin = new System.Windows.Forms.Padding(4);
             this.txtNumRepuesto.Name = "txtNumRepuesto";
             this.txtNumRepuesto.Size = new System.Drawing.Size(119, 30);
             this.txtNumRepuesto.TabIndex = 92;
             // 
             // txtHojaRespuestoFF
             // 
+            this.txtHojaRespuestoFF.Enabled = false;
             this.txtHojaRespuestoFF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHojaRespuestoFF.Location = new System.Drawing.Point(160, 7);
-            this.txtHojaRespuestoFF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtHojaRespuestoFF.Margin = new System.Windows.Forms.Padding(4);
             this.txtHojaRespuestoFF.Name = "txtHojaRespuestoFF";
             this.txtHojaRespuestoFF.Size = new System.Drawing.Size(119, 30);
             this.txtHojaRespuestoFF.TabIndex = 91;
@@ -214,7 +215,7 @@
             this.dgvRepuestos.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRepuestos.EnableHeadersVisualStyles = false;
             this.dgvRepuestos.Location = new System.Drawing.Point(455, 47);
-            this.dgvRepuestos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvRepuestos.Margin = new System.Windows.Forms.Padding(4);
             this.dgvRepuestos.Name = "dgvRepuestos";
             this.dgvRepuestos.ReadOnly = true;
             this.dgvRepuestos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -233,46 +234,6 @@
             this.dgvRepuestos.Size = new System.Drawing.Size(595, 265);
             this.dgvRepuestos.TabIndex = 93;
             this.dgvRepuestos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRepuestos_CellClick);
-            // 
-            // txtBuscarRepuestoFF
-            // 
-            this.txtBuscarRepuestoFF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarRepuestoFF.Location = new System.Drawing.Point(536, 12);
-            this.txtBuscarRepuestoFF.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtBuscarRepuestoFF.Name = "txtBuscarRepuestoFF";
-            this.txtBuscarRepuestoFF.Size = new System.Drawing.Size(465, 26);
-            this.txtBuscarRepuestoFF.TabIndex = 94;
-            this.txtBuscarRepuestoFF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarRepuesto_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(449, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 25);
-            this.label1.TabIndex = 95;
-            this.label1.Text = "Buscar";
-            // 
-            // txtRepuestoNombre
-            // 
-            this.txtRepuestoNombre.Enabled = false;
-            this.txtRepuestoNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRepuestoNombre.Location = new System.Drawing.Point(160, 85);
-            this.txtRepuestoNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtRepuestoNombre.Name = "txtRepuestoNombre";
-            this.txtRepuestoNombre.Size = new System.Drawing.Size(268, 30);
-            this.txtRepuestoNombre.TabIndex = 97;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 92);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 25);
-            this.label2.TabIndex = 96;
-            this.label2.Text = "Nombre";
             // 
             // NumeroFF
             // 
@@ -300,6 +261,46 @@
             this.DescripcionFF.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.DescripcionFF.Width = 495;
             // 
+            // txtBuscarRepuestoFF
+            // 
+            this.txtBuscarRepuestoFF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarRepuestoFF.Location = new System.Drawing.Point(536, 12);
+            this.txtBuscarRepuestoFF.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtBuscarRepuestoFF.Name = "txtBuscarRepuestoFF";
+            this.txtBuscarRepuestoFF.Size = new System.Drawing.Size(465, 26);
+            this.txtBuscarRepuestoFF.TabIndex = 94;
+            this.txtBuscarRepuestoFF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarRepuesto_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(449, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 25);
+            this.label1.TabIndex = 95;
+            this.label1.Text = "Buscar";
+            // 
+            // txtRepuestoNombre
+            // 
+            this.txtRepuestoNombre.Enabled = false;
+            this.txtRepuestoNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRepuestoNombre.Location = new System.Drawing.Point(160, 85);
+            this.txtRepuestoNombre.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRepuestoNombre.Name = "txtRepuestoNombre";
+            this.txtRepuestoNombre.Size = new System.Drawing.Size(268, 30);
+            this.txtRepuestoNombre.TabIndex = 97;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(15, 92);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 25);
+            this.label2.TabIndex = 96;
+            this.label2.Text = "Nombre";
+            // 
             // FHojaRepuestos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -324,7 +325,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnCancelar);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FHojaRepuestos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FHojaRepuestos_Load);
