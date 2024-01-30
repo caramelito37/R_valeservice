@@ -27,9 +27,7 @@ namespace Login
         }
         private void MostrarReparaciones()
         {
-            DReparacion dReparacion = new DReparacion();
-            DataTable reparaciones = dReparacion.MostrarReparaciones();
-            dgvReparaciones.DataSource = reparaciones;
+
         }
         private void MostrarManoDeObraHoja()
         {
@@ -39,9 +37,7 @@ namespace Login
         }
         private void MostrarManoDeObra()
         {
-            DManoDeObra dManoDeObra = new DManoDeObra();
-            DataTable manoDeObra = dManoDeObra.MostrarManoDeObra();
-            dgvManoDeObra.DataSource = manoDeObra;
+
         }
 
 

@@ -665,7 +665,7 @@
             this.dgvHojaRepuestos.RowHeadersWidth = 55;
             this.dgvHojaRepuestos.RowTemplate.Height = 25;
             this.dgvHojaRepuestos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvHojaRepuestos.Size = new System.Drawing.Size(921, 340);
+            this.dgvHojaRepuestos.Size = new System.Drawing.Size(858, 340);
             this.dgvHojaRepuestos.TabIndex = 6;
             this.dgvHojaRepuestos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHojaRepuestos_CellClick);
             // 

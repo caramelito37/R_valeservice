@@ -155,7 +155,7 @@ namespace DataAccess
         }
 
         #endregion
-        public DataTable MostrarRecepciones()
+        public DataTable MostrarDatosRecepciones(int numeroHoja)
         {
             using (var connection = GetConnection())
             {
@@ -163,8 +163,11 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "MostrarRecepciones";
+                    command.CommandText = "MostrarDatosRecepciones";
                     command.CommandType = CommandType.StoredProcedure;
+
+                    // Agregar parámetro de entrada para el procedimiento almacenado
+                    command.Parameters.AddWithValue("@numeroHoja", numeroHoja);
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {

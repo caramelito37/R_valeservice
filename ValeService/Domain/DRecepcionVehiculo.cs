@@ -35,9 +35,9 @@ namespace Domain
 
 
         #endregion
-        public DataTable MostrarRecepciones()
+        public DataTable MostrarDatosRecepciones(int numeroHoja)
         {
-            return recepcionVehiculoDao.MostrarRecepciones();
+            return recepcionVehiculoDao.MostrarDatosRecepciones(numeroHoja);
         }
 
         public void AgregarRecepcion(DateTime fechaEntrada, DateTime? fechaSalida, decimal cuenta, string placaVehiculo, int clienteDNI)

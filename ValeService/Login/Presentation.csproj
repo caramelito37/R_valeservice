@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Estilos\EstilosDGV.cs" />
     <Compile Include="FormFlotantes\FHojaRepuestos.cs">
       <SubType>Form</SubType>
     </Compile>

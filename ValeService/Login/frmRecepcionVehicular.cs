@@ -49,8 +49,7 @@ namespace Login
 
         private void MostrarRecepciones()
         {
-            DataTable DTrecepciones = dRecepcionVehiculo.MostrarRecepciones();
-            dgvRecepcionVehicular.DataSource = DTrecepciones;
+
         }
         private void btnCerrar_Click(object sender, EventArgs e)
         {

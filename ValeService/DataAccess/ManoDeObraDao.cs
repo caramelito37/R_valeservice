@@ -10,7 +10,7 @@ namespace DataAccess
 {
     public class ManoDeObraDao : ConnectionToMySql
     {
-        public DataTable MostrarManoDeObra()
+        public DataTable MostrarDatosServicios(int numeroHoja)
         {
             using (var connection = GetConnection())
             {
@@ -18,8 +18,11 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "SELECT * FROM ManoDeObra;";
-                    command.CommandType = CommandType.Text;
+                    command.CommandText = "MostrarDatosServicios";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Agregar parámetro de entrada para el procedimiento almacenado
+                    command.Parameters.AddWithValue("@numeroHoja", numeroHoja);
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
@@ -30,6 +33,7 @@ namespace DataAccess
                 }
             }
         }
+
 
 
         public DataTable MostrarManoDeObraHoja(int hojaNumero)

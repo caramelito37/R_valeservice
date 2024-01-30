@@ -18,11 +18,11 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "usp_MostrarHRepuestosPorHoja";
+                    command.CommandText = "MostrarDatosRepuestos";
                     command.CommandType = CommandType.StoredProcedure;
 
                     // Agregar parámetro de entrada para el procedimiento almacenado
-                    command.Parameters.AddWithValue("@p_Hoja_Numero", hojaNumero);
+                    command.Parameters.AddWithValue("@numeroHoja", hojaNumero);
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
@@ -33,6 +33,7 @@ namespace DataAccess
                 }
             }
         }
+
 
 
         public void AgregarHojaRepuestos(int cantidad, string descripcion, decimal costo, string marca, int repuestoId, int hojaNumero)
