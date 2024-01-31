@@ -96,11 +96,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Estilos\EstilosDGV.cs" />
+    <Compile Include="Estilos\EstilosFromFlotantes.cs" />
     <Compile Include="FormFlotantes\FHojaRepuestos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFlotantes\FHojaRepuestos.Designer.cs">
       <DependentUpon>FHojaRepuestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFlotantes\FManoObraTerceros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFlotantes\FManoObraTerceros.Designer.cs">
+      <DependentUpon>FManoObraTerceros.cs</DependentUpon>
     </Compile>
     <Compile Include="FormFlotantes\FRepuestos.cs">
       <SubType>Form</SubType>
@@ -166,6 +173,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormFlotantes\FHojaRepuestos.resx">
       <DependentUpon>FHojaRepuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFlotantes\FManoObraTerceros.resx">
+      <DependentUpon>FManoObraTerceros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFlotantes\FRepuestos.resx">
       <DependentUpon>FRepuestos.cs</DependentUpon>

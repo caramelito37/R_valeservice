@@ -68,6 +68,13 @@ CREATE TABLE Hoja_Repuestos (
     FOREIGN KEY (Hoja_Numero) REFERENCES Hoja(Hoja_Numero)
 );
 
+CREATE TABLE ManoDeObraTerceros (
+    ManoDeObraTerceros_Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Hoja_Numero INT NOT NULL,
+    ManoDeObraTerceros_Descripcion VARCHAR(100) NOT NULL,
+    FOREIGN KEY (Hoja_Numero) REFERENCES Hoja(Hoja_Numero)
+);
+
 CREATE TABLE Usuarios (
     NombreUsuario VARCHAR(50) PRIMARY KEY NOT NULL,
     Contraseña VARCHAR(50) NOT NULL,
@@ -204,6 +211,34 @@ VALUES
     (5, 2, 70.75, 1, 2),
     (5, 2, 65.50, 4, 3);
 
+
+INSERT INTO ManoDeObraTerceros (Hoja_Numero, ManoDeObraTerceros_Descripcion)
+VALUES
+    -- Hoja 1
+    (1, 'Cambio de aceite y filtro'),
+    (1, 'Cambio de pastillas de freno'),
+    (1, 'Cambio de correa de distribución'),
+
+    -- Hoja 2
+    (2, 'Cambio de bujías'),
+    (2, 'Cambio de filtros de aire y combustible'),
+    (2, 'Reparación de motor'),
+
+    -- Hoja 3
+    (3, 'Reparación de transmisión'),
+    (3, 'Reparación de suspensión'),
+    (3, 'Reparación de frenos'),
+
+    -- Hoja 4
+    (4, 'Reparación de dirección'),
+    (4, 'Reparación de llantas'),
+    (4, 'Reparación de electrónica'),
+
+    -- Hoja 5
+    (5, 'Reparación de carrocería'),
+    (5, 'Cambio de aceite y filtro'),
+    (5, 'Cambio de pastillas de freno');
+
 -- INSERTAR REGISTROS EN RecepcionVehiculo
 INSERT INTO RecepcionVehiculo (Hoja_Numero, RecepcionVehiculo_Fecha_Entrada, RecepcionVehiculo_Fecha_Salida, RecepcionVehiculo_Cuenta, Vehiculo_Placa, Cliente_DNI)
 VALUES
@@ -237,7 +272,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE MostrarDatosServicios(IN numeroHoja INT)
+CREATE PROCEDURE MostrarDatosManoObra(IN numeroHoja INT)
 BEGIN
     SELECT
         MO.ManoDeObra_Id AS 'ID de Mano de Obra',
@@ -286,12 +321,29 @@ END //
 DELIMITER ;
 
 
+DELIMITER //
+CREATE PROCEDURE MostrarDatosManoObraTerceros(IN numeroHoja INT)
+BEGIN
+    SELECT
+        ManoDeObraTerceros_Id AS 'ID de Mano de Obra Terceros',
+        Hoja_Numero AS 'Número de Hoja',
+        ManoDeObraTerceros_Descripcion AS 'Descripción de Mano de Obra Terceros'
+    FROM
+        ManoDeObraTerceros
+    WHERE
+        Hoja_Numero = numeroHoja;
+END //
+DELIMITER ;
 
 
-select * from RecepcionVehiculo;
+
+
+
 call MostrarDatosRecepciones(1);
-call MostrarDatosServicios(1);
+call MostrarDatosManoObra(1);
 call MostrarDatosRepuestos(1);
+call MostrarDatosManoObraTerceros(1);
+
 
 INSERT INTO Hoja (Hoja_Fecha_Edicion) VALUES (CURRENT_TIMESTAMP);
 SELECT LAST_INSERT_ID() AS UltimoNumeroHoja;

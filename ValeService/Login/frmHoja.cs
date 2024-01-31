@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common.Eventos;
 using Login.Estilos;
+using Login.FormFlotantes;
 
 namespace Login
 {
@@ -18,7 +19,8 @@ namespace Login
     {
         DHojaRepuesto dHojaRepuesto = new DHojaRepuesto();
         DRecepcionVehiculo dRecepcionVehiculo = new DRecepcionVehiculo();
-        DManoDeObra dManoDeObra = new DManoDeObra();    
+        DManoDeObra dManoDeObra = new DManoDeObra();
+        DManoObraTerceros dManoObraTerceros = new DManoObraTerceros();
         public frmHoja()
         {
             InitializeComponent();
@@ -30,6 +32,34 @@ namespace Login
 
 
         }
+        private void LimpiarDatosRecepciones()
+        {
+            lblSumaCostoManoObra.Text = "00.00";
+            lblSumaCostoRepuestos.Text = "00.00";
+            txtIDRecepcion.Clear();
+            txtRecepcionNHoja.Clear();
+            txtDNICliente.Clear();
+            txtNombreCliente.Clear();
+            txtContactoCliente.Clear();
+            txtPlacaVehiculo.Clear();
+            txtMarcaVehiculo.Clear();
+            txtModeloVehiculo.Clear();
+            txtAnioVehiculo.Clear();
+            txtKilometrajeVehiculo.Clear();
+            txtFechaEntrada.Clear();
+            txtFechaSalida.Clear();
+            txtCuentaRecepcion.Clear();
+        }
+        private void LimpiarDataGridViews()
+        {
+            dgvRepuestoHoja.Columns.Clear();
+            dgvManoObraHoja.Columns.Clear();
+            dgvManoObraTercerosHoja.Columns.Clear();
+            dgvRepuestoHoja.DataSource = null;
+            dgvManoObraHoja.DataSource = null;
+            dgvManoObraTercerosHoja.DataSource = null;
+        }
+
         private void MostrarDatosRepuestos()
         {
             // Obtener el número de hoja del TextBox
@@ -51,7 +81,6 @@ namespace Login
                 lblSumaCostoRepuestos.Text = sumaCosto.ToString();
             }
         }
-
         private void MostrarDatosRecepciones()
         {
 
@@ -83,17 +112,17 @@ namespace Login
                 else
                 {
                     // Manejar el caso en el que no hay datos para la hoja especificada
-                    MessageBox.Show("No hay datos disponibles para la hoja especificada.");
+                    LimpiarDatosRecepciones();
                 }
             }
         }
-        private void MostrarDatosServicios()
+        private void MostrarDatosManoObra()
         {
             // Obtener el número de hoja del TextBox
             if (int.TryParse(txtNumeroHoja.Text, out int numeroHoja))
             {
                 // Llamar al método para obtener los datos de los servicios
-                DataTable datosServicios = dManoDeObra.MostrarDatosServicios(numeroHoja);
+                DataTable datosServicios = dManoDeObra.MostrarDatosManoObra(numeroHoja);
 
                 // Mostrar los datos en el DataGridView
                 dgvManoObraHoja.DataSource = datosServicios;
@@ -109,19 +138,59 @@ namespace Login
                 lblSumaCostoManoObra.Text = sumaCostoManoObra.ToString();
             }
         }
+        private void MostrarDatosManoObraTerceros()
+        {
+            // Obtener el número de hoja del TextBox
+            if (int.TryParse(txtNumeroHoja.Text, out int numeroHoja))
+            {
+                // Llamar al método para obtener los datos de los servicios
+                DataTable datosServicios = dManoObraTerceros.MostrarDatosManoObraTerceros(numeroHoja);
 
-
+                // Mostrar los datos en el DataGridView
+                dgvManoObraTercerosHoja.DataSource = datosServicios;
+            }
+        }
 
 
         private void txtNumeroHoja_TextChanged_1(object sender, EventArgs e)
         {
-            MostrarDatosRepuestos();
-            MostrarDatosServicios();
-            MostrarDatosRecepciones();
-            EstilosDGV.AplicarEstilos(dgvRepuestoHoja);
-            EstilosDGV.AplicarEstilos(dgvManoObraHoja);
+            // Verificar si el TextBox está vacío
+            if (string.IsNullOrWhiteSpace(txtNumeroHoja.Text))
+            {
+                LimpiarDataGridViews();// Limpiar el contenido de los DataGridView
+                LimpiarDatosRecepciones();// Limpiar los datos de Recepciones
+            }
+            else
+            {
+                MostrarDatosRepuestos();
+                MostrarDatosManoObra();
+                MostrarDatosManoObraTerceros();
+                MostrarDatosRecepciones();
+                EstilosDGV.AplicarEstilos(dgvRepuestoHoja);
+                EstilosDGV.AplicarEstilos(dgvManoObraHoja);
+                EstilosDGV.AplicarEstilos(dgvManoObraTercerosHoja);
+            }
         }
 
+        private void btnAddRepuestos_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void btnAddManoObra_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddManoObraTerceros_Click(object sender, EventArgs e)
+        {
+            FManoObraTerceros fManoObraTerceros = new FManoObraTerceros();
+
+            // Aplicar estilos utilizando la clase EstilosFormFlotantes
+            EstilosFromFlotantes.AplicarEstilosForm(fManoObraTerceros);
+
+            // Mostrar el formulario
+            fManoObraTerceros.ShowDialog();
+        }
     }
 }

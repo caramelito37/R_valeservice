@@ -10,7 +10,7 @@ namespace DataAccess
 {
     public class ManoDeObraDao : ConnectionToMySql
     {
-        public DataTable MostrarDatosServicios(int numeroHoja)
+        public DataTable MostrarDatosManoObra(int numeroHoja)
         {
             using (var connection = GetConnection())
             {
@@ -18,7 +18,7 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "MostrarDatosServicios";
+                    command.CommandText = "MostrarDatosManoObra";
                     command.CommandType = CommandType.StoredProcedure;
 
                     // Agregar parámetro de entrada para el procedimiento almacenado

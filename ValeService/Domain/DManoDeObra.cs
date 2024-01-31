@@ -12,9 +12,9 @@ namespace Domain
     {
         private ManoDeObraDao manoDeObraDao = new ManoDeObraDao();
 
-        public DataTable MostrarDatosServicios(int numeroHoja)
+        public DataTable MostrarDatosManoObra(int numeroHoja)
         {
-            return manoDeObraDao.MostrarDatosServicios(numeroHoja);
+            return manoDeObraDao.MostrarDatosManoObra(numeroHoja);
         }
 
 
