@@ -653,6 +653,7 @@
             this.dgvManoObraTercerosHoja.RowTemplate.Height = 24;
             this.dgvManoObraTercerosHoja.Size = new System.Drawing.Size(1157, 194);
             this.dgvManoObraTercerosHoja.TabIndex = 29;
+            this.dgvManoObraTercerosHoja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvManoObraTercerosHoja_CellClick);
             // 
             // label4
             // 

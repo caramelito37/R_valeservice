@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Login.Estilos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,12 @@ namespace Login.FormFlotantes
             InitializeComponent();
         }
 
+        private void FManoObraTerceros_Load(object sender, EventArgs e)
+        {
+            EstilosTextBox.HacerPublico(txtFFMOTHoja, txtFFMOTDescripcion, txtFFMOTid);
+            EstilosTextBox.BloquearTextBox(txtFFMOTHoja, txtFFMOTid);
+
+        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
@@ -28,5 +35,7 @@ namespace Login.FormFlotantes
             DialogResult = DialogResult.OK;
             Close();
         }
+
+
     }
 }

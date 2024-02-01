@@ -35,6 +35,7 @@ namespace Login.Estilos
                 {
                     DataGridViewImageColumn columnaEditar = new DataGridViewImageColumn();
                     columnaEditar.HeaderText = "Editar";
+                    columnaEditar.Name = "Editar"; // Nombre de la columna
                     columnaEditar.Image = Properties.Resources.editar;
                     columnaEditar.ImageLayout = DataGridViewImageCellLayout.Zoom;
                     dgv.Columns.Add(columnaEditar);
@@ -45,10 +46,12 @@ namespace Login.Estilos
                 {
                     DataGridViewImageColumn columnaEliminar = new DataGridViewImageColumn();
                     columnaEliminar.HeaderText = "Eliminar";
+                    columnaEliminar.Name = "Eliminar"; // Nombre de la columna
                     columnaEliminar.Image = Properties.Resources.eliminar;
                     columnaEliminar.ImageLayout = DataGridViewImageCellLayout.Zoom;
                     dgv.Columns.Add(columnaEliminar);
                 }
+
             }
         }
     }

@@ -53,5 +53,55 @@ namespace DataAccess
                 }
             }
         }
+        public void EditManoObraTerceros(int idManoObraTerceros, int numeroHoja, string nuevaDescripcion)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "UPDATE ManoDeObraTerceros" +
+                        " SET" +
+                        " Hoja_Numero = @numeroHoja," +
+                        " ManoDeObraTerceros_Descripcion = @nuevaDescripcion " +
+                        "WHERE " +
+                        "ManoDeObraTerceros_Id = @idManoObraTerceros";
+                    command.CommandType = CommandType.Text;
+
+                    // Agregar parámetros para la consulta
+                    command.Parameters.AddWithValue("@idManoObraTerceros", idManoObraTerceros);
+                    command.Parameters.AddWithValue("@numeroHoja", numeroHoja);
+                    command.Parameters.AddWithValue("@nuevaDescripcion", nuevaDescripcion);
+
+                    // Ejecutar la consulta
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        public void DeleteManoObraTerceros(int idManoObraTerceros)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "DELETE " +
+                        "FROM " +
+                        "ManoDeObraTerceros " +
+                        "WHERE " +
+                        "ManoDeObraTerceros_Id = @idManoObraTerceros";
+                    command.CommandType = CommandType.Text;
+
+                    // Agregar parámetro para la consulta
+                    command.Parameters.AddWithValue("@idManoObraTerceros", idManoObraTerceros);
+
+                    // Ejecutar la consulta
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }

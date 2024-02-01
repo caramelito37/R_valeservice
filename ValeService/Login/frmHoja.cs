@@ -166,6 +166,7 @@ namespace Login
                 MostrarDatosManoObra();
                 MostrarDatosManoObraTerceros();
                 MostrarDatosRecepciones();
+
                 EstilosDGV.AplicarEstilos(dgvRepuestoHoja);
                 EstilosDGV.AplicarEstilos(dgvManoObraHoja);
                 EstilosDGV.AplicarEstilos(dgvManoObraTercerosHoja);
@@ -181,16 +182,145 @@ namespace Login
         {
 
         }
+        // ************************************************************
+        // ************ MANO DE OBRA TERCEROS *************************
+        // ************************************************************
+        #region Eventos del DataGridView
+        private void dgvManoObraTercerosHoja_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string columnName = dgvManoObraTercerosHoja.Columns[e.ColumnIndex].Name;
 
+                switch (columnName)
+                {
+                    case "Eliminar":
+                        // Obtener el ID de Mano de Obra Terceros de la fila seleccionada
+                        int idManoObraTercerosEliminar = Convert.ToInt32(dgvManoObraTercerosHoja.Rows[e.RowIndex].Cells["ID de Mano de Obra Terceros"].Value);
+
+                        // Llamar al método para eliminar
+                        DeleteManoObraTerceros(idManoObraTercerosEliminar);
+                        break;
+
+                    case "Editar":
+                        // Obtener los datos de la fila seleccionada
+                        int idManoObraTerceros = Convert.ToInt32(dgvManoObraTercerosHoja.Rows[e.RowIndex].Cells["ID de Mano de Obra Terceros"].Value);
+                        int numeroHoja = Convert.ToInt32(dgvManoObraTercerosHoja.Rows[e.RowIndex].Cells["Número de Hoja"].Value);
+                        string descripcion = dgvManoObraTercerosHoja.Rows[e.RowIndex].Cells["Descripción de Mano de Obra Terceros"].Value.ToString();
+
+                        // Mostrar el formulario de edición
+                        EditManoObraTerceros(idManoObraTerceros, numeroHoja, descripcion);
+                        break;
+
+                    // Agrega más casos según tus necesidades
+
+                    default:
+                        // Acción por defecto o mensaje de error
+                        break;
+                }
+            }
+        }
         private void btnAddManoObraTerceros_Click(object sender, EventArgs e)
         {
             FManoObraTerceros fManoObraTerceros = new FManoObraTerceros();
+
+            // Asignar el valor de txtNumeroHoja al TextBox en el nuevo formulario
+            fManoObraTerceros.txtFFMOTHoja.Text = txtNumeroHoja.Text;
 
             // Aplicar estilos utilizando la clase EstilosFormFlotantes
             EstilosFromFlotantes.AplicarEstilosForm(fManoObraTerceros);
 
             // Mostrar el formulario
-            fManoObraTerceros.ShowDialog();
+            if (fManoObraTerceros.ShowDialog() == DialogResult.OK)
+            {
+                // Obtener datos del formulario después de aceptar
+                int numeroHoja;
+                if (int.TryParse(fManoObraTerceros.txtFFMOTHoja.Text, out numeroHoja))
+                {
+                    string descripcion = fManoObraTerceros.txtFFMOTDescripcion.Text;
+
+                    // Insertar el nuevo registro
+                    dManoObraTerceros.InsertarManoObraTerceros(numeroHoja, descripcion);
+
+                    MostrarDatosManoObraTerceros();
+                    EstilosDGV.AplicarEstilos(dgvManoObraTercerosHoja);
+                }
+                else
+                {
+                    // Mostrar mensaje de error o tomar otra acción en caso de que el número de hoja no sea válido
+                }
+            }
+
+
+
         }
+        private void EditManoObraTerceros(int idManoObraTerceros, int numeroHoja, string descripcionActual)
+        {
+            // Crear una instancia del formulario FManoObraTerceros
+            FManoObraTerceros formularioManoObraTerceros = new FManoObraTerceros();
+
+            // Asignar los valores actuales a los controles del formulario
+            formularioManoObraTerceros.txtFFMOTid.Text = idManoObraTerceros.ToString();
+            formularioManoObraTerceros.txtFFMOTHoja.Text = numeroHoja.ToString();
+            formularioManoObraTerceros.txtFFMOTDescripcion.Text = descripcionActual;
+
+            // Aplicar estilos utilizando la clase EstilosFromFlotantes
+            EstilosFromFlotantes.AplicarEstilosForm(formularioManoObraTerceros);
+
+            // Mostrar el formulario y manejar el resultado
+            DialogResult resultado = formularioManoObraTerceros.ShowDialog();
+
+            // Procesar el resultado del formulario
+            if (resultado == DialogResult.OK)
+            {
+                // Obtener datos del formulario después de aceptar
+                int nuevoNumeroHoja;
+                if (int.TryParse(formularioManoObraTerceros.txtFFMOTHoja.Text, out nuevoNumeroHoja))
+                {
+                    string nuevaDescripcion = formularioManoObraTerceros.txtFFMOTDescripcion.Text;
+
+                    // Verificar si la descripción no está vacía
+                    if (!string.IsNullOrEmpty(nuevaDescripcion))
+                    {
+                        // Realizar acciones según sea necesario
+                        dManoObraTerceros.EditManoObraTerceros(idManoObraTerceros, nuevoNumeroHoja, nuevaDescripcion);
+
+                        // Actualizar la vista y aplicar estilos después de guardar
+                        MostrarDatosManoObraTerceros();
+                        EstilosDGV.AplicarEstilos(dgvManoObraTercerosHoja);
+                    }
+                    else
+                    {
+                        MessageBox.Show("La descripción no puede estar vacía.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        // Puedes tomar alguna acción adicional, como no realizar la actualización o mostrar un mensaje adicional.
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Numero de hoja no valido. ", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+
+        }
+        private void DeleteManoObraTerceros(int idManoObraTerceros)
+        {
+            // Puedes mostrar un mensaje de confirmación antes de proceder con la eliminación
+            DialogResult confirmacion = MessageBox.Show("¿Seguro que desea eliminar este registro?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                // Llamar al método para eliminar en la capa de datos
+                dManoObraTerceros.DeleteManoObraTerceros(idManoObraTerceros);
+
+                // Actualizar la vista después de la eliminación
+                MostrarDatosManoObraTerceros();
+                EstilosDGV.AplicarEstilos(dgvManoObraTercerosHoja);
+            }
+        }
+
+        #endregion
+        // ************************************************************
+        // ************ FIN MANO DE OBRA TERCEROS *********************
+        // ************************************************************
     }
 }

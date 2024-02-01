@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="Estilos\EstilosDGV.cs" />
     <Compile Include="Estilos\EstilosFromFlotantes.cs" />
+    <Compile Include="Estilos\EstilosTextBox.cs" />
     <Compile Include="FormFlotantes\FHojaRepuestos.cs">
       <SubType>Form</SubType>
     </Compile>

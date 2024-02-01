@@ -21,5 +21,14 @@ namespace Domain
         {
             manoObraTercerosDao.InsertarManoObraTerceros(numeroHoja, descripcion);
         }
+        public void EditManoObraTerceros(int idManoObraTerceros, int numeroHoja, string nuevaDescripcion)
+        {
+            manoObraTercerosDao.EditManoObraTerceros(idManoObraTerceros, numeroHoja, nuevaDescripcion);
+        }
+        public void DeleteManoObraTerceros(int idManoObraTerceros)
+        {
+            manoObraTercerosDao.DeleteManoObraTerceros(idManoObraTerceros);
+        }
+
     }
 }

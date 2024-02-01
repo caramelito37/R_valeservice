@@ -103,7 +103,6 @@ namespace Login
                     MostrarFormularioEdicion(idEditar, descripcionActual);
                     break;
 
-
             }
         }
 
