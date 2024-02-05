@@ -75,7 +75,7 @@ namespace Login
         private void MostrarRepuestos()
         {
             DRepuesto dRepuesto = new DRepuesto();
-            DataTable repuestos = dRepuesto.MostrarRepuestos();
+            DataTable repuestos = dRepuesto.MostrarDatosRepuesto();
             dgvRepuestos.DataSource = repuestos;
         }        
 
@@ -233,38 +233,6 @@ namespace Login
         }
         private void btnBuscarRepuesto_Click(object sender, EventArgs e)
         {
-            string opcionSeleccionadaRepuesto = cbxBuscarRepuesto.SelectedItem?.ToString();
-            string valorBusquedaRepuesto = txtBuscarRepuesto.Text;
-
-            // Verificar que se haya seleccionado una opción y se haya ingresado un valor
-            if (!string.IsNullOrWhiteSpace(opcionSeleccionadaRepuesto) && !string.IsNullOrWhiteSpace(valorBusquedaRepuesto))
-            {
-                // Llamar al método BuscarRepuesto en la capa de dominio
-                DataTable resultadosRepuesto = dRepuesto.BuscarRepuesto(opcionSeleccionadaRepuesto, valorBusquedaRepuesto);
-
-                // Verificar si hay registros en la DataTable
-                if (resultadosRepuesto.Rows.Count > 0)
-                {
-                    // Mostrar los resultados en el DataGridView dgvRepuestos
-                    dgvRepuestos.DataSource = resultadosRepuesto;
-                }
-                else
-                {
-                    MessageBox.Show("No se encontraron registros para la búsqueda especificada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                // Mensajes específicos para indicar qué falta
-                if (string.IsNullOrWhiteSpace(opcionSeleccionadaRepuesto))
-                {
-                    MessageBox.Show("Por favor, seleccione una opción antes de buscar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else if (string.IsNullOrWhiteSpace(valorBusquedaRepuesto))
-                {
-                    MessageBox.Show("Por favor, escriba un valor antes de buscar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
 
         }
         private void btnRefrescar_Click(object sender, EventArgs e)
@@ -311,7 +279,7 @@ namespace Login
         private void btnHojaAgregar_Click(object sender, EventArgs e)
         {
             FHojaRepuestos fHojaRepuestos = new FHojaRepuestos();
-            fHojaRepuestos.txtHojaRespuestoFF.Text = txtNHojaRepuestos.Text;
+            fHojaRepuestos.txtFFHRHoja.Text = txtNHojaRepuestos.Text;
             fHojaRepuestos.Show();
         }
 

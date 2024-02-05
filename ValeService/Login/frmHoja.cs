@@ -172,16 +172,20 @@ namespace Login
                 EstilosDGV.AplicarEstilos(dgvManoObraTercerosHoja);
             }
         }
-
-        private void btnAddRepuestos_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAddManoObra_Click(object sender, EventArgs e)
         {
 
         }
+        private void btnAddRepuestos_Click(object sender, EventArgs e)
+        {
+            FHojaRepuestos fHojaRepuestos = new FHojaRepuestos();
+
+            // Asignar el valor de txtNumeroHoja al TextBox en el nuevo formulario
+            fHojaRepuestos.txtFFHRHoja.Text = txtNumeroHoja.Text;
+            EstilosFromFlotantes.AplicarEstilosForm(fHojaRepuestos);
+            fHojaRepuestos.ShowDialog();
+        }
+
         // ************************************************************
         // ************ MANO DE OBRA TERCEROS *************************
         // ************************************************************

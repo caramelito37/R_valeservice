@@ -13,9 +13,11 @@ namespace Login.Estilos
         public static void AplicarEstilos(DataGridView dgv)
         {
             dgv.EnableHeadersVisualStyles = false; // Desactivar los estilos visuales predeterminados de los encabezados
-
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 54, 75); // Color de fondo
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(255, 255, 255); // Color de las letras
+            dgv.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra para las celdas
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra y hacerla negrita para los encabezados de columna
+            dgv.RowHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra para los encabezados de fila (si aplicable)
 
             // Ocultar la primera columna (row headers)
             dgv.RowHeadersVisible = false;
@@ -53,6 +55,21 @@ namespace Login.Estilos
                 }
 
             }
+        }
+        public static void AplicarEstilosNoBotones(DataGridView dgv)
+        {
+            dgv.EnableHeadersVisualStyles = false; // Desactivar los estilos visuales predeterminados de los encabezados
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 54, 75); // Color de fondo
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(255, 255, 255); // Color de las letras
+            dgv.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra para las celdas
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra y hacerla negrita para los encabezados de columna
+            dgv.RowHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra para los encabezados de fila (si aplicable)
+
+            // Ocultar la primera columna (row headers)
+            dgv.RowHeadersVisible = false;
+
+            // Desactivar la capacidad de cambiar la altura de las filas
+            dgv.AllowUserToResizeRows = false;
         }
     }
 }

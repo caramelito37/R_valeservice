@@ -10,7 +10,7 @@ namespace DataAccess
 {
     public class RepuestoDao : ConnectionToMySql
     {
-        public DataTable MostrarRepuestos()
+        public DataTable MostrarDatosRepuesto()
         {
             using (var connection = GetConnection())
             {
@@ -18,8 +18,8 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "SELECT * FROM Repuesto;";
-                    command.CommandType = CommandType.Text;
+                    command.CommandText = "MostrarDatosRepuesto";
+                    command.CommandType = CommandType.StoredProcedure;
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
@@ -30,6 +30,7 @@ namespace DataAccess
                 }
             }
         }
+
         public void AgregarRepuesto(string descripcion)
         {
             using (var connection = GetConnection())
@@ -88,7 +89,7 @@ namespace DataAccess
             }
         }
 
-        public DataTable BuscarRepuesto(string opcion, string valor)
+        public DataTable BuscarRepuestoDescripcion(string descripcionBusqueda)
         {
             using (var connection = GetConnection())
             {
@@ -96,26 +97,11 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
+                    command.CommandText = "BuscarRepuestoPorDescripcion";
+                    command.CommandType = CommandType.StoredProcedure;
 
-                    // Construir la consulta dinámica según la opción seleccionada
-                    string consulta = "SELECT * FROM Repuesto WHERE ";
-                    switch (opcion)
-                    {
-                        case "N°_Repuesto":
-                            consulta += "Repuesto_Id LIKE @valor;";
-                            break;
-                        case "Descripcion":
-                            consulta += "Repuesto_Descripcion LIKE @valor;";
-                            break;
-                        default:
-                            // Opción por defecto si la selección no es válida
-                            return new DataTable();
-                    }
-
-                    command.CommandText = consulta;
-                    // Usar el comodín '%' para realizar búsquedas parciales con el operador LIKE
-                    command.Parameters.AddWithValue("@valor", "%" + valor + "%");
-                    command.CommandType = CommandType.Text;
+                    // Agregar el parámetro de entrada para la descripción de búsqueda
+                    command.Parameters.AddWithValue("@descripcionBusqueda", descripcionBusqueda);
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {

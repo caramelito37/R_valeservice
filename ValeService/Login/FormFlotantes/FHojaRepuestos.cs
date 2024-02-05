@@ -1,5 +1,6 @@
 ﻿using Common.Eventos;
 using Domain;
+using Login.Estilos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,26 +18,16 @@ namespace Login.FormFlotantes
     {
         DRepuesto dRepuesto = new DRepuesto();
 
-        public TextBox TxtHojaRespuestoFF => txtHojaRespuestoFF;
-        public TextBox TxtNumRepuesto => txtNumRepuesto;
-        public TextBox TxtHojaCantidad => txtHojaCantidad;
-        public TextBox TxtHojaMarca => txtHojaMarca;
-        public TextBox TxtHojaPrecio => txtHojaPrecio;
-
         public FHojaRepuestos()
         {
             InitializeComponent();
-            EventosGlobales.NumeroHojaCambiado += ActualizarTextBox;
 
         }
-        private void ActualizarTextBox(string nuevoNumeroHoja)
-        {
-            // Actualizar el TextBox del formulario secundario con el nuevo valor
-            txtHojaRespuestoFF.Text = nuevoNumeroHoja;
-        }
+
         private void FHojaRepuestos_Load(object sender, EventArgs e)
         {
             MostrarRepuestos();
+            EstilosDGV.AplicarEstilosNoBotones(dgvFFRepuestos);
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -51,70 +42,42 @@ namespace Login.FormFlotantes
         }
         private void MostrarRepuestos()
         {
-            DRepuesto dRepuesto = new DRepuesto();
-            DataTable repuestos = dRepuesto.MostrarRepuestos();
-            dgvRepuestos.DataSource = repuestos;
+            DataTable repuestos = dRepuesto.MostrarDatosRepuesto();
+            dgvFFRepuestos.DataSource = repuestos;
         }
-
-        private void dgvRepuestos_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void BuscarRepuestoDescripcion(string descripcionBusqueda)
         {
-            if (e.RowIndex >= 0 && e.RowIndex < dgvRepuestos.Rows.Count)
-            {
-                txtNumRepuesto.Text = dgvRepuestos.Rows[e.RowIndex].Cells["NumeroFF"].Value.ToString();
-                txtRepuestoNombre.Text = dgvRepuestos.Rows[e.RowIndex].Cells["DescripcionFF"].Value.ToString();
-            }
-        }
-        private void txtBuscarRepuesto_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Obtener el texto actual del TextBox
-            string textoActual = txtBuscarRepuestoFF.Text;
-
-            switch (e.KeyChar)
-            {
-                case (char)Keys.Back:
-                    // Tecla de retroceso, eliminar el último carácter
-                    textoActual = textoActual.Length > 0 ? textoActual.Substring(0, textoActual.Length - 1) : "";
-                    break;
-
-                case (char)Keys.Delete:
-                    // Tecla Eliminar, verificar si hay al menos una letra antes de procesar
-                    if (textoActual.Any(char.IsLetter))
-                    {
-                        // Llamar a la función de búsqueda con el texto actual
-                        BuscarRepuestoDescripcion(textoActual);
-                    }
-                    else
-                    {
-                        // Evitar que se realice la acción de eliminar si no hay letras
-                        e.Handled = true;
-                    }
-                    break;
-
-                default:
-                    // Otras teclas (letras), concatenar al texto actual
-                    if (char.IsLetter(e.KeyChar))
-                    {
-                        textoActual += e.KeyChar;
-                    }
-                    break;
-            }
-
-            // Llamar a la función de búsqueda con el texto actual
-            BuscarRepuestoDescripcion(textoActual);
-        }
-        private void BuscarRepuestoDescripcion(string valorBusquedaRepuesto)
-        {
-            string opcionSeleccionadaRepuesto = "Descripcion";  // Siempre establecer la opción como "Descripcion"
-
             // Llamar al método BuscarRepuesto en la capa de dominio
-            DataTable resultadosRepuesto = dRepuesto.BuscarRepuesto(opcionSeleccionadaRepuesto, valorBusquedaRepuesto);
+            DataTable resultadosRepuesto = dRepuesto.BuscarRepuestoDescripcion(descripcionBusqueda);
 
             // Verificar si hay registros en la DataTable
             if (resultadosRepuesto.Rows.Count > 0)
             {
                 // Mostrar los resultados en el DataGridView dgvRepuestos
-                dgvRepuestos.DataSource = resultadosRepuesto;
+                dgvFFRepuestos.DataSource = resultadosRepuesto;
             }
+            else
+            {
+                // No hay resultados, limpiar el DataGridView
+                dgvFFRepuestos.DataSource = null;
+            }
+        }
+
+        private void dgvFFRepuestos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dgvFFRepuestos.Rows.Count)
+            {
+                txtFFHRNumRepuesto.Text = dgvFFRepuestos.Rows[e.RowIndex].Cells["ID de Repuesto"].Value.ToString();
+                txtFFHRRepuestoNombre.Text = dgvFFRepuestos.Rows[e.RowIndex].Cells["Descripción de Repuesto"].Value.ToString();
+            }
+        }
+
+        private void txtBuscarRepuestoFF_TextChanged(object sender, EventArgs e)
+        {
+            // Obtener el texto actual del TextBox
+            string textoActual = txtBuscarRepuestoFF.Text;
+
+            BuscarRepuestoDescripcion(textoActual);
         }
     }
 }

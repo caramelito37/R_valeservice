@@ -12,9 +12,9 @@ namespace Domain
     {
         private RepuestoDao repuestoDao = new RepuestoDao();
 
-        public DataTable MostrarRepuestos()
+        public DataTable MostrarDatosRepuesto()
         {
-            return repuestoDao.MostrarRepuestos();
+            return repuestoDao.MostrarDatosRepuesto();
         }
 
         public void AgregarRepuesto(string descripcion)
@@ -32,10 +32,11 @@ namespace Domain
             repuestoDao.EditarRepuesto(repuestoId, descripcion);
         }
 
-        public DataTable BuscarRepuesto(string opcion, string valor)
+        public DataTable BuscarRepuestoDescripcion(string descripcionBusqueda)
         {
-            return repuestoDao.BuscarRepuesto(opcion, valor);
+            return repuestoDao.BuscarRepuestoDescripcion(descripcionBusqueda);
         }
+
     }
 
 }
