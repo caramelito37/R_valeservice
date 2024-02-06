@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using Common.Eventos;
 using Login.Estilos;
 using Login.FormFlotantes;
+using System.Globalization;
+using Login.Validaciones;
 
 namespace Login
 {
@@ -32,6 +34,7 @@ namespace Login
 
 
         }
+
         private void LimpiarDatosRecepciones()
         {
             lblSumaCostoManoObra.Text = "00.00";
@@ -66,7 +69,7 @@ namespace Login
             if (int.TryParse(txtNumeroHoja.Text, out int numeroHoja))
             {
                 // Llamar al método para obtener los datos de los repuestos
-                DataTable datosRepuestos = dHojaRepuesto.MostrarHojaRepuestos(numeroHoja);
+                DataTable datosRepuestos = dHojaRepuesto.MostrarDatosHojaRepuestos(numeroHoja);
 
                 // Mostrar los datos en el DataGridView
                 dgvRepuestoHoja.DataSource = datosRepuestos;
@@ -183,8 +186,38 @@ namespace Login
             // Asignar el valor de txtNumeroHoja al TextBox en el nuevo formulario
             fHojaRepuestos.txtFFHRHoja.Text = txtNumeroHoja.Text;
             EstilosFromFlotantes.AplicarEstilosForm(fHojaRepuestos);
-            fHojaRepuestos.ShowDialog();
+
+            // Mostrar el formulario
+            if (fHojaRepuestos.ShowDialog() == DialogResult.OK)
+            {
+                // Obtener datos del formulario después de aceptar
+                int hojaNumero, cantidad, repuestoId;
+                decimal costo;
+                string marca;
+
+
+                if (DatoTextBox.ObtenerEnteroValido(fHojaRepuestos.txtFFHRHoja.Text, out hojaNumero) &&
+                    DatoTextBox.ObtenerEnteroValido(fHojaRepuestos.txtFFHRCantidad.Text, out cantidad) &&
+                    DatoTextBox.ObtenerEnteroValido(fHojaRepuestos.txtFFHRNumRepuesto.Text, out repuestoId) &&
+                    DatoTextBox.ObtenerDecimalValido(fHojaRepuestos.txtFFHRPrecio.Text, out costo))
+                {
+                    marca = fHojaRepuestos.txtFFHRMarca.Text; 
+
+                    // Insertar el nuevo registro utilizando el método AddDatosHojaRepuestos
+                    dHojaRepuesto.AddDatosHojaRepuestos(cantidad, costo, marca, repuestoId, hojaNumero);
+
+                    // Actualizar la visualización de los datos
+                    MostrarDatosRepuestos();
+
+                    // Aplicar estilos al DataGridView (si es necesario)
+                    EstilosDGV.AplicarEstilos(dgvRepuestoHoja); // Asegúrate de tener un DataGridView llamado dgvRepuestoHoja
+                }
+            }
         }
+
+
+
+
 
         // ************************************************************
         // ************ MANO DE OBRA TERCEROS *************************
@@ -244,7 +277,7 @@ namespace Login
                     string descripcion = fManoObraTerceros.txtFFMOTDescripcion.Text;
 
                     // Insertar el nuevo registro
-                    dManoObraTerceros.InsertarManoObraTerceros(numeroHoja, descripcion);
+                    dManoObraTerceros.AddManoObraTerceros(numeroHoja, descripcion);
 
                     MostrarDatosManoObraTerceros();
                     EstilosDGV.AplicarEstilos(dgvManoObraTercerosHoja);
@@ -254,9 +287,6 @@ namespace Login
                     // Mostrar mensaje de error o tomar otra acción en caso de que el número de hoja no sea válido
                 }
             }
-
-
-
         }
         private void EditManoObraTerceros(int idManoObraTerceros, int numeroHoja, string descripcionActual)
         {

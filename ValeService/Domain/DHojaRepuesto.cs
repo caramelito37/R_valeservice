@@ -12,15 +12,21 @@ namespace Domain
     {
         private HojaRepuestoDao hojaRepuestosDao = new HojaRepuestoDao();
 
-        public DataTable MostrarHojaRepuestos(int hojaNumero)
+        public DataTable MostrarDatosHojaRepuestos(int hojaNumero)
         {
-            return hojaRepuestosDao.MostrarHojaRepuestos(hojaNumero);
+            return hojaRepuestosDao.MostrarDatosHojaRepuestos(hojaNumero);
         }
 
-        public void AgregarHojaRepuestos(int cantidad, string descripcion, decimal costo, string marca, int repuestoId, int hojaNumero)
+        public void AddDatosHojaRepuestos(int cantidad, decimal costo, string marca, int repuestoId, int hojaNumero)
         {
-            hojaRepuestosDao.AgregarHojaRepuestos(cantidad, descripcion, costo, marca, repuestoId, hojaNumero);
+            hojaRepuestosDao.AddDatosHojaRepuestos(cantidad, costo, marca, repuestoId, hojaNumero);
         }
+
+        public void EditDatosHojaRepuestos(int hojaRepuestosId, int cantidad, decimal costo, string marca, int repuestoId, int hojaNumero)
+        {
+            hojaRepuestosDao.EditDatosHojaRepuestos(hojaRepuestosId, cantidad, costo, marca, repuestoId, hojaNumero);
+        }
+
 
         public void EliminarHojaRepuestos(int hojaNumero, int repuestoId, int cantidad, decimal costo, string marca)
         {

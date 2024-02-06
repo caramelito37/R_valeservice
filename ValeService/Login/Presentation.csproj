@@ -172,6 +172,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validaciones\DatoTextBox.cs" />
     <EmbeddedResource Include="FormFlotantes\FHojaRepuestos.resx">
       <DependentUpon>FHojaRepuestos.cs</DependentUpon>
     </EmbeddedResource>

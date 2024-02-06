@@ -43,8 +43,9 @@ namespace DataAccess
                     command.Connection = connection;
                     command.CommandText = "INSERT INTO " +
                         "ManoDeObraTerceros (Hoja_Numero, ManoDeObraTerceros_Descripcion)" +
-                        " VALUES (@numeroHoja," +
-                        " @descripcion)";
+                        " VALUES" +
+                        " (@numeroHoja," +
+                        " @descripcion)";  
                     command.CommandType = CommandType.Text;
 
                     // Agregar parámetros para la consulta

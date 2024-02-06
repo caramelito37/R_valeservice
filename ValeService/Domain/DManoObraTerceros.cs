@@ -17,7 +17,7 @@ namespace Domain
         {
             return manoObraTercerosDao.MostrarDatosManoObraTerceros(numeroHoja);
         }
-        public void InsertarManoObraTerceros(int numeroHoja, string descripcion)
+        public void AddManoObraTerceros(int numeroHoja, string descripcion)
         {
             manoObraTercerosDao.InsertarManoObraTerceros(numeroHoja, descripcion);
         }

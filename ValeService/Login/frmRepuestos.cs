@@ -61,7 +61,7 @@ namespace Login
         {
             if (!string.IsNullOrEmpty(txtNHojaRepuestos.Text))
             {
-                DataTable dtHojaRepuesto = dHojaRepuesto.MostrarHojaRepuestos(int.Parse(txtNHojaRepuestos.Text));
+                DataTable dtHojaRepuesto = dHojaRepuesto.MostrarDatosHojaRepuestos(int.Parse(txtNHojaRepuestos.Text));
 
                 // Verificar si el DataTable contiene al menos una fila antes de asignarlo al DataSource
                 if (dtHojaRepuesto.Rows.Count > 0)

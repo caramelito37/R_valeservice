@@ -10,7 +10,7 @@ namespace DataAccess
 {
     public class HojaRepuestoDao : ConnectionToMySql
     {
-        public DataTable MostrarHojaRepuestos(int hojaNumero)
+        public DataTable MostrarDatosHojaRepuestos(int hojaNumero)
         {
             using (var connection = GetConnection())
             {
@@ -36,7 +36,7 @@ namespace DataAccess
 
 
 
-        public void AgregarHojaRepuestos(int cantidad, string descripcion, decimal costo, string marca, int repuestoId, int hojaNumero)
+        public void AddDatosHojaRepuestos(int cantidad, decimal costo, string marca, int repuestoId, int hojaNumero)
         {
             using (var connection = GetConnection())
             {
@@ -44,14 +44,47 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "INSERT INTO Hoja_Repuestos (Hoja_Repuestos_Cantidad, Hoja_Repuestos_Descripcion, Hoja_Repuestos_Costo, Hoja_Repuestos_Marca, Repuesto_Id, Hoja_Numero) VALUES (@Cantidad, @Descripcion, @Costo, @Marca, @RepuestoId, @HojaNumero);";
+                    command.CommandText = "INSERT INTO " +
+                        "Hoja_Repuestos " +
+                        "(Hoja_Repuestos_Cantidad, Hoja_Repuestos_Marca, Hoja_Repuestos_Costo, Repuesto_Id, Hoja_Numero)" +
+                        " VALUES " +
+                        "(@Cantidad, @Marca, @Costo, @RepuestoId, @HojaNumero);";
                     command.CommandType = CommandType.Text;
 
                     // Parámetros parametrizados
                     command.Parameters.AddWithValue("@Cantidad", cantidad);
-                    command.Parameters.AddWithValue("@Descripcion", descripcion);
+                    command.Parameters.AddWithValue("@Marca", marca); // Usar la columna de marca para descripción
                     command.Parameters.AddWithValue("@Costo", costo);
+                    command.Parameters.AddWithValue("@RepuestoId", repuestoId);
+                    command.Parameters.AddWithValue("@HojaNumero", hojaNumero);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void EditDatosHojaRepuestos(int hojaRepuestosId, int cantidad, decimal costo, string marca, int repuestoId, int hojaNumero)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "UPDATE Hoja_Repuestos " +
+                        "SET Hoja_Repuestos_Cantidad = @Cantidad, " +
+                        "    Hoja_Repuestos_Marca = @Marca, " +
+                        "    Hoja_Repuestos_Costo = @Costo, " +
+                        "    Repuesto_Id = @RepuestoId, " +
+                        "    Hoja_Numero = @HojaNumero " +
+                        "WHERE Hoja_Repuestos_Id = @HojaRepuestosId;";
+                    command.CommandType = CommandType.Text;
+
+                    // Parameters
+                    command.Parameters.AddWithValue("@HojaRepuestosId", hojaRepuestosId);
+                    command.Parameters.AddWithValue("@Cantidad", cantidad);
                     command.Parameters.AddWithValue("@Marca", marca);
+                    command.Parameters.AddWithValue("@Costo", costo);
                     command.Parameters.AddWithValue("@RepuestoId", repuestoId);
                     command.Parameters.AddWithValue("@HojaNumero", hojaNumero);
 
