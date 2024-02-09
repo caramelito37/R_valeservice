@@ -14,7 +14,7 @@ namespace Login
 {
     public partial class frmReparaciones : Form
     {
-        DReparacion dReparacion = new DReparacion();
+        DServiciosMecanicos dReparacion = new DServiciosMecanicos();
         public frmReparaciones()
         {
             InitializeComponent();
@@ -128,8 +128,8 @@ namespace Login
                 if (confirmacion == DialogResult.Yes)
                 {
                     // Llamar al método AgregarReparacion en la clase DReparacion
-                    DReparacion dReparacion = new DReparacion();
-                    dReparacion.AgregarReparacion(servicioDescripcion);
+                    DServiciosMecanicos dReparacion = new DServiciosMecanicos();
+                    dReparacion.AgregarDatosServiciosMecanicos(servicioDescripcion);
                     MostrarReparaciones();  // Asegúrate de tener un método similar para actualizar la vista
                     LimpiarDatosReparacion();
                 }
@@ -161,12 +161,12 @@ namespace Login
 
                 if (confirmacion == DialogResult.Yes)
                 {
-                    DReparacion dReparacion = new DReparacion();
+                    DServiciosMecanicos dReparacion = new DServiciosMecanicos();
 
                     // Convertir el ID a un entero
                     if (int.TryParse(servicioId, out int reparacionId))
                     {
-                        dReparacion.EliminarReparacion(reparacionId);
+                        dReparacion.EliminarDatosServiciosMecanicos(reparacionId);
                         MostrarReparaciones();  // Actualizar la vista después de eliminar
                         LimpiarDatosReparacion();
                     }
@@ -208,7 +208,7 @@ namespace Login
 
                 if (confirmacion == DialogResult.Yes)
                 {
-                    DReparacion dReparacion = new DReparacion();
+                    DServiciosMecanicos dReparacion = new DServiciosMecanicos();
 
                     // Convertir el ID a un entero
                     if (int.TryParse(servicioId, out int reparacionId))
@@ -240,7 +240,7 @@ namespace Login
             if (!string.IsNullOrWhiteSpace(opcionSeleccionadaReparacion) && !string.IsNullOrWhiteSpace(valorBusquedaReparacion))
             {
                 // Llamar al método BuscarReparacion en la capa de dominio
-                DataTable resultadosReparacion = dReparacion.BuscarReparacion(opcionSeleccionadaReparacion, valorBusquedaReparacion);
+                DataTable resultadosReparacion = dReparacion.BuscarDatosServiciosMecanicos(opcionSeleccionadaReparacion, valorBusquedaReparacion);
 
                 // Verificar si hay registros en la DataTable
                 if (resultadosReparacion.Rows.Count > 0)

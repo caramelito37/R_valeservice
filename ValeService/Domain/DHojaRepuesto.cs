@@ -28,9 +28,9 @@ namespace Domain
         }
 
 
-        public void EliminarHojaRepuestos(int hojaNumero, int repuestoId, int cantidad, decimal costo, string marca)
+        public void DeleteDatosHojaRepuestos(int hojaNumero, int repuestoId, int cantidad, decimal costo, string marca)
         {
-            hojaRepuestosDao.EliminarHojaRepuesto(hojaNumero, repuestoId, cantidad, costo, marca);
+            hojaRepuestosDao.DeleteDatosHojaRepuestos(hojaNumero, repuestoId, cantidad, costo, marca);
         }
 
 

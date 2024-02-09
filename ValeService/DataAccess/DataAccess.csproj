@@ -100,7 +100,7 @@
     <Compile Include="ManoObraTercerosDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecepcionVehiculoDao.cs" />
-    <Compile Include="ReparacionDao.cs" />
+    <Compile Include="ServiciosMecanicosDao.cs" />
     <Compile Include="RepuestoDao.cs" />
     <Compile Include="UserDao.cs" />
     <Compile Include="VehiculoDao.cs" />

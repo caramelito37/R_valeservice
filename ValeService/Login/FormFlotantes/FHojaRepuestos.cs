@@ -1,6 +1,7 @@
 ﻿using Common.Eventos;
 using Domain;
 using Login.Estilos;
+using Login.Validaciones;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Login.FormFlotantes
 {
@@ -21,7 +23,12 @@ namespace Login.FormFlotantes
         public FHojaRepuestos()
         {
             InitializeComponent();
-
+            // Configurar TextBox para los tipos de datos respectivos 
+            DatoTextBox.ConfigurarTextBoxEntero(txtFFHRHoja);
+            DatoTextBox.ConfigurarTextBoxEntero(txtFFHRCantidad);
+            DatoTextBox.ConfigurarTextBoxEntero(txtFFHRNumRepuesto);
+            DatoTextBox.ConfigurarTextBoxDecimal(txtFFHRPrecio);
+            DatoTextBox.ConfigurarTextBoxString(txtFFHRMarca, 100);
         }
 
         private void FHojaRepuestos_Load(object sender, EventArgs e)

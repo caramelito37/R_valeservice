@@ -96,7 +96,7 @@
             this.panel2.Controls.Add(this.btnCerrar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1311, 66);
             this.panel2.TabIndex = 25;
@@ -105,7 +105,7 @@
             // 
             this.txtNumeroHoja.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumeroHoja.Location = new System.Drawing.Point(156, 17);
-            this.txtNumeroHoja.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNumeroHoja.Margin = new System.Windows.Forms.Padding(2);
             this.txtNumeroHoja.Name = "txtNumeroHoja";
             this.txtNumeroHoja.Size = new System.Drawing.Size(226, 32);
             this.txtNumeroHoja.TabIndex = 5;
@@ -201,9 +201,9 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.ForeColor = System.Drawing.Color.White;
             this.groupBox4.Location = new System.Drawing.Point(8, 69);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox4.Size = new System.Drawing.Size(304, 760);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
@@ -560,9 +560,9 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox1.Location = new System.Drawing.Point(328, 69);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(888, 236);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
@@ -594,14 +594,15 @@
             this.dgvRepuestoHoja.AllowUserToDeleteRows = false;
             this.dgvRepuestoHoja.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvRepuestoHoja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRepuestoHoja.Location = new System.Drawing.Point(8, 29);
-            this.dgvRepuestoHoja.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvRepuestoHoja.Location = new System.Drawing.Point(16, 35);
+            this.dgvRepuestoHoja.Margin = new System.Windows.Forms.Padding(2);
             this.dgvRepuestoHoja.Name = "dgvRepuestoHoja";
             this.dgvRepuestoHoja.ReadOnly = true;
             this.dgvRepuestoHoja.RowHeadersWidth = 51;
             this.dgvRepuestoHoja.RowTemplate.Height = 24;
             this.dgvRepuestoHoja.Size = new System.Drawing.Size(868, 158);
             this.dgvRepuestoHoja.TabIndex = 29;
+            this.dgvRepuestoHoja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRepuestoHoja_CellClick);
             // 
             // groupBox2
             // 
@@ -613,9 +614,9 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox2.Location = new System.Drawing.Point(328, 581);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(888, 236);
             this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
@@ -661,7 +662,7 @@
             this.dgvManoObraTercerosHoja.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvManoObraTercerosHoja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvManoObraTercerosHoja.Location = new System.Drawing.Point(8, 29);
-            this.dgvManoObraTercerosHoja.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvManoObraTercerosHoja.Margin = new System.Windows.Forms.Padding(2);
             this.dgvManoObraTercerosHoja.Name = "dgvManoObraTercerosHoja";
             this.dgvManoObraTercerosHoja.ReadOnly = true;
             this.dgvManoObraTercerosHoja.RowHeadersWidth = 51;
@@ -694,9 +695,9 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox3.Location = new System.Drawing.Point(328, 324);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(888, 236);
             this.groupBox3.TabIndex = 28;
             this.groupBox3.TabStop = false;
@@ -742,7 +743,7 @@
             this.dgvManoObraHoja.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvManoObraHoja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvManoObraHoja.Location = new System.Drawing.Point(8, 29);
-            this.dgvManoObraHoja.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvManoObraHoja.Margin = new System.Windows.Forms.Padding(2);
             this.dgvManoObraHoja.Name = "dgvManoObraHoja";
             this.dgvManoObraHoja.ReadOnly = true;
             this.dgvManoObraHoja.RowHeadersWidth = 51;
@@ -775,7 +776,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(18, 834);
             this.Name = "frmHoja";
             this.Text = "frmHoja";

@@ -104,6 +104,12 @@
     <Compile Include="FormFlotantes\FHojaRepuestos.Designer.cs">
       <DependentUpon>FHojaRepuestos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormFlotantes\FManoObra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFlotantes\FManoObra.Designer.cs">
+      <DependentUpon>FManoObra.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormFlotantes\FManoObraTerceros.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,9 @@
     <Compile Include="Validaciones\DatoTextBox.cs" />
     <EmbeddedResource Include="FormFlotantes\FHojaRepuestos.resx">
       <DependentUpon>FHojaRepuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFlotantes\FManoObra.resx">
+      <DependentUpon>FManoObra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFlotantes\FManoObraTerceros.resx">
       <DependentUpon>FManoObraTerceros.cs</DependentUpon>

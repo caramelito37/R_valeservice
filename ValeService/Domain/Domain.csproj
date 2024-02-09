@@ -46,7 +46,7 @@
     <Compile Include="DManoDeObra.cs" />
     <Compile Include="DManoObraTerceros.cs" />
     <Compile Include="DRecepcionVehiculo.cs" />
-    <Compile Include="DReparacion.cs" />
+    <Compile Include="DServiciosMecanicos.cs" />
     <Compile Include="DRepuesto.cs" />
     <Compile Include="DVehiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

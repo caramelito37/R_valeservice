@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class ReparacionDao : ConnectionToMySql
+    public class ServiciosMecanicosDao : ConnectionToMySql
     {
-        public DataTable MostrarReparaciones()
+        public DataTable MostrarDatosServiciosMecanicos()
         {
             using (var connection = GetConnection())
             {
@@ -18,8 +18,8 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "SELECT * FROM ServiciosMecanicos;";
-                    command.CommandType = CommandType.Text;
+                    command.CommandText = "MostrarServiciosMecanicos";
+                    command.CommandType = CommandType.StoredProcedure;
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
@@ -31,7 +31,8 @@ namespace DataAccess
             }
         }
 
-        public void AgregarReparacion(string descripcion)
+
+        public void AgregarDatosServiciosMecanicos(string descripcion)
         {
             using (var connection = GetConnection())
             {
@@ -50,7 +51,7 @@ namespace DataAccess
             }
         }
 
-        public void EliminarReparacion(int reparacionId)
+        public void EliminarDatosServiciosMecanicos(int reparacionId)
         {
             using (var connection = GetConnection())
             {
@@ -69,7 +70,7 @@ namespace DataAccess
             }
         }
 
-        public void EditarReparacion(int reparacionId, string descripcion)
+        public void EditarDatosServiciosMecanicos(int reparacionId, string descripcion)
         {
             using (var connection = GetConnection())
             {
@@ -89,7 +90,7 @@ namespace DataAccess
             }
         }
 
-        public DataTable BuscarReparacion(string opcion, string valor)
+        public DataTable BuscarDatosServiciosMecanicos(string opcion, string valor)
         {
             using (var connection = GetConnection())
             {

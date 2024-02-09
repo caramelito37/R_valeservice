@@ -93,7 +93,7 @@ namespace DataAccess
             }
         }
 
-        public void EliminarHojaRepuesto(int hojaNumero, int repuestoId, int cantidad, decimal costo, string marca)
+        public void DeleteDatosHojaRepuestos(int hojaNumero, int repuestoId, int cantidad, decimal costo, string marca)
         {
             using (var connection = GetConnection())
             {

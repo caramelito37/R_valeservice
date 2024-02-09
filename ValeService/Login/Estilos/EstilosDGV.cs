@@ -10,9 +10,10 @@ namespace Login.Estilos
 {
     public class EstilosDGV
     {
-        public static void AplicarEstilos(DataGridView dgv)
+        public static void AplicarEstilosSiBotones(DataGridView dgv)
         {
             dgv.EnableHeadersVisualStyles = false; // Desactivar los estilos visuales predeterminados de los encabezados
+            dgv.BackgroundColor = Color.FromArgb(255, 255, 255);  // color de fondo del dgv blanco 
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 54, 75); // Color de fondo
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(255, 255, 255); // Color de las letras
             dgv.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra para las celdas
@@ -59,6 +60,7 @@ namespace Login.Estilos
         public static void AplicarEstilosNoBotones(DataGridView dgv)
         {
             dgv.EnableHeadersVisualStyles = false; // Desactivar los estilos visuales predeterminados de los encabezados
+            dgv.BackgroundColor = Color.FromArgb(255, 255, 255);  // color de fondo del dgv blanco 
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 54, 75); // Color de fondo
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(255, 255, 255); // Color de las letras
             dgv.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra para las celdas

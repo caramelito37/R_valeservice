@@ -291,6 +291,18 @@ BEGIN
 END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE MostrarServiciosMecanicos()
+BEGIN
+    SELECT
+        ServiciosMecanicos_Id AS 'ID de Servicio Mecánico',
+        ServiciosMecanicos_Descripcion AS 'Descripción del Servicio'
+    FROM
+        ServiciosMecanicos;
+END //
+DELIMITER ;
+
+
 
 DELIMITER //
 CREATE PROCEDURE MostrarDatosRecepciones(IN numeroHoja INT)
@@ -370,6 +382,7 @@ call MostrarDatosManoObra(1);
 call MostrarDatosRepuestos(1);
 call MostrarDatosManoObraTerceros(1);
 CALL MostrarDatosRepuesto();
+CALL MostrarServiciosMecanicos();
 call BuscarRepuestoPorDescripcion("c");
 INSERT INTO Hoja (Hoja_Fecha_Edicion) VALUES (CURRENT_TIMESTAMP);
 SELECT LAST_INSERT_ID() AS UltimoNumeroHoja;

@@ -32,9 +32,7 @@ namespace Login
         private void frmHoja_Load(object sender, EventArgs e)
         {
 
-
         }
-
         private void LimpiarDatosRecepciones()
         {
             lblSumaCostoManoObra.Text = "00.00";
@@ -170,21 +168,74 @@ namespace Login
                 MostrarDatosManoObraTerceros();
                 MostrarDatosRecepciones();
 
-                EstilosDGV.AplicarEstilos(dgvRepuestoHoja);
-                EstilosDGV.AplicarEstilos(dgvManoObraHoja);
-                EstilosDGV.AplicarEstilos(dgvManoObraTercerosHoja);
+                EstilosDGV.AplicarEstilosSiBotones(dgvRepuestoHoja);
+                EstilosDGV.AplicarEstilosSiBotones(dgvManoObraHoja);
+                EstilosDGV.AplicarEstilosSiBotones(dgvManoObraTercerosHoja);
             }
         }
+
         private void btnAddManoObra_Click(object sender, EventArgs e)
         {
+            FManoObra fManoObra = new FManoObra();
+            EstilosFromFlotantes.AplicarEstilosForm(fManoObra);
 
+            fManoObra.txtFFManoObraHoja.Text = txtNumeroHoja.Text;
+
+            fManoObra.ShowDialog(this);
         }
+        // ************************************************************
+        // ******************* HOJA REPUESTOS *************************
+        // ************************************************************
+        #region Eventos del DataGridView HOJA REPUESTOS
+        private void dgvRepuestoHoja_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string columnName = dgvRepuestoHoja.Columns[e.ColumnIndex].Name;
+
+                switch (columnName)
+                {
+                    case "Eliminar":
+                        // Obtener los datos de la fila seleccionada
+                        int hojaNumero = Convert.ToInt32(dgvRepuestoHoja.Rows[e.RowIndex].Cells["Número de Hoja"].Value);
+                        int repuestoId = Convert.ToInt32(dgvRepuestoHoja.Rows[e.RowIndex].Cells["ID de Repuesto"].Value);
+                        int cantidad = Convert.ToInt32(dgvRepuestoHoja.Rows[e.RowIndex].Cells["Cantidad"].Value);
+                        decimal costo = Convert.ToDecimal(dgvRepuestoHoja.Rows[e.RowIndex].Cells["Costo"].Value);
+                        string marca = dgvRepuestoHoja.Rows[e.RowIndex].Cells["Marca"].Value.ToString();
+
+                        // Llamar al método para eliminar
+                        DeleteDatosHojaRepuestos(hojaNumero, repuestoId, cantidad, costo, marca);
+                        break;
+
+                    case "Editar":
+                        // Obtener los datos de la fila seleccionada
+                        int hojaRepuestosId = Convert.ToInt32(dgvRepuestoHoja.Rows[e.RowIndex].Cells["ID"].Value);
+                        hojaNumero = Convert.ToInt32(dgvRepuestoHoja.Rows[e.RowIndex].Cells["Número de Hoja"].Value);
+                        repuestoId = Convert.ToInt32(dgvRepuestoHoja.Rows[e.RowIndex].Cells["ID de Repuesto"].Value);
+                        cantidad = Convert.ToInt32(dgvRepuestoHoja.Rows[e.RowIndex].Cells["Cantidad"].Value);
+                        costo = Convert.ToDecimal(dgvRepuestoHoja.Rows[e.RowIndex].Cells["Costo"].Value);
+                        marca = dgvRepuestoHoja.Rows[e.RowIndex].Cells["Marca"].Value.ToString();
+
+                        // Mostrar el formulario de edición
+                        EditDatosHojaRepuestos(hojaRepuestosId, cantidad, costo, marca, repuestoId, hojaNumero);
+                        break;
+
+                    // Agrega más casos según tus necesidades
+
+                    default:
+                        // Acción por defecto o mensaje de error
+                        break;
+                }
+            }
+        }
+
         private void btnAddRepuestos_Click(object sender, EventArgs e)
         {
             FHojaRepuestos fHojaRepuestos = new FHojaRepuestos();
 
             // Asignar el valor de txtNumeroHoja al TextBox en el nuevo formulario
             fHojaRepuestos.txtFFHRHoja.Text = txtNumeroHoja.Text;
+
             EstilosFromFlotantes.AplicarEstilosForm(fHojaRepuestos);
 
             // Mostrar el formulario
@@ -195,13 +246,12 @@ namespace Login
                 decimal costo;
                 string marca;
 
-
-                if (DatoTextBox.ObtenerEnteroValido(fHojaRepuestos.txtFFHRHoja.Text, out hojaNumero) &&
-                    DatoTextBox.ObtenerEnteroValido(fHojaRepuestos.txtFFHRCantidad.Text, out cantidad) &&
-                    DatoTextBox.ObtenerEnteroValido(fHojaRepuestos.txtFFHRNumRepuesto.Text, out repuestoId) &&
-                    DatoTextBox.ObtenerDecimalValido(fHojaRepuestos.txtFFHRPrecio.Text, out costo))
+                if (int.TryParse(fHojaRepuestos.txtFFHRHoja.Text, out hojaNumero) &&
+                    int.TryParse(fHojaRepuestos.txtFFHRCantidad.Text, out cantidad) &&
+                    int.TryParse(fHojaRepuestos.txtFFHRNumRepuesto.Text, out repuestoId) &&
+                    decimal.TryParse(fHojaRepuestos.txtFFHRPrecio.Text, out costo))
                 {
-                    marca = fHojaRepuestos.txtFFHRMarca.Text; 
+                    marca = fHojaRepuestos.txtFFHRMarca.Text;
 
                     // Insertar el nuevo registro utilizando el método AddDatosHojaRepuestos
                     dHojaRepuesto.AddDatosHojaRepuestos(cantidad, costo, marca, repuestoId, hojaNumero);
@@ -210,19 +260,76 @@ namespace Login
                     MostrarDatosRepuestos();
 
                     // Aplicar estilos al DataGridView (si es necesario)
-                    EstilosDGV.AplicarEstilos(dgvRepuestoHoja); // Asegúrate de tener un DataGridView llamado dgvRepuestoHoja
+                    EstilosDGV.AplicarEstilosSiBotones(dgvRepuestoHoja); // Asegúrate de tener un DataGridView llamado dgvRepuestoHoja
                 }
             }
         }
 
+        private void EditDatosHojaRepuestos(int hojaRepuestosId, int cantidad, decimal costo, string marca, int repuestoId, int hojaNumero)
+        {
+            // Crear una instancia del formulario para editar los datos de hoja de repuestos
+            FHojaRepuestos formularioHojaRepuestos = new FHojaRepuestos();
 
+            // Asignar los valores actuales a los controles del formulario
+            formularioHojaRepuestos.txtFFHRHoja.Text = hojaNumero.ToString();
+            formularioHojaRepuestos.txtFFHRCantidad.Text = cantidad.ToString();
+            formularioHojaRepuestos.txtFFHRNumRepuesto.Text = repuestoId.ToString();
+            formularioHojaRepuestos.txtFFHRPrecio.Text = costo.ToString();
+            formularioHojaRepuestos.txtFFHRMarca.Text = marca;
 
+            // Aplicar estilos utilizando la clase EstilosFromFlotantes
+            EstilosFromFlotantes.AplicarEstilosForm(formularioHojaRepuestos);
+
+            // Mostrar el formulario y manejar el resultado
+            DialogResult resultado = formularioHojaRepuestos.ShowDialog();
+
+            // Procesar el resultado del formulario
+            if (resultado == DialogResult.OK)
+            {
+                // Obtener datos del formulario después de aceptar
+                int nuevoHojaNumero = int.Parse(formularioHojaRepuestos.txtFFHRHoja.Text);
+                int nuevaCantidad = int.Parse(formularioHojaRepuestos.txtFFHRCantidad.Text);
+                int nuevoRepuestoId = int.Parse(formularioHojaRepuestos.txtFFHRNumRepuesto.Text);
+                decimal nuevoCosto = decimal.Parse(formularioHojaRepuestos.txtFFHRPrecio.Text);
+                string nuevaMarca = formularioHojaRepuestos.txtFFHRMarca.Text;
+
+                // Realizar acciones según sea necesario para editar los datos
+                dHojaRepuesto.EditDatosHojaRepuestos(hojaRepuestosId, nuevaCantidad, nuevoCosto, nuevaMarca, nuevoRepuestoId, nuevoHojaNumero);
+
+                // Actualizar la vista y aplicar estilos después de guardar
+                MostrarDatosRepuestos();
+                EstilosDGV.AplicarEstilosSiBotones(dgvRepuestoHoja);
+            }
+        }
+
+        private void DeleteDatosHojaRepuestos(int hojaNumero, int repuestoId, int cantidad, decimal costo, string marca)
+        {
+            // Puedes mostrar un mensaje de confirmación antes de proceder con la eliminación
+            DialogResult confirmacion = MessageBox.Show("¿Seguro que desea eliminar este registro?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                // Llamar al método para eliminar en la capa de datos
+                dHojaRepuesto.DeleteDatosHojaRepuestos(hojaNumero, repuestoId, cantidad, costo, marca);
+
+                // Actualizar la vista después de la eliminación
+                MostrarDatosRepuestos();
+                EstilosDGV.AplicarEstilosSiBotones(dgvRepuestoHoja);
+            }
+        }
+
+        #endregion 
+
+        // ************************************************************
+        // ******************* HOJA REPUESTOS *************************
+        // ************************************************************
 
 
         // ************************************************************
         // ************ MANO DE OBRA TERCEROS *************************
         // ************************************************************
-        #region Eventos del DataGridView
+        #region Eventos del DataGridView MANO DE OBRA TERCEROS
+
         private void dgvManoObraTercerosHoja_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -257,6 +364,8 @@ namespace Login
                 }
             }
         }
+
+
         private void btnAddManoObraTerceros_Click(object sender, EventArgs e)
         {
             FManoObraTerceros fManoObraTerceros = new FManoObraTerceros();
@@ -280,7 +389,7 @@ namespace Login
                     dManoObraTerceros.AddManoObraTerceros(numeroHoja, descripcion);
 
                     MostrarDatosManoObraTerceros();
-                    EstilosDGV.AplicarEstilos(dgvManoObraTercerosHoja);
+                    EstilosDGV.AplicarEstilosSiBotones(dgvManoObraTercerosHoja);
                 }
                 else
                 {
@@ -321,7 +430,7 @@ namespace Login
 
                         // Actualizar la vista y aplicar estilos después de guardar
                         MostrarDatosManoObraTerceros();
-                        EstilosDGV.AplicarEstilos(dgvManoObraTercerosHoja);
+                        EstilosDGV.AplicarEstilosSiBotones(dgvManoObraTercerosHoja);
                     }
                     else
                     {
@@ -348,9 +457,10 @@ namespace Login
 
                 // Actualizar la vista después de la eliminación
                 MostrarDatosManoObraTerceros();
-                EstilosDGV.AplicarEstilos(dgvManoObraTercerosHoja);
+                EstilosDGV.AplicarEstilosSiBotones(dgvManoObraTercerosHoja);
             }
         }
+
 
         #endregion
         // ************************************************************
