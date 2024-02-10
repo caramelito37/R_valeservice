@@ -17,27 +17,20 @@ namespace Domain
             return manoDeObraDao.MostrarDatosManoObra(numeroHoja);
         }
 
-
-        public DataTable MostrarManoDeObraHoja(int hojaNumero)
+        public void AddDatosManoObra(int hojaNumero, int cantidad, decimal costo, int tiempo, int servicioId)
         {
-            return manoDeObraDao.MostrarManoDeObraHoja(hojaNumero);
+            manoDeObraDao.AddDatosManoObra(hojaNumero, cantidad, costo, tiempo, servicioId);
         }
 
-        public void AgregarManoDeObra(int hojaNumero, int cantidad, decimal costo, int tiempo, int servicioId)
+        public void DeleteDatosManoObra(int manoDeObraId)
         {
-            manoDeObraDao.AgregarManoDeObra(hojaNumero, cantidad, costo, tiempo, servicioId);
+            manoDeObraDao.DeleteDatosManoObra(manoDeObraId);
         }
 
-        public void EliminarManoDeObra(int hojaNumero, int cantidad, decimal costo, int tiempo, int servicioId)
+        public void EditDatosManoObra(int manoDeObraId, int cantidad, decimal costo, int tiempo)
         {
-            manoDeObraDao.EliminarManoDeObra(hojaNumero, cantidad, costo, tiempo, servicioId);
+            manoDeObraDao.EditDatosManoObra(manoDeObraId, cantidad, costo, tiempo);
         }
-
-        public void EditarManoDeObra(int hojaNumero, int cantidad, decimal costo, int tiempo, int servicioId)
-        {
-            manoDeObraDao.EditarManoDeObra(hojaNumero, cantidad, costo, tiempo, servicioId);
-        }
-
 
         public DataTable BuscarManoDeObra(int hojaNumero, string opcion, string valor)
         {

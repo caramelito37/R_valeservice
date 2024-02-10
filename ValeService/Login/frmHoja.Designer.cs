@@ -36,8 +36,8 @@
             this.lblSumaCostoRepuestos = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnDeleteRecepcionVehicular = new System.Windows.Forms.Button();
+            this.btnEditRecepcionVehicular = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.txtCuentaRecepcion = new System.Windows.Forms.TextBox();
             this.txtFechaSalida = new System.Windows.Forms.TextBox();
@@ -169,8 +169,8 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(90)))), ((int)(((byte)(137)))));
-            this.groupBox4.Controls.Add(this.button6);
-            this.groupBox4.Controls.Add(this.button5);
+            this.groupBox4.Controls.Add(this.btnDeleteRecepcionVehicular);
+            this.groupBox4.Controls.Add(this.btnEditRecepcionVehicular);
             this.groupBox4.Controls.Add(this.button4);
             this.groupBox4.Controls.Add(this.txtCuentaRecepcion);
             this.groupBox4.Controls.Add(this.txtFechaSalida);
@@ -209,41 +209,43 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "INFORME DE RECEPCION";
             // 
-            // button6
+            // btnDeleteRecepcionVehicular
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(39)))), ((int)(((byte)(60)))));
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.Transparent;
-            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(206, 700);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(91, 46);
-            this.button6.TabIndex = 77;
-            this.button6.Text = "Borrar";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button6.UseVisualStyleBackColor = false;
+            this.btnDeleteRecepcionVehicular.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(39)))), ((int)(((byte)(60)))));
+            this.btnDeleteRecepcionVehicular.FlatAppearance.BorderSize = 0;
+            this.btnDeleteRecepcionVehicular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteRecepcionVehicular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteRecepcionVehicular.ForeColor = System.Drawing.Color.Transparent;
+            this.btnDeleteRecepcionVehicular.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteRecepcionVehicular.Image")));
+            this.btnDeleteRecepcionVehicular.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteRecepcionVehicular.Location = new System.Drawing.Point(206, 700);
+            this.btnDeleteRecepcionVehicular.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnDeleteRecepcionVehicular.Name = "btnDeleteRecepcionVehicular";
+            this.btnDeleteRecepcionVehicular.Size = new System.Drawing.Size(91, 46);
+            this.btnDeleteRecepcionVehicular.TabIndex = 77;
+            this.btnDeleteRecepcionVehicular.Text = "Borrar";
+            this.btnDeleteRecepcionVehicular.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDeleteRecepcionVehicular.UseVisualStyleBackColor = false;
+            this.btnDeleteRecepcionVehicular.Click += new System.EventHandler(this.btnDeleteRecepcionVehicular_Click);
             // 
-            // button5
+            // btnEditRecepcionVehicular
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(128)))), ((int)(((byte)(188)))));
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.Transparent;
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(108, 700);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(91, 46);
-            this.button5.TabIndex = 76;
-            this.button5.Text = "Editar";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button5.UseVisualStyleBackColor = false;
+            this.btnEditRecepcionVehicular.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(128)))), ((int)(((byte)(188)))));
+            this.btnEditRecepcionVehicular.FlatAppearance.BorderSize = 0;
+            this.btnEditRecepcionVehicular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditRecepcionVehicular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditRecepcionVehicular.ForeColor = System.Drawing.Color.Transparent;
+            this.btnEditRecepcionVehicular.Image = ((System.Drawing.Image)(resources.GetObject("btnEditRecepcionVehicular.Image")));
+            this.btnEditRecepcionVehicular.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditRecepcionVehicular.Location = new System.Drawing.Point(108, 700);
+            this.btnEditRecepcionVehicular.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnEditRecepcionVehicular.Name = "btnEditRecepcionVehicular";
+            this.btnEditRecepcionVehicular.Size = new System.Drawing.Size(91, 46);
+            this.btnEditRecepcionVehicular.TabIndex = 76;
+            this.btnEditRecepcionVehicular.Text = "Editar";
+            this.btnEditRecepcionVehicular.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditRecepcionVehicular.UseVisualStyleBackColor = false;
+            this.btnEditRecepcionVehicular.Click += new System.EventHandler(this.btnEditRecepcionVehicular_Click);
             // 
             // button4
             // 
@@ -263,6 +265,7 @@
             this.button4.Text = "Agregar";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.btnAddRecepcionVehicular_Click);
             // 
             // txtCuentaRecepcion
             // 
@@ -750,6 +753,7 @@
             this.dgvManoObraHoja.RowTemplate.Height = 24;
             this.dgvManoObraHoja.Size = new System.Drawing.Size(868, 158);
             this.dgvManoObraHoja.TabIndex = 29;
+            this.dgvManoObraHoja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvManoObraHoja_CellClick);
             // 
             // lblSumaCostoManoObra
             // 
@@ -846,8 +850,8 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnDeleteRecepcionVehicular;
+        private System.Windows.Forms.Button btnEditRecepcionVehicular;
         private System.Windows.Forms.Button button4;
     }
 }

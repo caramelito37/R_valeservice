@@ -19,10 +19,11 @@ namespace Login
 
     public partial class frmHoja : Form
     {
-        DHojaRepuesto dHojaRepuesto = new DHojaRepuesto();
-        DRecepcionVehiculo dRecepcionVehiculo = new DRecepcionVehiculo();
         DManoDeObra dManoDeObra = new DManoDeObra();
+        DHojaRepuesto dHojaRepuesto = new DHojaRepuesto();
         DManoObraTerceros dManoObraTerceros = new DManoObraTerceros();
+        DRecepcionVehiculo dRecepcionVehiculo = new DRecepcionVehiculo();
+
         public frmHoja()
         {
             InitializeComponent();
@@ -174,19 +175,177 @@ namespace Login
             }
         }
 
-        private void btnAddManoObra_Click(object sender, EventArgs e)
+        // ************************************************************
+        // ******************* RECEPCION VEHICULAR ********************
+        // ************************************************************
+        #region Eventos del los textbox RECEPCION VEHICULAR 
+
+
+        private void btnAddRecepcionVehicular_Click(object sender, EventArgs e)
         {
-            FManoObra fManoObra = new FManoObra();
-            EstilosFromFlotantes.AplicarEstilosForm(fManoObra);
-
-            fManoObra.txtFFManoObraHoja.Text = txtNumeroHoja.Text;
-
-            fManoObra.ShowDialog(this);
+            FRecepcionVehicular fRecepcionVehicular = new FRecepcionVehicular();
+            fRecepcionVehicular.ShowDialog();
         }
+
+        private void btnEditRecepcionVehicular_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeleteRecepcionVehicular_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        #endregion
+        // ************************************************************
+        // ******************* RECEPCION VEHICULAR ********************
+        // ************************************************************
+
+
+
         // ************************************************************
         // ******************* HOJA REPUESTOS *************************
         // ************************************************************
-        #region Eventos del DataGridView HOJA REPUESTOS
+        #region Eventos del  MANO DE OBRA
+
+        private void dgvManoObraHoja_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string columnName = dgvManoObraHoja.Columns[e.ColumnIndex].Name;
+
+                switch (columnName)
+                {
+                    case "Eliminar":
+                        // Obtener el ID de la mano de obra seleccionada
+                        int manoDeObraId = Convert.ToInt32(dgvManoObraHoja.Rows[e.RowIndex].Cells["ID de Mano de Obra"].Value);
+
+                        // Llamar al método para eliminar
+                        DeleteDatosManoObra(manoDeObraId);
+                        break;
+
+                    case "Editar":
+                        // Obtener los datos de la fila seleccionada
+                        int hojaManoObraId = Convert.ToInt32(dgvManoObraHoja.Rows[e.RowIndex].Cells["ID de Mano de Obra"].Value);
+                        int cantidad = Convert.ToInt32(dgvManoObraHoja.Rows[e.RowIndex].Cells["Cantidad"].Value);
+                        decimal precio = Convert.ToDecimal(dgvManoObraHoja.Rows[e.RowIndex].Cells["Costo de Mano de Obra"].Value);
+                        int tiempo = Convert.ToInt32(dgvManoObraHoja.Rows[e.RowIndex].Cells["Tiempo de Mano de Obra"].Value);
+                        int hojaNumero = Convert.ToInt32(dgvManoObraHoja.Rows[e.RowIndex].Cells["Número de Hoja"].Value);
+
+                        int NumServicio = Convert.ToInt32(dgvManoObraHoja.Rows[e.RowIndex].Cells["Tiempo de Mano de Obra"].Value);
+                        string ServicioDesc = Convert.ToString(dgvManoObraHoja.Rows[e.RowIndex].Cells["Número de Hoja"].Value);
+
+                        // Mostrar el formulario de edición
+                        EditDatosManoObra(hojaManoObraId, cantidad, precio, tiempo, hojaNumero, NumServicio, ServicioDesc);
+                        break;
+
+                    // Agrega más casos según tus necesidades
+
+                    default:
+                        // Acción por defecto o mensaje de error
+                        break;
+                }
+            }
+        }
+        private void btnAddManoObra_Click(object sender, EventArgs e)
+        {
+            FManoObra fManoObra = new FManoObra();
+
+            // Asignar el valor de txtNumeroHoja al TextBox en el nuevo formulario
+            fManoObra.txtFFManoObraHoja.Text = txtNumeroHoja.Text;
+
+            EstilosFromFlotantes.AplicarEstilosForm(fManoObra);
+
+            // Mostrar el formulario
+            if (fManoObra.ShowDialog(this) == DialogResult.OK)
+            {
+                // Obtener datos del formulario después de aceptar
+                int hojaNumero, numServicio, cantidad, tiempo;
+                decimal precio;
+
+                if (int.TryParse(fManoObra.txtFFManoObraHoja.Text, out hojaNumero) &&
+                    int.TryParse(fManoObra.txtFFManoObraNumServicio.Text, out numServicio) &&
+                    int.TryParse(fManoObra.txtFFManoObraCantidad.Text, out cantidad) &&
+                    int.TryParse(fManoObra.txtFFManoObraTiempo.Text, out tiempo) &&
+                    decimal.TryParse(fManoObra.txtFFManoObraPrecio.Text, out precio))
+                {
+                    // Insertar el nuevo registro directamente aquí sin llamar a otro método
+                    dManoDeObra.AddDatosManoObra(hojaNumero, cantidad, precio, tiempo, numServicio);
+
+                    // Actualizar la visualización de los datos
+                    MostrarDatosManoObra();
+                    EstilosDGV.AplicarEstilosSiBotones(dgvManoObraHoja);
+
+                }
+            }
+        }
+        private void EditDatosManoObra(int manoDeObraId, int cantidad, decimal precio, int tiempo, int hojaNumero, int NumServicio, string ServicioDesc)
+        {
+            // Crear una instancia del formulario para editar los datos de mano de obra
+            FManoObra formularioManoObra = new FManoObra();
+
+            // Asignar los valores actuales a los controles del formulario
+            formularioManoObra.txtFFManoObraHoja.Text = hojaNumero.ToString();
+            formularioManoObra.txtFFManoObraCantidad.Text = cantidad.ToString();
+            formularioManoObra.txtFFManoObraTiempo.Text = tiempo.ToString();
+            formularioManoObra.txtFFManoObraPrecio.Text = precio.ToString();
+            formularioManoObra.txtFFManoObraId.Text = manoDeObraId.ToString();
+
+            formularioManoObra.txtFFManoObraNumServicio.Text = NumServicio.ToString();
+            formularioManoObra.txtFFManoObraServicioDesc.Text = ServicioDesc.ToString();
+
+
+            // Aplicar estilos utilizando la clase EstilosFromFlotantes
+            EstilosFromFlotantes.AplicarEstilosForm(formularioManoObra);
+
+            // Mostrar el formulario y manejar el resultado
+            DialogResult resultado = formularioManoObra.ShowDialog();
+
+            // Procesar el resultado del formulario
+            if (resultado == DialogResult.OK)
+            {
+                // Obtener datos del formulario después de aceptar
+                int nuevaCantidad = int.Parse(formularioManoObra.txtFFManoObraCantidad.Text);
+                decimal nuevoPrecio = decimal.Parse(formularioManoObra.txtFFManoObraPrecio.Text);
+                int nuevoTiempo = int.Parse(formularioManoObra.txtFFManoObraTiempo.Text);
+
+                // Realizar acciones según sea necesario para editar los datos
+                dManoDeObra.EditDatosManoObra(manoDeObraId, nuevaCantidad, nuevoPrecio, nuevoTiempo);
+
+                // Actualizar la vista y aplicar estilos después de guardar
+                MostrarDatosManoObra();
+                EstilosDGV.AplicarEstilosSiBotones(dgvManoObraHoja);
+            }
+        }
+        private void DeleteDatosManoObra(int manoDeObraId)
+        {
+            // Puedes mostrar un mensaje de confirmación antes de proceder con la eliminación
+            DialogResult confirmacion = MessageBox.Show("¿Seguro que desea eliminar este registro?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                // Llamar al método para eliminar en la capa de datos
+                dManoDeObra.DeleteDatosManoObra(manoDeObraId);
+
+                // Actualizar la vista después de la eliminación
+                MostrarDatosManoObra();
+                EstilosDGV.AplicarEstilosSiBotones(dgvManoObraHoja);
+            }
+        }
+
+        #endregion
+        // ************************************************************
+        // ******************* HOJA REPUESTOS *************************
+        // ************************************************************
+
+
+
+        // ************************************************************
+        // ******************* HOJA REPUESTOS *************************
+        // ************************************************************
+        #region Eventos del  HOJA REPUESTOS
         private void dgvRepuestoHoja_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -319,16 +478,16 @@ namespace Login
         }
 
         #endregion 
-
         // ************************************************************
         // ******************* HOJA REPUESTOS *************************
         // ************************************************************
 
 
+
         // ************************************************************
         // ************ MANO DE OBRA TERCEROS *************************
         // ************************************************************
-        #region Eventos del DataGridView MANO DE OBRA TERCEROS
+        #region Eventos del  MANO DE OBRA TERCEROS
 
         private void dgvManoObraTercerosHoja_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -462,9 +621,12 @@ namespace Login
         }
 
 
+
         #endregion
         // ************************************************************
         // ************ FIN MANO DE OBRA TERCEROS *********************
         // ************************************************************
+
+
     }
 }

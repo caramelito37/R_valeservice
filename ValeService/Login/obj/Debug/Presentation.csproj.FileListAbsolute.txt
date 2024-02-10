@@ -474,3 +474,4 @@ C:\Users\David\Desktop\ValeService\R_valeservice\ValeService\Login\obj\Debug\Log
 C:\Users\David\Desktop\ValeService\R_valeservice\ValeService\Login\obj\Debug\Login.FormFlotantes.FManoObraTerceros.resources
 C:\Users\Usuario\Desktop\Valservice\R_valeservice\ValeService\Login\obj\Debug\Login.FormFlotantes.FManoObraTerceros.resources
 C:\Users\Usuario\Desktop\Valservice\R_valeservice\ValeService\Login\obj\Debug\Login.FormFlotantes.FManoObra.resources
+C:\Users\Usuario\Desktop\Valservice\R_valeservice\ValeService\Login\obj\Debug\Login.FormFlotantes.FRecepcionVehicular.resources

@@ -116,6 +116,12 @@
     <Compile Include="FormFlotantes\FManoObraTerceros.Designer.cs">
       <DependentUpon>FManoObraTerceros.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormFlotantes\FRecepcionVehicular.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFlotantes\FRecepcionVehicular.Designer.cs">
+      <DependentUpon>FRecepcionVehicular.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormFlotantes\FRepuestos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFlotantes\FManoObraTerceros.resx">
       <DependentUpon>FManoObraTerceros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFlotantes\FRecepcionVehicular.resx">
+      <DependentUpon>FRecepcionVehicular.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFlotantes\FRepuestos.resx">
       <DependentUpon>FRepuestos.cs</DependentUpon>

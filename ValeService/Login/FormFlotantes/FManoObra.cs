@@ -46,8 +46,6 @@ namespace Login.FormFlotantes
             DataTable datosServiciosMecanicos = dServiciosMecanicos.MostrarDatosServiciosMecanicos();
             // Mostrar los datos en el DataGridView
             dgvFFManoObra.DataSource = datosServiciosMecanicos;
-
-
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)

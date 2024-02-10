@@ -29,11 +29,9 @@ namespace Login
         {
 
         }
-        private void MostrarManoDeObraHoja()
-        {
-            DManoDeObra dManoDeObra = new DManoDeObra();
-            DataTable manoDeObra = dManoDeObra.MostrarManoDeObraHoja(int.Parse(txtManoObraNHoja.Text));
-            dgvManoDeObra.DataSource = manoDeObra;
+        private void MostrarManoDeObraHoja() 
+        { 
+
         }
         private void MostrarManoDeObra()
         {
@@ -328,7 +326,7 @@ namespace Login
                     int tiempo = int.Parse(manoObraTiempo);
                     int servicioId = int.Parse(nServicio);
 
-                    dManoDeObra.AgregarManoDeObra(hojaNumero, cantidad, costo, tiempo, servicioId);
+                    dManoDeObra.AddDatosManoObra(hojaNumero, cantidad, costo, tiempo, servicioId);
                     MostrarManoDeObraHoja(); // Asegúrate de tener un método similar para actualizar la vista
                     LimpiarDatosManoDeObra();
                 }
@@ -342,116 +340,11 @@ namespace Login
         }
         private void btnObraEliminar_Click(object sender, EventArgs e)
         {
-            // Obtener los valores de los campos de texto
-            string manoObraNHoja = txtManoObraNHoja.Text;
-            string nServicio = txtManoNServicio.Text;
-            string manoObraCantidad = txtManoObraCantidad.Text;
-            string manoObraCosto = txtManoObraCosto.Text;
-            string manoObraTiempo = txtManoObraTiempo.Text;
-
-            // Verificar si hay campos faltantes
-            List<string> camposFaltantes = VerificarCamposFaltantes(
-                (manoObraNHoja, "Número de Hoja"),
-                (nServicio, "Número de Servicio"),
-                (manoObraCantidad, "Cantidad de Mano de Obra"),
-                (manoObraCosto, "Costo de Mano de Obra"),
-                (manoObraTiempo, "Tiempo de Mano de Obra")
-            );
-
-            if (camposFaltantes.Count == 0)
-            {
-                // Mostrar confirmación antes de eliminar la mano de obra
-                DialogResult confirmacion = MessageBox.Show(
-                    $"¿Está seguro de que desea eliminar la mano de obra con los siguientes detalles?\n\n" +
-                    $"Número de Hoja: {manoObraNHoja}\n" +
-                    $"Número de Servicio: {nServicio}\n" +
-                    $"Cantidad: {manoObraCantidad}\n" +
-                    $"Costo: {manoObraCosto}\n" +
-                    $"Tiempo: {manoObraTiempo}",
-                    "Confirmar",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
-
-                if (confirmacion == DialogResult.Yes)
-                {
-                    // Llamar al método EliminarManoDeObra en la clase DManoDeObra
-                    DManoDeObra dManoDeObra = new DManoDeObra();
-                    int hojaNumero = int.Parse(manoObraNHoja);
-                    int cantidad = int.Parse(manoObraCantidad);
-                    decimal costo = decimal.Parse(manoObraCosto);
-                    int tiempo = int.Parse(manoObraTiempo);
-                    int servicioId = int.Parse(nServicio);
-
-                    dManoDeObra.EliminarManoDeObra(hojaNumero, cantidad, costo, tiempo, servicioId);
-                    MostrarManoDeObraHoja(); // Asegúrate de tener un método similar para actualizar la vista
-                    LimpiarDatosManoDeObra();
-                }
-            }
-            else
-            {
-                string mensaje = $"Por favor, complete los siguientes campos antes de eliminar la mano de obra:\n{string.Join("\n", camposFaltantes)}";
-                MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                LimpiarDatosManoDeObra();
-            }
-
-
         }
 
         private void btnObraEditar_Click(object sender, EventArgs e)
         {
-            // Obtener los valores de los campos de texto
-            string manoObraNHoja = txtManoObraNHoja.Text;
-            string nServicio = txtManoNServicio.Text;
-            string manoObraCantidad = txtManoObraCantidad.Text;
-            string manoObraCosto = txtManoObraCosto.Text;
-            string manoObraTiempo = txtManoObraTiempo.Text;
-
-            // Verificar si hay campos faltantes
-            List<string> camposFaltantes = VerificarCamposFaltantes(
-                (manoObraNHoja, "Número de Hoja"),
-                (nServicio, "Número de Servicio"),
-                (manoObraCantidad, "Cantidad de Mano de Obra"),
-                (manoObraCosto, "Costo de Mano de Obra"),
-                (manoObraTiempo, "Tiempo de Mano de Obra")
-            );
-
-            if (camposFaltantes.Count == 0)
-            {
-                // Mostrar confirmación antes de editar la mano de obra
-                DialogResult confirmacion = MessageBox.Show(
-                    $"¿Está seguro de que desea editar la mano de obra con los siguientes detalles?\n\n" +
-                    $"Número de Hoja: {manoObraNHoja}\n" +
-                    $"Número de Servicio: {nServicio}\n" +
-                    $"Cantidad: {manoObraCantidad}\n" +
-                    $"Costo: {manoObraCosto}\n" +
-                    $"Tiempo: {manoObraTiempo}",
-                    "Confirmar",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
-
-                if (confirmacion == DialogResult.Yes)
-                {
-                    // Llamar al método EditarManoDeObra en la clase DManoDeObra
-                    DManoDeObra dManoDeObra = new DManoDeObra();
-                    int hojaNumero = int.Parse(manoObraNHoja);
-                    int cantidad = int.Parse(manoObraCantidad);
-                    decimal costo = decimal.Parse(manoObraCosto);
-                    int tiempo = int.Parse(manoObraTiempo);
-                    int servicioId = int.Parse(nServicio);
-
-                    dManoDeObra.EditarManoDeObra(hojaNumero, cantidad, costo, tiempo, servicioId);
-                    MostrarManoDeObraHoja(); // Asegúrate de tener un método similar para actualizar la vista
-                    LimpiarDatosManoDeObra();
-                }
-            }
-            else
-            {
-                string mensaje = $"Por favor, complete los siguientes campos antes de editar la mano de obra:\n{string.Join("\n", camposFaltantes)}";
-                MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                LimpiarDatosManoDeObra();
-            }
+  
         }
 
 

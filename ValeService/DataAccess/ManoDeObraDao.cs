@@ -36,7 +36,7 @@ namespace DataAccess
 
 
 
-        public DataTable MostrarManoDeObraHoja(int hojaNumero)
+        public void AddDatosManoObra(int hojaNumero, int cantidad, decimal costo, int tiempo, int servicioId)
         {
             using (var connection = GetConnection())
             {
@@ -44,29 +44,11 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "SELECT * FROM ManoDeObra WHERE Hoja_Numero = @HojaNumero;";
-                    command.Parameters.AddWithValue("@HojaNumero", hojaNumero);
-                    command.CommandType = CommandType.Text;
-
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        DataTable resultTable = new DataTable();
-                        resultTable.Load(reader);
-                        return resultTable;
-                    }
-                }
-            }
-        }
-
-        public void AgregarManoDeObra(int hojaNumero, int cantidad, decimal costo, int tiempo, int servicioId)
-        {
-            using (var connection = GetConnection())
-            {
-                connection.Open();
-                using (var command = new MySqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandText = "INSERT INTO ManoDeObra (Hoja_Numero, ManoDeObra_Cantidad, ManoDeObra_Costo, ManoDeObra_Tiempo, ServiciosMecanicos_Id) VALUES (@HojaNumero, @Cantidad, @Costo, @Tiempo, @ServicioId);";
+                    command.CommandText = "INSERT INTO " +
+                        "ManoDeObra " +
+                        "(Hoja_Numero, ManoDeObra_Cantidad, ManoDeObra_Costo, ManoDeObra_Tiempo, ServiciosMecanicos_Id) " +
+                        "VALUES " +
+                        "(@HojaNumero, @Cantidad, @Costo, @Tiempo, @ServicioId);";
                     command.Parameters.AddWithValue("@HojaNumero", hojaNumero);
                     command.Parameters.AddWithValue("@Cantidad", cantidad);
                     command.Parameters.AddWithValue("@Costo", costo);
@@ -79,7 +61,7 @@ namespace DataAccess
             }
         }
 
-        public void EliminarManoDeObra(int hojaNumero, int cantidad, decimal costo, int tiempo, int servicioId)
+        public void DeleteDatosManoObra(int manoDeObraId)
         {
             using (var connection = GetConnection())
             {
@@ -87,12 +69,8 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "DELETE FROM ManoDeObra WHERE Hoja_Numero = @HojaNumero AND ManoDeObra_Cantidad = @Cantidad AND ManoDeObra_Costo = @Costo AND ManoDeObra_Tiempo = @Tiempo AND ServiciosMecanicos_Id = @ServicioId;";
-                    command.Parameters.AddWithValue("@HojaNumero", hojaNumero);
-                    command.Parameters.AddWithValue("@Cantidad", cantidad);
-                    command.Parameters.AddWithValue("@Costo", costo);
-                    command.Parameters.AddWithValue("@Tiempo", tiempo);
-                    command.Parameters.AddWithValue("@ServicioId", servicioId);
+                    command.CommandText = "DELETE FROM ManoDeObra WHERE ManoDeObra_Id = @ManoDeObraId";
+                    command.Parameters.AddWithValue("@ManoDeObraId", manoDeObraId);
                     command.CommandType = CommandType.Text;
 
                     command.ExecuteNonQuery();
@@ -100,8 +78,7 @@ namespace DataAccess
             }
         }
 
-
-        public void EditarManoDeObra(int hojaNumero, int cantidad, decimal costo, int tiempo, int servicioId)
+        public void EditDatosManoObra(int manoDeObraId, int cantidad, decimal costo, int tiempo)
         {
             using (var connection = GetConnection())
             {
@@ -109,18 +86,18 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "UPDATE ManoDeObra SET ManoDeObra_Cantidad = @Cantidad, ManoDeObra_Costo = @Costo, ManoDeObra_Tiempo = @Tiempo WHERE Hoja_Numero = @HojaNumero AND ServiciosMecanicos_Id = @ServicioId;";
-                    command.Parameters.AddWithValue("@HojaNumero", hojaNumero);
+                    command.CommandText = "UPDATE ManoDeObra SET ManoDeObra_Cantidad = @Cantidad, ManoDeObra_Costo = @Costo, ManoDeObra_Tiempo = @Tiempo WHERE ManoDeObra_Id = @ManoDeObraId";
+                    command.Parameters.AddWithValue("@ManoDeObraId", manoDeObraId);
                     command.Parameters.AddWithValue("@Cantidad", cantidad);
                     command.Parameters.AddWithValue("@Costo", costo);
                     command.Parameters.AddWithValue("@Tiempo", tiempo);
-                    command.Parameters.AddWithValue("@ServicioId", servicioId);
                     command.CommandType = CommandType.Text;
 
                     command.ExecuteNonQuery();
                 }
             }
         }
+
 
 
 
