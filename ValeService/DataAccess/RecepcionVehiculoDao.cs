@@ -179,7 +179,7 @@ namespace DataAccess
             }
         }
 
-        public void AgregarRecepcion(DateTime fechaEntrada, DateTime? fechaSalida, decimal cuenta, string placaVehiculo, int clienteDNI)
+        public void AddDatosRecepcion(int hojaNumero, DateTime fechaEntrada, decimal cuenta, string placaVehiculo, int clienteDNI)
         {
             using (var connection = GetConnection())
             {
@@ -187,12 +187,16 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "INSERT INTO RecepcionVehiculo (RecepcionVehiculo_Fecha_Entrada, RecepcionVehiculo_Fecha_Salida, RecepcionVehiculo_Cuenta, Vehiculo_Placa, Cliente_DNI) VALUES (@FechaEntrada, @FechaSalida, @Cuenta, @PlacaVehiculo, @ClienteDNI);";
+                    command.CommandText = "INSERT INTO" +
+                        " RecepcionVehiculo " +
+                        "(Hoja_Numero, RecepcionVehiculo_Fecha_Entrada, RecepcionVehiculo_Cuenta, Vehiculo_Placa, Cliente_DNI)" +
+                        " VALUES " +
+                        "(@HojaNumero, @FechaEntrada, @Cuenta, @PlacaVehiculo, @ClienteDNI);";
                     command.CommandType = CommandType.Text;
 
                     // Parámetros parametrizados
+                    command.Parameters.AddWithValue("@HojaNumero", hojaNumero);
                     command.Parameters.AddWithValue("@FechaEntrada", fechaEntrada);
-                    command.Parameters.AddWithValue("@FechaSalida", (object)fechaSalida ?? DBNull.Value);
                     command.Parameters.AddWithValue("@Cuenta", cuenta);
                     command.Parameters.AddWithValue("@PlacaVehiculo", placaVehiculo);
                     command.Parameters.AddWithValue("@ClienteDNI", clienteDNI);
@@ -202,7 +206,8 @@ namespace DataAccess
             }
         }
 
-        public void EliminarRecepcion(int recepcionId)
+
+        public void DeleteDatosRecepcion(int recepcionId)
         {
             using (var connection = GetConnection())
             {
@@ -210,7 +215,10 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "DELETE FROM RecepcionVehiculo WHERE RecepcionVehiculo_Id = @RecepcionId;";
+                    command.CommandText = "DELETE FROM" +
+                        " RecepcionVehiculo " +
+                        "WHERE" +
+                        " RecepcionVehiculo_Id = @RecepcionId;";
                     command.CommandType = CommandType.Text;
 
                     // Parámetros parametrizados
@@ -221,7 +229,7 @@ namespace DataAccess
             }
         }
 
-        public void EditarRecepcion(int recepcionId, DateTime fechaEntrada, DateTime? fechaSalida, decimal cuenta, string placaVehiculo, int clienteDNI)
+        public void AsignarFechaSalida(int recepcionId, DateTime? fechaSalida)
         {
             using (var connection = GetConnection())
             {
@@ -229,21 +237,18 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "UPDATE RecepcionVehiculo SET RecepcionVehiculo_Fecha_Entrada = @FechaEntrada, RecepcionVehiculo_Fecha_Salida = @FechaSalida, RecepcionVehiculo_Cuenta = @Cuenta, Vehiculo_Placa = @PlacaVehiculo, Cliente_DNI = @ClienteDNI WHERE RecepcionVehiculo_Id = @RecepcionId;";
+                    command.CommandText = "UPDATE RecepcionVehiculo SET RecepcionVehiculo_Fecha_Salida = @FechaSalida WHERE RecepcionVehiculo_Id = @RecepcionId;";
                     command.CommandType = CommandType.Text;
 
                     // Parámetros parametrizados
                     command.Parameters.AddWithValue("@RecepcionId", recepcionId);
-                    command.Parameters.AddWithValue("@FechaEntrada", fechaEntrada);
                     command.Parameters.AddWithValue("@FechaSalida", (object)fechaSalida ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@Cuenta", cuenta);
-                    command.Parameters.AddWithValue("@PlacaVehiculo", placaVehiculo);
-                    command.Parameters.AddWithValue("@ClienteDNI", clienteDNI);
 
                     command.ExecuteNonQuery();
                 }
             }
         }
+
 
         public DataTable BuscarRecepcion(string opcion, string valor)
         {

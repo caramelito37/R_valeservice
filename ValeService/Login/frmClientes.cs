@@ -20,7 +20,7 @@ namespace Login
         }
         private void MostrarClientes()
         {
-            DataTable usuariosTable = dClientes.MostrarClientes();
+            DataTable usuariosTable = dClientes.MostrarDatosClientes();
             dgvClientes.DataSource = usuariosTable;
         }
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)

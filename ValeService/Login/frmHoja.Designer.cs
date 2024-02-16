@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHoja));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnNuevaHoja = new System.Windows.Forms.Button();
             this.txtNumeroHoja = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
@@ -37,8 +38,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnDeleteRecepcionVehicular = new System.Windows.Forms.Button();
-            this.btnEditRecepcionVehicular = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnAsignarFechaSalidaRecepcion = new System.Windows.Forms.Button();
+            this.btnAddRecepcionVehicular = new System.Windows.Forms.Button();
             this.txtCuentaRecepcion = new System.Windows.Forms.TextBox();
             this.txtFechaSalida = new System.Windows.Forms.TextBox();
             this.txtFechaEntrada = new System.Windows.Forms.TextBox();
@@ -91,6 +92,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Controls.Add(this.btnNuevaHoja);
             this.panel2.Controls.Add(this.txtNumeroHoja);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.btnCerrar);
@@ -100,6 +102,26 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1311, 66);
             this.panel2.TabIndex = 25;
+            // 
+            // btnNuevaHoja
+            // 
+            this.btnNuevaHoja.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNuevaHoja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(106)))), ((int)(((byte)(107)))));
+            this.btnNuevaHoja.FlatAppearance.BorderSize = 0;
+            this.btnNuevaHoja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevaHoja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevaHoja.ForeColor = System.Drawing.Color.Transparent;
+            this.btnNuevaHoja.Image = global::Login.Properties.Resources.GenerarHoja32;
+            this.btnNuevaHoja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNuevaHoja.Location = new System.Drawing.Point(388, 12);
+            this.btnNuevaHoja.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnNuevaHoja.Name = "btnNuevaHoja";
+            this.btnNuevaHoja.Size = new System.Drawing.Size(137, 46);
+            this.btnNuevaHoja.TabIndex = 51;
+            this.btnNuevaHoja.Text = "Nueva Hoja ";
+            this.btnNuevaHoja.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNuevaHoja.UseVisualStyleBackColor = false;
+            this.btnNuevaHoja.Click += new System.EventHandler(this.btnNuevaHoja_Click);
             // 
             // txtNumeroHoja
             // 
@@ -170,8 +192,8 @@
             // 
             this.groupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(90)))), ((int)(((byte)(137)))));
             this.groupBox4.Controls.Add(this.btnDeleteRecepcionVehicular);
-            this.groupBox4.Controls.Add(this.btnEditRecepcionVehicular);
-            this.groupBox4.Controls.Add(this.button4);
+            this.groupBox4.Controls.Add(this.btnAsignarFechaSalidaRecepcion);
+            this.groupBox4.Controls.Add(this.btnAddRecepcionVehicular);
             this.groupBox4.Controls.Add(this.txtCuentaRecepcion);
             this.groupBox4.Controls.Add(this.txtFechaSalida);
             this.groupBox4.Controls.Add(this.txtFechaEntrada);
@@ -204,7 +226,7 @@
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(304, 760);
+            this.groupBox4.Size = new System.Drawing.Size(304, 762);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "INFORME DE RECEPCION";
@@ -221,51 +243,51 @@
             this.btnDeleteRecepcionVehicular.Location = new System.Drawing.Point(206, 700);
             this.btnDeleteRecepcionVehicular.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDeleteRecepcionVehicular.Name = "btnDeleteRecepcionVehicular";
-            this.btnDeleteRecepcionVehicular.Size = new System.Drawing.Size(91, 46);
+            this.btnDeleteRecepcionVehicular.Size = new System.Drawing.Size(91, 48);
             this.btnDeleteRecepcionVehicular.TabIndex = 77;
             this.btnDeleteRecepcionVehicular.Text = "Borrar";
             this.btnDeleteRecepcionVehicular.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDeleteRecepcionVehicular.UseVisualStyleBackColor = false;
             this.btnDeleteRecepcionVehicular.Click += new System.EventHandler(this.btnDeleteRecepcionVehicular_Click);
             // 
-            // btnEditRecepcionVehicular
+            // btnAsignarFechaSalidaRecepcion
             // 
-            this.btnEditRecepcionVehicular.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(128)))), ((int)(((byte)(188)))));
-            this.btnEditRecepcionVehicular.FlatAppearance.BorderSize = 0;
-            this.btnEditRecepcionVehicular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditRecepcionVehicular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditRecepcionVehicular.ForeColor = System.Drawing.Color.Transparent;
-            this.btnEditRecepcionVehicular.Image = ((System.Drawing.Image)(resources.GetObject("btnEditRecepcionVehicular.Image")));
-            this.btnEditRecepcionVehicular.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditRecepcionVehicular.Location = new System.Drawing.Point(108, 700);
-            this.btnEditRecepcionVehicular.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnEditRecepcionVehicular.Name = "btnEditRecepcionVehicular";
-            this.btnEditRecepcionVehicular.Size = new System.Drawing.Size(91, 46);
-            this.btnEditRecepcionVehicular.TabIndex = 76;
-            this.btnEditRecepcionVehicular.Text = "Editar";
-            this.btnEditRecepcionVehicular.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEditRecepcionVehicular.UseVisualStyleBackColor = false;
-            this.btnEditRecepcionVehicular.Click += new System.EventHandler(this.btnEditRecepcionVehicular_Click);
+            this.btnAsignarFechaSalidaRecepcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(128)))), ((int)(((byte)(188)))));
+            this.btnAsignarFechaSalidaRecepcion.FlatAppearance.BorderSize = 0;
+            this.btnAsignarFechaSalidaRecepcion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAsignarFechaSalidaRecepcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAsignarFechaSalidaRecepcion.ForeColor = System.Drawing.Color.Transparent;
+            this.btnAsignarFechaSalidaRecepcion.Image = ((System.Drawing.Image)(resources.GetObject("btnAsignarFechaSalidaRecepcion.Image")));
+            this.btnAsignarFechaSalidaRecepcion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAsignarFechaSalidaRecepcion.Location = new System.Drawing.Point(108, 700);
+            this.btnAsignarFechaSalidaRecepcion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnAsignarFechaSalidaRecepcion.Name = "btnAsignarFechaSalidaRecepcion";
+            this.btnAsignarFechaSalidaRecepcion.Size = new System.Drawing.Size(91, 48);
+            this.btnAsignarFechaSalidaRecepcion.TabIndex = 76;
+            this.btnAsignarFechaSalidaRecepcion.Text = "Asignar Salida";
+            this.btnAsignarFechaSalidaRecepcion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAsignarFechaSalidaRecepcion.UseVisualStyleBackColor = false;
+            this.btnAsignarFechaSalidaRecepcion.Click += new System.EventHandler(this.btnAsignarFechaSalidaRecepcionVehicular_Click);
             // 
-            // button4
+            // btnAddRecepcionVehicular
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.Transparent;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(10, 700);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(91, 46);
-            this.button4.TabIndex = 75;
-            this.button4.Text = "Agregar";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.btnAddRecepcionVehicular_Click);
+            this.btnAddRecepcionVehicular.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAddRecepcionVehicular.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnAddRecepcionVehicular.FlatAppearance.BorderSize = 0;
+            this.btnAddRecepcionVehicular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddRecepcionVehicular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRecepcionVehicular.ForeColor = System.Drawing.Color.Transparent;
+            this.btnAddRecepcionVehicular.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRecepcionVehicular.Image")));
+            this.btnAddRecepcionVehicular.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddRecepcionVehicular.Location = new System.Drawing.Point(10, 700);
+            this.btnAddRecepcionVehicular.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnAddRecepcionVehicular.Name = "btnAddRecepcionVehicular";
+            this.btnAddRecepcionVehicular.Size = new System.Drawing.Size(91, 48);
+            this.btnAddRecepcionVehicular.TabIndex = 75;
+            this.btnAddRecepcionVehicular.Text = "Agregar";
+            this.btnAddRecepcionVehicular.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddRecepcionVehicular.UseVisualStyleBackColor = false;
+            this.btnAddRecepcionVehicular.Click += new System.EventHandler(this.btnAddRecepcionVehicular_Click);
             // 
             // txtCuentaRecepcion
             // 
@@ -276,6 +298,7 @@
             this.txtCuentaRecepcion.Name = "txtCuentaRecepcion";
             this.txtCuentaRecepcion.Size = new System.Drawing.Size(274, 26);
             this.txtCuentaRecepcion.TabIndex = 74;
+            this.txtCuentaRecepcion.Text = "0.00";
             // 
             // txtFechaSalida
             // 
@@ -850,8 +873,9 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button btnDeleteRecepcionVehicular;
-        private System.Windows.Forms.Button btnEditRecepcionVehicular;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnNuevaHoja;
+        public System.Windows.Forms.Button btnDeleteRecepcionVehicular;
+        public System.Windows.Forms.Button btnAsignarFechaSalidaRecepcion;
+        public System.Windows.Forms.Button btnAddRecepcionVehicular;
     }
 }

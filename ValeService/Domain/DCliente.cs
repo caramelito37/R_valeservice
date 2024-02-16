@@ -16,10 +16,10 @@ namespace Domain
             return clienteDao.ClienteExiste(dni);
         }
 
-        public DataTable MostrarClientes()
+        public DataTable MostrarDatosClientes()
         {
             DataTable tabla = new DataTable();
-            tabla = clienteDao.MostrarClientes();
+            tabla = clienteDao.MostrarDatosClientes();
             return tabla;
         }
 

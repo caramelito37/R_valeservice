@@ -43,7 +43,20 @@ namespace Login.Validaciones
                 }
             };
         }
-        public static void ConfigurarTextBoxFecha(TextBox textBox)
+
+        public static void ConfigurarTextBoxString(TextBox textBox, int maxLength)
+        {
+            textBox.MaxLength = maxLength; // Establecer el número máximo de caracteres permitidos
+            textBox.KeyPress += (sender, e) =>
+            {
+                if (textBox.Text.Length >= maxLength && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true; // Evitar que se ingresen más caracteres cuando se alcanza el límite
+                }
+            };
+        }
+
+        public static void ConfigurarTextBoxFechaDDMMYY(TextBox textBox)
         {
             // No permitir entrada de texto directamente en TextBox de fecha
             textBox.ReadOnly = true;
@@ -66,17 +79,33 @@ namespace Login.Validaciones
                 dateTimePicker.Focus();
             };
         }
-        public static void ConfigurarTextBoxString(TextBox textBox, int maxLength)
+        public static void ConfigurarTextBoxFechaYY(TextBox textBox)
         {
-            textBox.MaxLength = maxLength; // Establecer el número máximo de caracteres permitidos
-            textBox.KeyPress += (sender, e) =>
+            // No permitir entrada de texto directamente en TextBox de fecha
+            textBox.ReadOnly = true;
+            textBox.MouseClick += (sender, e) =>
             {
-                if (textBox.Text.Length >= maxLength && !char.IsControl(e.KeyChar))
+                // Abre un control DateTimePicker modificado para mostrar solo el año
+                DateTimePicker dateTimePicker = new DateTimePicker();
+                dateTimePicker.Format = DateTimePickerFormat.Custom;
+                dateTimePicker.CustomFormat = "yyyy";
+                dateTimePicker.Visible = true;
+                dateTimePicker.Location = textBox.Location;
+                dateTimePicker.Size = textBox.Size;
+                dateTimePicker.ShowUpDown = true; // Mostrar solo el control de flechas arriba/abajo para cambiar el año
+                dateTimePicker.ValueChanged += (s, args) =>
                 {
-                    e.Handled = true; // Evitar que se ingresen más caracteres cuando se alcanza el límite
-                }
+                    textBox.Text = dateTimePicker.Value.Year.ToString();
+                    dateTimePicker.Dispose();
+                };
+
+                ((Form)textBox.TopLevelControl).Controls.Add(dateTimePicker);
+                dateTimePicker.BringToFront();
+                dateTimePicker.Focus();
             };
         }
+
+
 
 
         private static void MostrarError(string tipoDato)

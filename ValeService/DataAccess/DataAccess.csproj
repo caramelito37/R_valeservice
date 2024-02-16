@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="ClienteDao.cs" />
     <Compile Include="ConnectionToSql.cs" />
+    <Compile Include="HojaDao.cs" />
     <Compile Include="HojaRepuestoDao.cs" />
     <Compile Include="ManoDeObraDao.cs" />
     <Compile Include="ManoObraTercerosDao.cs" />

@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Estilos\EstilosBoton.cs" />
     <Compile Include="Estilos\EstilosDGV.cs" />
     <Compile Include="Estilos\EstilosFromFlotantes.cs" />
     <Compile Include="Estilos\EstilosTextBox.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validaciones\DatoTextBox.cs" />
+    <Compile Include="Validaciones\ContenidoTextBox.cs" />
     <EmbeddedResource Include="FormFlotantes\FHojaRepuestos.resx">
       <DependentUpon>FHojaRepuestos.cs</DependentUpon>
     </EmbeddedResource>
@@ -308,6 +310,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\editar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GenerarHoja32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

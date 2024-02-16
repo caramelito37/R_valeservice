@@ -19,6 +19,9 @@ namespace Login
 
     public partial class frmHoja : Form
     {
+        public static string Accion { get; set; }
+
+        DHoja dHoja = new DHoja();
         DManoDeObra dManoDeObra = new DManoDeObra();
         DHojaRepuesto dHojaRepuesto = new DHojaRepuesto();
         DManoObraTerceros dManoObraTerceros = new DManoObraTerceros();
@@ -27,12 +30,15 @@ namespace Login
         public frmHoja()
         {
             InitializeComponent();
+            DatoTextBox.ConfigurarTextBoxEntero(txtNumeroHoja);
         }
 
 
         private void frmHoja_Load(object sender, EventArgs e)
         {
-
+            EstilosBoton.OcultarBoton
+                (btnAddRecepcionVehicular, btnAsignarFechaSalidaRecepcion, 
+                btnDeleteRecepcionVehicular, btnAddRepuestos, btnAddManoObra, btnAddManoObraTerceros);
         }
         private void LimpiarDatosRecepciones()
         {
@@ -110,11 +116,16 @@ namespace Login
                     txtFechaEntrada.Text = row["Fecha de Entrada"].ToString();
                     txtFechaSalida.Text = row["Fecha de Salida"].ToString();
                     txtCuentaRecepcion.Text = row["Adelanto de Recepción"].ToString();
+                    EstilosBoton.OcultarBoton(btnAddRecepcionVehicular);
+                    EstilosBoton.MostrarBoton(btnAsignarFechaSalidaRecepcion, btnDeleteRecepcionVehicular);
+
                 }
                 else
                 {
-                    // Manejar el caso en el que no hay datos para la hoja especificada
                     LimpiarDatosRecepciones();
+                    EstilosBoton.MostrarBoton(btnAddRecepcionVehicular);
+                    EstilosBoton.OcultarBoton(btnAsignarFechaSalidaRecepcion, btnDeleteRecepcionVehicular);
+
                 }
             }
         }
@@ -152,6 +163,22 @@ namespace Login
                 dgvManoObraTercerosHoja.DataSource = datosServicios;
             }
         }
+        private bool ValidarNumeroHoja(string numeroHoja)
+        {
+            // Verificar si el número de hoja está en la lista de números de hoja
+            DataTable datosHoja = dHoja.MostrarDatosHoja();
+            bool numeroValido = datosHoja.AsEnumerable().Any(row => numeroHoja.Equals(row.Field<int>("Hoja_Numero").ToString()));
+
+            // Si el número de hoja no es válido, mostrar un mensaje de error y eliminar el último carácter del TextBox
+            if (!numeroValido)
+            {
+                MessageBox.Show("El número de hoja: " + numeroHoja + " no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Eliminar el último carácter del TextBox
+                txtNumeroHoja.Text = txtNumeroHoja.Text.Substring(0, txtNumeroHoja.Text.Length - 1);
+            }
+            return numeroValido;
+        }
 
 
         private void txtNumeroHoja_TextChanged_1(object sender, EventArgs e)
@@ -159,15 +186,27 @@ namespace Login
             // Verificar si el TextBox está vacío
             if (string.IsNullOrWhiteSpace(txtNumeroHoja.Text))
             {
-                LimpiarDataGridViews();// Limpiar el contenido de los DataGridView
-                LimpiarDatosRecepciones();// Limpiar los datos de Recepciones
+                LimpiarDataGridViews(); // Limpiar el contenido de los DataGridView
+                LimpiarDatosRecepciones(); // Limpiar los datos de Recepciones
+                EstilosBoton.OcultarBoton(btnAddRecepcionVehicular, btnAsignarFechaSalidaRecepcion, btnDeleteRecepcionVehicular, btnAddRepuestos, btnAddManoObra, btnAddManoObraTerceros);
             }
             else
             {
+                // Llamar a la función de validación del número de hoja
+                if (!ValidarNumeroHoja(txtNumeroHoja.Text))
+                {
+                    // El número de hoja no es válido, limpiar el contenido y salir de la función
+                    LimpiarDataGridViews();
+                    LimpiarDatosRecepciones();
+                    EstilosBoton.OcultarBoton(btnAddRecepcionVehicular, btnAsignarFechaSalidaRecepcion, btnDeleteRecepcionVehicular, btnAddRepuestos, btnAddManoObra, btnAddManoObraTerceros);
+                    return;
+                }
+
                 MostrarDatosRepuestos();
                 MostrarDatosManoObra();
                 MostrarDatosManoObraTerceros();
                 MostrarDatosRecepciones();
+                EstilosBoton.MostrarBoton(btnAddRepuestos, btnAddManoObra, btnAddManoObraTerceros);
 
                 EstilosDGV.AplicarEstilosSiBotones(dgvRepuestoHoja);
                 EstilosDGV.AplicarEstilosSiBotones(dgvManoObraHoja);
@@ -183,18 +222,102 @@ namespace Login
 
         private void btnAddRecepcionVehicular_Click(object sender, EventArgs e)
         {
+            Accion = "agregar";
             FRecepcionVehicular fRecepcionVehicular = new FRecepcionVehicular();
-            fRecepcionVehicular.ShowDialog();
+
+            // Asignar el valor de txtNumeroHoja al TextBox en el nuevo formulario
+            fRecepcionVehicular.txtFFRVnhoja.Text = txtNumeroHoja.Text;
+            fRecepcionVehicular.dtpFFRVFechaEntrada.Value = DateTime.Now;
+
+            EstilosFromFlotantes.AplicarEstilosForm(fRecepcionVehicular);
+
+            // Mostrar el formulario
+            if (fRecepcionVehicular.ShowDialog(this) == DialogResult.OK)
+            {
+                // Obtener datos del formulario después de aceptar
+                int hojaNumero, clienteDNI;
+                decimal cuenta;
+                string placaVehiculo;
+                DateTime fechaEntrada;
+
+                if (int.TryParse(fRecepcionVehicular.txtFFRVnhoja.Text, out hojaNumero) &&
+                    int.TryParse(fRecepcionVehicular.txtFFRVDNICliente.Text, out clienteDNI) &&
+                    decimal.TryParse(fRecepcionVehicular.txtFFRVCuentaRecepcion.Text, out cuenta) &&
+                    DateTime.TryParse(fRecepcionVehicular.dtpFFRVFechaEntrada.Value.ToString(), out fechaEntrada) &&
+                    !string.IsNullOrEmpty(fRecepcionVehicular.txtFFRVPlacaVehiculo.Text))
+                {
+                    placaVehiculo = fRecepcionVehicular.txtFFRVPlacaVehiculo.Text;
+
+                    // Insertar el nuevo registro directamente aquí sin llamar a otro método
+                    dRecepcionVehiculo.AddDatosRecepcion(hojaNumero, fechaEntrada, cuenta, placaVehiculo, clienteDNI);
+
+                    // Actualizar la visualización de los datos
+                    MostrarDatosRecepciones();
+                }
+            }
         }
 
-        private void btnEditRecepcionVehicular_Click(object sender, EventArgs e)
+        private void btnAsignarFechaSalidaRecepcionVehicular_Click(object sender, EventArgs e)
         {
+            Accion = "salida";
+            // Crear una instancia del formulario FRecepcionVehicular
+            FRecepcionVehicular fRecepcionVehicular = new FRecepcionVehicular();
+            // Asignar los valores de los campos de hoja al nuevo formulario
+            fRecepcionVehicular.txtFFRVid.Text = txtIDRecepcion.Text;
+            fRecepcionVehicular.txtFFRVnhoja.Text = txtNumeroHoja.Text;
+            fRecepcionVehicular.txtFFRVDNICliente.Text = txtDNICliente.Text;
+            fRecepcionVehicular.txtFFRVNombreCliente.Text = txtNombreCliente.Text;
+            fRecepcionVehicular.txtFFRVContactoCliente.Text= txtContactoCliente.Text;
+            fRecepcionVehicular.txtFFRVPlacaVehiculo.Text = txtPlacaVehiculo.Text;
+            fRecepcionVehicular.txtFFRVMarcaVehiculo.Text = txtMarcaVehiculo.Text;
+            fRecepcionVehicular.txtFFRVModeloVehiculo.Text = txtModeloVehiculo.Text;
+            fRecepcionVehicular.txtFFRVAnioVehiculo.Text = txtAnioVehiculo.Text;
+            fRecepcionVehicular.txtFFRVKilometrajeVehiculo.Text = txtKilometrajeVehiculo.Text;
+            fRecepcionVehicular.txtFFRVCuentaRecepcion.Text = txtCuentaRecepcion.Text;
+            fRecepcionVehicular.dtpFFRVFechaEntrada.Value = DateTime.Parse(txtFechaEntrada.Text);
+            fRecepcionVehicular.dtpFFRVFechaEntrada.Enabled = false;
+            EstilosTextBox.BloquearTextBox(fRecepcionVehicular.txtFFRVCuentaRecepcion);
 
+            EstilosTextBox.HabilitarTextBox(fRecepcionVehicular.txtFFRVFechaSalida);
+
+            // Aplicar estilos al formulario
+            EstilosFromFlotantes.AplicarEstilosForm(fRecepcionVehicular);
+
+            // Mostrar el formulario como un diálogo
+            if (fRecepcionVehicular.ShowDialog() == DialogResult.OK)
+            {
+                // Obtener la fecha de salida del TextBox
+                int idRecepcion = int.Parse(fRecepcionVehicular.txtFFRVid.Text);
+
+                DateTime? fechaSalida = null;
+                if (DateTime.TryParse(fRecepcionVehicular.txtFFRVFechaSalida.Text, out DateTime salida))
+                {
+                    fechaSalida = salida;
+                    
+                }
+
+                // Llamar al método AsignarFechaSalida con el ID de recepción y la fecha de salida
+                dRecepcionVehiculo.AsignarFechaSalida(idRecepcion, fechaSalida);
+                MostrarDatosRecepciones();
+
+            }
         }
 
         private void btnDeleteRecepcionVehicular_Click(object sender, EventArgs e)
         {
+            int recepcionId;
+            if (int.TryParse(txtIDRecepcion.Text, out recepcionId))
+            {
+                // Llamada al método para eliminar los datos de la recepción
+                dRecepcionVehiculo.DeleteDatosRecepcion(recepcionId);
 
+                // Actualizar la visualización de los datos
+                MostrarDatosRecepciones();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingrese un ID válido para la recepción.", "ID Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
@@ -621,12 +744,18 @@ namespace Login
         }
 
 
-
         #endregion
         // ************************************************************
         // ************ FIN MANO DE OBRA TERCEROS *********************
         // ************************************************************
 
+        private void btnNuevaHoja_Click(object sender, EventArgs e)
+        {
+            // Obtener el número de la nueva hoja
+            int nuevoNumeroHoja = dHoja.GenerarNumeroHoja();
 
+            // Asignar el valor al TextBox txtNumeroHoja
+            txtNumeroHoja.Text = nuevoNumeroHoja.ToString();
+        }
     }
 }

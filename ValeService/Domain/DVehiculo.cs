@@ -12,10 +12,10 @@ namespace Domain
     {
         VehiculoDao vehiculoDao = new VehiculoDao();
 
-        public DataTable MostrarVehiculos()
+        public DataTable MostrarDatosVehiculos()
         {
             DataTable tabla = new DataTable();
-            tabla = vehiculoDao.MostrarVehiculos();
+            tabla = vehiculoDao.MostrarDatosVehiculos();
             return tabla;
         }
 

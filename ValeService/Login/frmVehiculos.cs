@@ -22,7 +22,7 @@ namespace Login
         }
         private void MostrarVehiculos()
         {
-            DataTable vehiculoTable = DVehiculo.MostrarVehiculos();
+            DataTable vehiculoTable = DVehiculo.MostrarDatosVehiculos();
             dgvVehiculos.DataSource = vehiculoTable;
         }
         private void frmAutos_Load(object sender, EventArgs e)

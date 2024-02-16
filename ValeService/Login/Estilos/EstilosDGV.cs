@@ -19,6 +19,7 @@ namespace Login.Estilos
             dgv.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra para las celdas
             dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra y hacerla negrita para los encabezados de columna
             dgv.RowHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra para los encabezados de fila (si aplicable)
+            dgv.DefaultCellStyle.ForeColor = Color.Black; // color de las letras de las filas a negro
 
             // Ocultar la primera columna (row headers)
             dgv.RowHeadersVisible = false;
@@ -66,6 +67,8 @@ namespace Login.Estilos
             dgv.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra para las celdas
             dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra y hacerla negrita para los encabezados de columna
             dgv.RowHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Cambiar el tamaño de la letra para los encabezados de fila (si aplicable)
+            dgv.DefaultCellStyle.ForeColor = Color.Black; // color de las letras de las filas a negro
+
 
             // Ocultar la primera columna (row headers)
             dgv.RowHeadersVisible = false;

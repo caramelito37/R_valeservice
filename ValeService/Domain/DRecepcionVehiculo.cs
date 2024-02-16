@@ -40,20 +40,21 @@ namespace Domain
             return recepcionVehiculoDao.MostrarDatosRecepciones(numeroHoja);
         }
 
-        public void AgregarRecepcion(DateTime fechaEntrada, DateTime? fechaSalida, decimal cuenta, string placaVehiculo, int clienteDNI)
+        public void AddDatosRecepcion(int hojaNumero, DateTime fechaEntrada, decimal cuenta, string placaVehiculo, int clienteDNI)
         {
-            recepcionVehiculoDao.AgregarRecepcion(fechaEntrada, fechaSalida, cuenta, placaVehiculo, clienteDNI);
+            recepcionVehiculoDao.AddDatosRecepcion(hojaNumero, fechaEntrada , cuenta, placaVehiculo, clienteDNI);
         }
 
-        public void EliminarRecepcion(int recepcionId)
+        public void DeleteDatosRecepcion(int recepcionId)
         {
-            recepcionVehiculoDao.EliminarRecepcion(recepcionId);
+            recepcionVehiculoDao.DeleteDatosRecepcion(recepcionId);
         }
 
-        public void EditarRecepcion(int recepcionId, DateTime fechaEntrada, DateTime? fechaSalida, decimal cuenta, string placaVehiculo, int clienteDNI)
+        public void AsignarFechaSalida(int recepcionId, DateTime? fechaSalida)
         {
-            recepcionVehiculoDao.EditarRecepcion(recepcionId, fechaEntrada, fechaSalida, cuenta, placaVehiculo, clienteDNI);
+            recepcionVehiculoDao.AsignarFechaSalida(recepcionId, fechaSalida);
         }
+
 
         public DataTable BuscarRecepcion(string opcion, string valor)
         {

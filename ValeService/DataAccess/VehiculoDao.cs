@@ -11,7 +11,7 @@ namespace DataAccess
     public class VehiculoDao : ConnectionToMySql
     {
         #region VEHICULOS --- CONSULTAS PARA LOS BOTONES DEL FORMULARIO Y MOSTRAR REGISTROS 'CRUD' DE LA TABLA VEHICULOS
-        public DataTable MostrarVehiculos()
+        public DataTable MostrarDatosVehiculos()
         {
             using (var connection = GetConnection())
             {
@@ -19,8 +19,8 @@ namespace DataAccess
                 using (var command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = "SELECT * FROM Vehiculo;";
-                    command.CommandType = CommandType.Text;
+                    command.CommandText = "MostrarDatosVehiculo;";
+                    command.CommandType = CommandType.StoredProcedure;
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
